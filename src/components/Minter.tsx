@@ -42,18 +42,20 @@ export function Minter() {
 							src={ClickHere}
 							className="h-[20vh] mt-20 translate-y-[16vh] -translate-x-[4rem] absolute w-auto"
 						/>
-						<Image
-							alt="JoJo Image"
-							src={GreenJoJo}
-							className="w-[50vw] min-w-[42rem] max-w-[50rem] mx-auto p-4 hover:cursor-pointer hover:p-0 z-50"
-						/>
+						<div className="z-[100000]">
+							<Image
+								alt="JoJo Image"
+								src={GreenJoJo}
+								className="w-[50vw] min-w-[42rem] max-w-[50rem] mx-auto p-1 hover:cursor-pointer hover:p-0 z-[1000000]"
+							/>
+						</div>
 					</div>
 				</div>
 				<div className="absolute h-5/6 w-full flex">
 					<Image
 						alt="Play"
 						src={Play}
-						className="h-28 w-auto p-4 hover:cursor-pointer hover:p-0 mt-auto ml-auto mr-14"
+						className="h-28 w-auto p-1 hover:cursor-pointer hover:p-0 mt-auto ml-auto mr-14 z-50"
 					/>
 				</div>
 				<div className="absolute h-5/6 w-full flex">
