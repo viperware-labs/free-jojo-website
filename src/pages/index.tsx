@@ -1,5 +1,5 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { useAccount } from 'wagmi'
+import { useAccount, useConnect } from 'wagmi'
 import Head from 'next/head';
 import dynamic from "next/dynamic"
 
@@ -11,9 +11,11 @@ import JoJoList from '../../public/images/JoJoList.png'
 
 import React from 'react'
 import ReactAudioPlayer from 'react-audio-player'
+import { Connect } from '../components/Button'
 
 function Page() {
   const { isConnected } = useAccount()
+	const { connect, connectors, error, isLoading, pendingConnector } = useConnect();
   return (
     <div className="h-screen overflow-hidden">
       <div className={styles.background}>
@@ -29,15 +31,9 @@ function Page() {
         </Head>
         <div className="p-5 flex">
           <div className="">
-            <ConnectButton />
           </div>
           <div className="ml-auto">
-            <Image
-              alt="JoJo List"
-              height={90}
-              src={JoJoList}
-            // className="border"
-            />
+					  <Connect/>
           </div>
         </div>
         <div className={styles.main}

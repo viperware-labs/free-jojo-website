@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "@rainbow-me/rainbowkit": "^0.8.0",
+    "@walletconnect/sign-client": "^2.1.4",
     "autoprefixer": "^10.4.13",
     "ethers": "^5.7.0",
+    "lokijs": "^1.5.12",
     "next": "^13.0.0",
     "postcss": "^8.4.19",
     "rainbowkit": "^0.0.1",
@@ -21,7 +23,8 @@
     "react-player": "^2.11.0",
     "styled-components": "^5.3.6",
     "tailwindcss": "^3.2.4",
-    "wagmi": "^0.8.10"
+    "wagmi": "^0.8.10",
+    "web3modal": "^1.9.10"
   },
   "devDependencies": {
     "@types/node": "^17.0.31",
