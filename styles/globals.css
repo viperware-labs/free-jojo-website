@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'AnonPro';
+    src: url('./fonts/AnonPro.ttf') format('truetype');
+    font-display: swap;
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Scope';
+    src: url('./fonts/Scope.ttf') format('truetype');
+    font-display: swap;
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Norm';
+    src: url('./fonts/TTNorms.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Wave';
+    src: url('./fonts/Wave.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'WaveBold';
+    src: url('./fonts/WaveBold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0px !important
+}
