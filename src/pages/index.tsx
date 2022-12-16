@@ -35,7 +35,13 @@ function Page() {
   const { connect, connectors, error, isLoading, pendingConnector } = useConnect();
 
   const changeSeed = () => {
-    setSeed(Math.floor(Math.random() * 9) + 1);
+    if (seed < 9) {
+      setSeed(seed+1);
+      console.log(seed);
+    } else {
+      setSeed(1);
+      console.log(seed);
+    }
   }
 
   // const { connectors, pendingConnector, connectAsync } = useConnect()
