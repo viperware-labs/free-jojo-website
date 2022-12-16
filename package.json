@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.6",
+    "@heroicons/react": "^2.0.13",
     "@rainbow-me/rainbowkit": "^0.8.0",
     "@walletconnect/sign-client": "^2.1.4",
     "autoprefixer": "^10.4.13",
