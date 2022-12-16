@@ -9,6 +9,9 @@ import { Minter } from '../components'
 import Image from 'next/image';
 import JoJoList from '../../public/images/JoJoList.png'
 
+import React from 'react'
+import ReactAudioPlayer from 'react-audio-player'
+
 function Page() {
   const { isConnected } = useAccount()
   return (
