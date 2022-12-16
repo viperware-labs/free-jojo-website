@@ -5,41 +5,48 @@ import dynamic from "next/dynamic"
 
 import styles from '../../styles/Home.module.css';
 import { Minter } from '../components'
-import { FAQ } from '../components'
+
+import Image from 'next/image';
+import JoJoList from '../../public/images/JoJoList.png'
 
 function Page() {
   const { isConnected } = useAccount()
   return (
-    <div className={styles.background}>
-      <Head>
-        <title>COLOR x Ownrshp</title>
-        <meta name="description" content="COLOR x Ownrshp" key="desc" />
-        <meta property="og:title" content="COLOR x Ownrshp" />
-        <meta
-          property="og:description"
-          content="COLOR x Ownrshp"
-        />
-        <meta
-          property="og:image"
-          content="https://www.galaxyofcolor.xyz/_next/static/media/WEB_BACKGROUND1.29cfa715.jpg"
-        />
-        {/* <link rel="icon" href="/favicon.ico" /> */}
-      </Head>
-      <div className="flex p-5">
-        <div className="ml-auto">
-          <ConnectButton />
+    <div className="h-screen overflow-hidden">
+      <div className={styles.background}>
+        <Head>
+          <title>Free JoJo</title>
+          <meta name="description" content="COLOR x Ownrshp" key="desc" />
+          <meta property="og:title" content="COLOR x Ownrshp" />
+          <meta
+            property="og:description"
+            content="COLOR x Ownrshp"
+          />
+          {/* <link rel="icon" href="/favicon.ico" /> */}
+        </Head>
+        <div className="p-5 flex">
+          <div className="">
+            <ConnectButton />
+          </div>
+          <div className="ml-auto">
+            <Image
+              alt="JoJo List"
+              height={90}
+              src={JoJoList}
+            // className="border"
+            />
+          </div>
         </div>
-      </div>
-      <div className={styles.main}
-        style={{
-          
-          fontFamily: 'Wave',
-          fontWeight: '300'
-        
-        }}
+        <div className={styles.main}
+          style={{
+
+            fontFamily: 'Wave',
+            fontWeight: '300'
+
+          }}
         >
-        <Minter />
-        <FAQ />
+          <Minter />
+        </div>
       </div>
     </div>
   )

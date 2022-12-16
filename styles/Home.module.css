@@ -2,10 +2,8 @@
   min-height: 100vh;
   background-color: rgb(0, 0, 0);
   font-family: Scope;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)), url("./images/WEB_BACKGROUND2.jpg");
-  background-position-x: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-image: url("../public/images/GreenBg.png");
+  background-size: fill;
 }
 
 
