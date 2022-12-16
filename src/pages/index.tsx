@@ -31,95 +31,177 @@ import MusicPlayer from '../components/Music'
 
 
 function Page() {
-	const [seed, setSeed] = useState(Math.floor(Math.random() * 8) + 1);
-	const { connect, connectors, error, isLoading, pendingConnector } = useConnect();
+  const [seed, setSeed] = useState(Math.floor(Math.random() * 9) + 1);
+  const { connect, connectors, error, isLoading, pendingConnector } = useConnect();
 
   const changeSeed = () => {
-    setSeed(Math.floor(Math.random() * 8) + 1);
+    setSeed(Math.floor(Math.random() * 9) + 1);
   }
 
-	// const { connectors, pendingConnector, connectAsync } = useConnect()
+  // const { connectors, pendingConnector, connectAsync } = useConnect()
 
-	const { address, isConnected } = useAccount();
-	const { chain, chains } = useNetwork();
-	const { data: ensName } = useEnsName({ address });
+  const { address, isConnected } = useAccount();
+  const { chain, chains } = useNetwork();
+  const { data: ensName } = useEnsName({ address });
 
-	const [difficulty, setDifficulty] = useState(0);
-	const [seedMatches, setSeedMatches] = useState(false);
-	const [miningEnabled, setMiningEnabled] = useState(false);
+  const [difficulty, setDifficulty] = useState(0);
+  const [seedMatches, setSeedMatches] = useState(false);
+  const [miningEnabled, setMiningEnabled] = useState(false);
 
   return (
-    <div className="h-screen overflow-hidden">
-      <div className="" style={{
-        backgroundImage: `url("/images/${seed}bg.png")`,
-      }}>
-        <Head>
-          <title>Free JoJo</title>
-          <meta name="description" content="COLOR x Ownrshp" key="desc" />
-          <meta property="og:title" content="COLOR x Ownrshp" />
-          <meta
-            property="og:description"
-            content="COLOR x Ownrshp"
-          />
-          {/* <link rel="icon" href="/favicon.ico" /> */}
-        </Head>
-        <div className="p-5 flex">
-          <div className="">
+    <>
+    <Head>
+      <title>Free JoJo</title>
+      <meta name="description" content="COLOR x Ownrshp" key="desc" />
+      <meta property="og:title" content="COLOR x Ownrshp" />
+      <meta
+        property="og:description"
+        content="COLOR x Ownrshp"
+      />
+      {/* <link rel="icon" href="/favicon.ico" /> */}
+    </Head>
+      {/* Mobile */}
+      <div className="visible sm:invisible sm:h-0">
+        <div className="" style={{
+          backgroundImage: `url("/images/${seed}bg.png")`,
+        }}>
+          <div className="p-5 flex">
+            <div className="">
+            </div>
+            <div className="ml-auto">
+              <Connect />
+            </div>
           </div>
-          <div className="ml-auto">
-					  <Connect/>
-          </div>
-        </div>
-        <div className={styles.main}
-          style={{
+          <div className={styles.main}
+            style={{
 
-            fontFamily: 'Wave',
-            fontWeight: '300'
+              fontFamily: 'Wave',
+              fontWeight: '300'
 
-          }}
-        >
-          <div className="text-white text-center w-full flex z-0">
-            <div className="mx-auto center w-full">
-              <img
-                alt="JoJo Words"
-                src={`/images/${seed}free.png`}
-                className="h-[30vw] min-h-[24rem] max-h-[30rem] w-auto -translate-y-[25vh] mx-auto z-10"
-              />
-              <div className="-translate-y-[50vh] w-fit mx-auto flex z-0">
+            }}
+          >
+            <div className="text-white text-center w-full flex z-0">
+              <div className="mx-auto center w-full">
                 <Image
-                  alt="Click Here"
-                  src={ClickHere}
-                  className="h-[20vh] mt-20 translate-y-[16vh] -translate-x-[4rem] absolute w-auto"
+                  alt="JoJo Words"
+                  src={`/images/${seed}free.png`}
+                  width={1000}
+                  height={1000}
+                  className="h-[30vw] min-h-[24rem] max-h-[30rem] w-auto -translate-y-[25vh] mx-auto z-10"
                 />
-                <div className="z-[100000] hover:cursor-pointer">
-                  <img
-                    alt="JoJo Image"
-                    src={`/images/${seed}jojo.png`}
-                    className="w-[50vw] min-w-[42rem] max-w-[50rem] mx-auto hover:cursor-pointer"
+                <div className="-translate-y-[50vh] w-fit mx-auto flex z-0">
+                  <Image
+                    alt="Click Here"
+                    src={ClickHere}
+                    width={1000}
+                    height={1000}
+                    className="h-[20vh] mt-20 translate-y-[16vh] -translate-x-[4rem] absolute w-auto"
                   />
+                  <div className="z-[100000] hover:cursor-pointer">
+                    <Image
+                      alt="JoJo Image"
+                      src={`/images/${seed}jojo.png`}
+                      width={1000}
+                      height={1000}
+                      className="w-[50vw] min-w-[42rem] max-w-[50rem] mx-auto hover:cursor-pointer"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="absolute h-5/6 w-full flex" onClick={() => changeSeed()}>
-              <div className="w-[50vw] min-w-[35rem] max-w-[40rem] h-[50vw] min-h-[35rem] max-h-[40rem] mx-auto p-1 hover:cursor-pointer hover:p-0 z-[100]"
+              <div className="absolute h-5/6 w-full flex" onClick={() => changeSeed()}>
+                <div className="w-[50vw] min-w-[35rem] max-w-[40rem] h-[50vw] min-h-[35rem] max-h-[40rem] mx-auto p-1 hover:cursor-pointer hover:p-0 z-[100]"
                 />
-            </div>
-            <div className="absolute h-5/6 w-full flex">
-              <div className="mt-auto ml-auto mr-14 z-50">
-                <MusicPlayer />
               </div>
-            </div>
-            <div className="absolute h-5/6 w-full flex">
-              <img
-                alt="We Are Jojo"
-                src={`/images/${seed}weare.png`}
-                className="h-[4rem] w-auto ml-14 mt-auto"
-              />
+              <div className="absolute h-5/6 w-full flex">
+                <div className="mt-auto ml-auto mr-14 z-50">
+                  <MusicPlayer />
+                </div>
+              </div>
+              <div className="absolute h-5/6 w-full flex">
+                <Image
+                  alt="We Are Jojo"
+                  src={`/images/${seed}weare.png`}
+                  width={1000}
+                  height={1000}
+                  className="h-[4rem] w-auto ml-14 mt-auto"
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+
+      {/* Desktop */}
+      <div className="">
+        <div className="" style={{
+          backgroundImage: `url("/images/${seed}bg.png")`,
+        }}>
+          <div className="p-5 flex">
+            <div className="">
+            </div>
+            <div className="ml-auto">
+              <Connect />
+            </div>
+          </div>
+          <div className={styles.main}
+            style={{
+
+              fontFamily: 'Wave',
+              fontWeight: '300'
+
+            }}
+          >
+            <div className="text-white text-center w-full flex z-0">
+              <div className="mx-auto center w-full">
+                <Image
+                  alt="JoJo Words"
+                  src={`/images/${seed}free.png`}
+                  width={1000}
+                  height={1000}
+                  className="h-[30vw] min-h-[24rem] max-h-[30rem] w-auto -translate-y-[25vh] mx-auto z-10"
+                />
+                <div className="-translate-y-[50vh] w-fit mx-auto flex z-0">
+                  <Image
+                    alt="Click Here"
+                    src={ClickHere}
+                    width={1000}
+                    height={1000}
+                    className="h-[20vh] mt-20 translate-y-[16vh] -translate-x-[4rem] absolute w-auto"
+                  />
+                  <div className="z-[100000] hover:cursor-pointer">
+                    <Image
+                      alt="JoJo Image"
+                      src={`/images/${seed}jojo.png`}
+                      width={1000}
+                      height={1000}
+                      className="w-[50vw] min-w-[42rem] max-w-[50rem] mx-auto hover:cursor-pointer"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="absolute h-5/6 w-full flex" onClick={() => changeSeed()}>
+                <div className="w-[50vw] min-w-[35rem] max-w-[40rem] h-[50vw] min-h-[35rem] max-h-[40rem] mx-auto p-1 hover:cursor-pointer hover:p-0 z-[100]"
+                />
+              </div>
+              <div className="absolute h-5/6 w-full flex">
+                <div className="mt-auto ml-auto mr-14 z-50">
+                  <MusicPlayer />
+                </div>
+              </div>
+              <div className="absolute h-5/6 w-full flex">
+                <Image
+                  alt="We Are Jojo"
+                  src={`/images/${seed}weare.png`}
+                  width={1000}
+                  height={1000}
+                  className="h-[4rem] w-auto ml-14 mt-auto"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   )
 }
 
