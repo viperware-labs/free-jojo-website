@@ -59,33 +59,6 @@ export const Connect = () => {
                             }
                             return (
                                 <div style={{ display: 'flex', gap: 12 }}>
-                                    {/* <button
-                                        onClick={openChainModal}
-                                        style={{ display: 'flex', alignItems: 'center' }}
-                                        type="button"
-                                    >
-                                        {chain.hasIcon && (
-                                            <div
-                                                style={{
-                                                    background: chain.iconBackground,
-                                                    width: 12,
-                                                    height: 12,
-                                                    borderRadius: 999,
-                                                    overflow: 'hidden',
-                                                    marginRight: 4,
-                                                }}
-                                            >
-                                                {chain.iconUrl && (
-                                                    <img
-                                                        alt={chain.name ?? 'Chain icon'}
-                                                        src={chain.iconUrl}
-                                                        style={{ width: 12, height: 12 }}
-                                                    />
-                                                )}
-                                            </div>
-                                        )}
-                                        {chain.name}
-                                    </button> */}
                                     <button className="h-42 px-5 py-0.5 text-primary bg-box mx-1 rounded hover:bg-opacity-95" onClick={openAccountModal} type="button">
                                         <Image
                                         alt="JoJo List"
