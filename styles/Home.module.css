@@ -1,8 +1,40 @@
-.background {
-  min-height: 100vh;
-  background-color: rgb(0, 0, 0);
-  font-family: Scope;
-  background-image: url("../public/images/GreenBg.png");
+.background1 {
+  background-image: url("../public/images/1bg.png");
+  background-size: fill;
+}
+
+.background2 {
+  background-image: url("../public/images/8bg.png");
+  background-size: fill;
+}
+
+.background3 {
+  background-image: url("../public/images/8bg.png");
+  background-size: fill;
+}
+
+.background4 {
+  background-image: url("../public/images/8bg.png");
+  background-size: fill;
+}
+
+.background5 {
+  background-image: url("../public/images/8bg.png");
+  background-size: fill;
+}
+
+.background6 {
+  background-image: url("../public/images/8bg.png");
+  background-size: fill;
+}
+
+.background7 {
+  background-image: url("../public/images/8bg.png");
+  background-size: fill;
+}
+
+.background8 {
+  background-image: url("../public/images/8bg.png");
   background-size: fill;
 }
 
