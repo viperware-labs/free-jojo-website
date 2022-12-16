@@ -69,6 +69,7 @@ function Page() {
       </div> */}
 
       {/* <Image
+priority
         alt="Background"
         src={`/images/${seed}bg.png`}
         height={800}
@@ -77,6 +78,7 @@ function Page() {
         className="absolute w-full h-full"
       /> */}
       {/* {seed == 1 ? <Image
+priority
         alt="Background"
         src={`/images/1bg.png`}
         height={800}
@@ -88,6 +90,7 @@ function Page() {
         className="absolute w-full h-full"
       /> : null}
       {seed == 2 ? <Image
+priority
         alt="Background"
         src={`/images/2bg.png`}
         height={800}
@@ -96,6 +99,7 @@ function Page() {
         className="absolute w-full h-full"
       /> : null}
       {seed == 3 ? <Image
+priority
         alt="Background"
         src={`/images/3bg.png`}
         height={800}
@@ -104,6 +108,7 @@ function Page() {
         className="absolute w-full h-full"
       /> : null}
       {seed == 4 ? <Image
+priority
         alt="Background"
         src={`/images/4bg.png`}
         height={800}
@@ -112,6 +117,7 @@ function Page() {
         className="absolute w-full h-full"
       /> : null}
       {seed == 5 ? <Image
+priority
         alt="Background"
         src={`/images/5bg.png`}
         height={800}
@@ -120,6 +126,7 @@ function Page() {
         className="absolute w-full h-full"
       /> : null}
       {seed == 6 ? <Image
+priority
         alt="Background"
         src={`/images/6bg.png`}
         height={800}
@@ -128,6 +135,7 @@ function Page() {
         className="absolute w-full h-full"
       /> : null}
       {seed == 7 ? <Image
+priority
         alt="Background"
         src={`/images/7bg.png`}
         height={800}
@@ -136,6 +144,7 @@ function Page() {
         className="absolute w-full h-full"
       /> : null}
       {seed == 8 ? <Image
+priority
         alt="Background"
         src={`/images/8bg.png`}
         height={800}
@@ -144,6 +153,7 @@ function Page() {
         className="absolute w-full h-full"
       /> : null}
       {seed == 9 ? <Image
+priority
         alt="Background"
         src={`/images/9bg.png`}
         height={800}
@@ -152,6 +162,7 @@ function Page() {
         className="absolute w-full h-full"
       /> : null} */}
       <Image
+        priority
         alt="Background"
         src={`/images/1bg.png`}
         height={800}
@@ -163,6 +174,7 @@ function Page() {
         className="absolute w-full h-full"
       />
       <Image
+        priority
         alt="Background"
         src={`/images/2bg.png`}
         height={800}
@@ -174,6 +186,7 @@ function Page() {
         className="absolute w-full h-full"
       />
       <Image
+        priority
         alt="Background"
         src={`/images/3bg.png`}
         height={800}
@@ -185,6 +198,7 @@ function Page() {
         className="absolute w-full h-full"
       />
       <Image
+        priority
         alt="Background"
         src={`/images/4bg.png`}
         height={800}
@@ -196,6 +210,7 @@ function Page() {
         className="absolute w-full h-full"
       />
       <Image
+        priority
         alt="Background"
         src={`/images/5bg.png`}
         height={800}
@@ -207,6 +222,7 @@ function Page() {
         className="absolute w-full h-full"
       />
       <Image
+        priority
         alt="Background"
         src={`/images/6bg.png`}
         height={800}
@@ -218,6 +234,7 @@ function Page() {
         className="absolute w-full h-full"
       />
       <Image
+        priority
         alt="Background"
         src={`/images/7bg.png`}
         height={800}
@@ -229,6 +246,7 @@ function Page() {
         className="absolute w-full h-full"
       />
       <Image
+        priority
         alt="Background"
         src={`/images/8bg.png`}
         height={800}
@@ -240,6 +258,7 @@ function Page() {
         className="absolute w-full h-full"
       />
       <Image
+        priority
         alt="Background"
         src={`/images/9bg.png`}
         height={800}
@@ -289,6 +308,7 @@ function Page() {
                   <div className="text-white text-center w-full flex z-0">
                     <div className="mx-auto center w-full">
                       <Image
+                        priority
                         alt="JoJo Words"
                         src={`/images/${seed}free.png`}
                         width={1000}
@@ -297,6 +317,7 @@ function Page() {
                       />
                       <div className="-translate-y-[50vh] w-fit mx-auto flex z-0">
                         <Image
+                          priority
                           alt="Click Here"
                           src={ClickHere}
                           width={1000}
@@ -305,6 +326,7 @@ function Page() {
                         />
                         <div className="z-[100000] hover:cursor-pointer">
                           <Image
+                            priority
                             alt="JoJo Image"
                             src={`/images/${seed}jojo.png`}
                             width={1000}
@@ -325,6 +347,7 @@ function Page() {
                     </div>
                     <div className="absolute h-5/6 w-full flex">
                       <Image
+                        priority
                         alt="We Are Jojo"
                         src={`/images/${seed}weare.png`}
                         width={1000}
@@ -366,6 +389,7 @@ function Page() {
                   <div className="text-white text-center w-full flex z-0">
                     <div className="mx-auto center w-full">
                       <Image
+                        priority
                         alt="JoJo Words"
                         src={`/images/${seed}free.png`}
                         width={1000}
@@ -374,6 +398,7 @@ function Page() {
                       />
                       <div className="-translate-y-[50vh] w-fit mx-auto flex z-0">
                         <Image
+                          priority
                           alt="Click Here"
                           src={ClickHere}
                           width={1000}
@@ -382,6 +407,7 @@ function Page() {
                         />
                         <div className="z-[100000] hover:cursor-pointer">
                           <Image
+                            priority
                             alt="JoJo Image"
                             src={`/images/${seed}jojo.png`}
                             width={1000}
@@ -402,6 +428,7 @@ function Page() {
                     </div>
                     <div className="absolute h-5/6 w-full flex">
                       <Image
+                        priority
                         alt="We Are Jojo"
                         src={`/images/${seed}weare.png`}
                         width={1000}
