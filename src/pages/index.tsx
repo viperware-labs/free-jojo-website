@@ -350,12 +350,12 @@ priority
                         /> */}
 
                         <div className="flex mt-10">
-                          <div className="z-[1000] w-auto my-auto">
+                          <div className="mx-auto my-auto">
+                            <MusicPlayer />
+                          </div>
+                          <div className="my-auto z-50">
                             <Connect />
                           </div>
-                            <div className="mt-auto my-auto z-50">
-                              <MusicPlayer />
-                            </div>
                         </div>
 
                       </div>
