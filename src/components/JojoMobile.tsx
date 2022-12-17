@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react'
 
 // @ts-ignore
-export function Jojo({ seed }) {
+export function JojoMobile({ seed }) {
     console.log(seed)
 
     return (
@@ -18,7 +18,7 @@ export function Jojo({ seed }) {
                     visibility: `${(seed == 1 ? "visible" : "hidden")}`,
                     height: `${(seed == 1 ? "auto" : "0")}`,
                 }}
-                className="w-[50vw] min-w-[20rem] max-w-[50rem] mx-auto hover:cursor-pointer"
+                className="w-[50vw] min-w-[20rem] max-w-[30rem] mx-auto hover:cursor-pointer"
             />
             <Image
                 priority
@@ -31,7 +31,7 @@ export function Jojo({ seed }) {
                     visibility: `${(seed == 2 ? "visible" : "hidden")}`,
                     height: `${(seed == 2 ? "auto" : "0")}`,
                 }}
-                className="w-[50vw] min-w-[20rem] max-w-[50rem] mx-auto hover:cursor-pointer"
+                className="w-[50vw] min-w-[20rem] max-w-[30rem] mx-auto hover:cursor-pointer"
             />
             <Image
                 priority
@@ -44,7 +44,7 @@ export function Jojo({ seed }) {
                     visibility: `${(seed == 3 ? "visible" : "hidden")}`,
                     height: `${(seed == 3 ? "auto" : "0")}`,
                 }}
-                className="w-[50vw] min-w-[20rem] max-w-[50rem] mx-auto hover:cursor-pointer"
+                className="w-[50vw] min-w-[20rem] max-w-[30rem] mx-auto hover:cursor-pointer"
             />
             <Image
                 priority
@@ -57,7 +57,7 @@ export function Jojo({ seed }) {
                     visibility: `${(seed == 4 ? "visible" : "hidden")}`,
                     height: `${(seed == 4 ? "auto" : "0")}`,
                 }}
-                className="w-[50vw] min-w-[20rem] max-w-[50rem] mx-auto hover:cursor-pointer"
+                className="w-[50vw] min-w-[20rem] max-w-[30rem] mx-auto hover:cursor-pointer"
             />
             <Image
                 priority
@@ -70,7 +70,7 @@ export function Jojo({ seed }) {
                     visibility: `${(seed == 5 ? "visible" : "hidden")}`,
                     height: `${(seed == 5 ? "auto" : "0")}`,
                 }}
-                className="w-[50vw] min-w-[20rem] max-w-[50rem] mx-auto hover:cursor-pointer"
+                className="w-[50vw] min-w-[20rem] max-w-[30rem] mx-auto hover:cursor-pointer"
             />
             <Image
                 priority
@@ -83,7 +83,7 @@ export function Jojo({ seed }) {
                     visibility: `${(seed == 6 ? "visible" : "hidden")}`,
                     height: `${(seed == 6 ? "auto" : "0")}`,
                 }}
-                className="w-[50vw] min-w-[20rem] max-w-[50rem] mx-auto hover:cursor-pointer"
+                className="w-[50vw] min-w-[20rem] max-w-[30rem] mx-auto hover:cursor-pointer"
             />
             <Image
                 priority
@@ -96,7 +96,7 @@ export function Jojo({ seed }) {
                     visibility: `${(seed == 7 ? "visible" : "hidden")}`,
                     height: `${(seed == 7 ? "auto" : "0")}`,
                 }}
-                className="w-[50vw] min-w-[20rem] max-w-[50rem] mx-auto hover:cursor-pointer"
+                className="w-[50vw] min-w-[20rem] max-w-[30rem] mx-auto hover:cursor-pointer"
             />
             <Image
                 priority
@@ -109,7 +109,7 @@ export function Jojo({ seed }) {
                     visibility: `${(seed == 8 ? "visible" : "hidden")}`,
                     height: `${(seed == 8 ? "auto" : "0")}`,
                 }}
-                className="w-[50vw] min-w-[20rem] max-w-[50rem] mx-auto hover:cursor-pointer"
+                className="w-[50vw] min-w-[20rem] max-w-[30rem] mx-auto hover:cursor-pointer"
             />
             <Image
                 priority
@@ -122,7 +122,7 @@ export function Jojo({ seed }) {
                     visibility: `${(seed == 9 ? "visible" : "hidden")}`,
                     height: `${(seed == 9 ? "auto" : "0")}`,
                 }}
-                className="w-[50vw] min-w-[20rem] max-w-[50rem] mx-auto hover:cursor-pointer"
+                className="w-[50vw] min-w-[20rem] max-w-[30rem] mx-auto hover:cursor-pointer"
             />
         </>
     )

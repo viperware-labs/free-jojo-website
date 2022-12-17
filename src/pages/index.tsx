@@ -29,6 +29,9 @@ import MusicPlayer from '../components/Music'
 
 import { Jojo } from '../components/Jojo';
 import { Words } from '../components/Words';
+import { JojoMobile } from '../components/JojoMobile';
+import { WordsMobile } from '../components/WordsMobile';
+import { Background } from '../components/Background';
 
 
 function Page() {
@@ -36,11 +39,14 @@ function Page() {
   const [lastChange, setLastChange] = useState(Date.now());
   const { connect, connectors, error, isLoading, pendingConnector } = useConnect();
 
+  const [enabledMusic, setEnabledMusic] = useState(false);
+
   const size = useWindowSize();
 
   const changeSeed = () => {
+
     console.log(Date.now() - lastChange)
-    if (Date.now() - lastChange < 1000) return
+    if (Date.now() - lastChange < 400) return
     if (seed < 9) {
       setSeed(seed + 1);
       setLastChange(Date.now())
@@ -50,6 +56,14 @@ function Page() {
       setLastChange(Date.now())
       console.log(seed);
     }
+    
+    if (!enabledMusic) {
+      const audio = document.getElementById("audio")
+      setEnabledMusic(true)
+      // @ts-ignore
+      audio.play()
+    }
+    
   }
 
   const { address, isConnected } = useAccount();
@@ -65,228 +79,14 @@ function Page() {
       height: `${size.height}px`
     }}
       className={`h-full overflow-hidden`}>
-      {/* <div>
-        {`${size.width} ${size.height}`}
-      </div> */}
-
-      {/* <Image
-priority
-        alt="Background"
-        src={`/images/${seed}bg.png`}
-        height={800}
-        width={1500}
-        quality={100}
-        className="absolute w-full h-full"
-      /> */}
-      {/* {seed == 1 ? <Image
-priority
-        alt="Background"
-        src={`/images/1bg.png`}
-        height={800}
-        width={1500}
-        quality={100}
-        style={{
-          hidden: `${(seed == 1)}`
-        }}
-        className="absolute w-full h-full"
-      /> : null}
-      {seed == 2 ? <Image
-priority
-        alt="Background"
-        src={`/images/2bg.png`}
-        height={800}
-        width={1500}
-        quality={100}
-        className="absolute w-full h-full"
-      /> : null}
-      {seed == 3 ? <Image
-priority
-        alt="Background"
-        src={`/images/3bg.png`}
-        height={800}
-        width={1500}
-        quality={100}
-        className="absolute w-full h-full"
-      /> : null}
-      {seed == 4 ? <Image
-priority
-        alt="Background"
-        src={`/images/4bg.png`}
-        height={800}
-        width={1500}
-        quality={100}
-        className="absolute w-full h-full"
-      /> : null}
-      {seed == 5 ? <Image
-priority
-        alt="Background"
-        src={`/images/5bg.png`}
-        height={800}
-        width={1500}
-        quality={100}
-        className="absolute w-full h-full"
-      /> : null}
-      {seed == 6 ? <Image
-priority
-        alt="Background"
-        src={`/images/6bg.png`}
-        height={800}
-        width={1500}
-        quality={100}
-        className="absolute w-full h-full"
-      /> : null}
-      {seed == 7 ? <Image
-priority
-        alt="Background"
-        src={`/images/7bg.png`}
-        height={800}
-        width={1500}
-        quality={100}
-        className="absolute w-full h-full"
-      /> : null}
-      {seed == 8 ? <Image
-priority
-        alt="Background"
-        src={`/images/8bg.png`}
-        height={800}
-        width={1500}
-        quality={100}
-        className="absolute w-full h-full"
-      /> : null}
-      {seed == 9 ? <Image
-priority
-        alt="Background"
-        src={`/images/9bg.png`}
-        height={800}
-        width={1500}
-        quality={100}
-        className="absolute w-full h-full"
-      /> : null} */}
-      <Image
-        priority
-        alt="Background"
-        src={`/images/1bg.png`}
-        height={800}
-        width={1500}
-        quality={100}
-        style={{
-          visibility: `${(seed == 1 ? "visible" : "hidden")}`,
-          height: `${size.height}px`,
-          zIndex: 0,
-        }}
-        className="absolute w-full h-full"
-      />
-      <Image
-        priority
-        alt="Background"
-        src={`/images/2bg.png`}
-        height={800}
-        width={1500}
-        quality={100}
-        style={{
-          visibility: `${(seed == 2 ? "visible" : "hidden")}`,
-          height: `${size.height}px`
-        }}
-        className="absolute w-full h-full"
-      />
-      <Image
-        priority
-        alt="Background"
-        src={`/images/3bg.png`}
-        height={800}
-        width={1500}
-        quality={100}
-        style={{
-          visibility: `${(seed == 3 ? "visible" : "hidden")}`,
-          height: `${size.height}px`
-        }}
-        className="absolute w-full h-full"
-      />
-      <Image
-        priority
-        alt="Background"
-        src={`/images/4bg.png`}
-        height={800}
-        width={1500}
-        quality={100}
-        style={{
-          visibility: `${(seed == 4 ? "visible" : "hidden")}`,
-          height: `${size.height}px`
-        }}
-        className="absolute w-full h-full"
-      />
-      <Image
-        priority
-        alt="Background"
-        src={`/images/5bg.png`}
-        height={800}
-        width={1500}
-        quality={100}
-        style={{
-          visibility: `${(seed == 5 ? "visible" : "hidden")}`,
-          height: `${size.height}px`
-        }}
-        className="absolute w-full h-full"
-      />
-      <Image
-        priority
-        alt="Background"
-        src={`/images/6bg.png`}
-        height={800}
-        width={1500}
-        quality={100}
-        style={{
-          visibility: `${(seed == 6 ? "visible" : "hidden")}`,
-          height: `${size.height}px`
-        }}
-        className="absolute w-full h-full"
-      />
-      <Image
-        priority
-        alt="Background"
-        src={`/images/7bg.png`}
-        height={800}
-        width={1500}
-        quality={100}
-        style={{
-          visibility: `${(seed == 7 ? "visible" : "hidden")}`,
-          height: `${size.height}px`
-        }}
-        className="absolute w-full h-full"
-      />
-      <Image
-        priority
-        alt="Background"
-        src={`/images/8bg.png`}
-        height={800}
-        width={1500}
-        quality={100}
-        style={{
-          visibility: `${(seed == 8 ? "visible" : "hidden")}`,
-          height: `${size.height}px`
-        }}
-        className="absolute w-full h-full"
-      />
-      <Image
-        priority
-        alt="Background"
-        src={`/images/9bg.png`}
-        height={800}
-        width={1500}
-        quality={100}
-        style={{
-          visibility: `${(seed == 9 ? "visible" : "hidden")}`,
-          height: `${size.height}px`
-        }}
-        className="absolute w-full h-full"
-      />
+      <Background seed={seed} height={size.height}/>
       <Head>
         <title>Free JoJo</title>
-        <meta name="description" content="COLOR x Ownrshp" key="desc" />
-        <meta property="og:title" content="COLOR x Ownrshp" />
+        <meta name="description" content="Free JoJo" key="desc" />
+        <meta property="og:title" content="Free JoJo" />
         <meta
           property="og:description"
-          content="COLOR x Ownrshp"
+          content="Free JoJo"
         />
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
@@ -314,14 +114,15 @@ priority
                       </div>
                     </div>
                     <div className="h-28">
-                      <Image
+                      {/* <Image
                         priority
                         alt="JoJo Words"
                         src={`/images/${seed}free.png`}
                         width={1000}
                         height={1000}
                         className="h-auto max-h-[15rem] w-auto mx-auto z-10"
-                      />
+                      /> */}
+                      <WordsMobile seed={seed}/>
                     </div>
                     <div className="w-fit mx-auto flex z-0">
                       <Image
@@ -343,7 +144,7 @@ priority
                           className="w-[50vw] min-w-[20rem] max-w-[30rem] mx-auto hover:cursor-pointer"
                         /> */}
                         <div onClick={() => {changeSeed(); console.log("s")}}>
-                          <Jojo seed={seed}/>
+                          <JojoMobile seed={seed}/>
                         </div>
 
                         {/* <div className="flex">

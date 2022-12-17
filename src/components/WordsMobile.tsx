@@ -2,28 +2,28 @@ import Image from 'next/image';
 import React from 'react'
 
 // @ts-ignore
-export function Jojo({ seed }) {
+export function WordsMobile({ seed }) {
     console.log(seed)
 
     return (
         <>
             <Image
                 priority
-                alt="Background"
-                src={`/images/1jojo.png`}
+                alt="Words"
+                src={`/images/1free.png`}
                 height={800}
                 width={1500}
                 quality={100}
+                className="h-auto max-h-[15rem] w-auto mx-auto z-10"
                 style={{
                     visibility: `${(seed == 1 ? "visible" : "hidden")}`,
                     height: `${(seed == 1 ? "auto" : "0")}`,
                 }}
-                className="w-[50vw] min-w-[20rem] max-w-[50rem] mx-auto hover:cursor-pointer"
             />
             <Image
                 priority
-                alt="Background"
-                src={`/images/2jojo.png`}
+                alt="Words"
+                src={`/images/2free.png`}
                 height={800}
                 width={1500}
                 quality={100}
@@ -31,12 +31,12 @@ export function Jojo({ seed }) {
                     visibility: `${(seed == 2 ? "visible" : "hidden")}`,
                     height: `${(seed == 2 ? "auto" : "0")}`,
                 }}
-                className="w-[50vw] min-w-[20rem] max-w-[50rem] mx-auto hover:cursor-pointer"
+                className="h-auto max-h-[15rem] w-auto mx-auto z-10"
             />
             <Image
                 priority
-                alt="Background"
-                src={`/images/3jojo.png`}
+                alt="Words"
+                src={`/images/3free.png`}
                 height={800}
                 width={1500}
                 quality={100}
@@ -44,12 +44,12 @@ export function Jojo({ seed }) {
                     visibility: `${(seed == 3 ? "visible" : "hidden")}`,
                     height: `${(seed == 3 ? "auto" : "0")}`,
                 }}
-                className="w-[50vw] min-w-[20rem] max-w-[50rem] mx-auto hover:cursor-pointer"
+                className="h-auto max-h-[15rem] w-auto mx-auto z-10"
             />
             <Image
                 priority
-                alt="Background"
-                src={`/images/4jojo.png`}
+                alt="Words"
+                src={`/images/4free.png`}
                 height={800}
                 width={1500}
                 quality={100}
@@ -57,12 +57,12 @@ export function Jojo({ seed }) {
                     visibility: `${(seed == 4 ? "visible" : "hidden")}`,
                     height: `${(seed == 4 ? "auto" : "0")}`,
                 }}
-                className="w-[50vw] min-w-[20rem] max-w-[50rem] mx-auto hover:cursor-pointer"
+                className="h-auto max-h-[15rem] w-auto mx-auto z-10"
             />
             <Image
                 priority
-                alt="Background"
-                src={`/images/5jojo.png`}
+                alt="Words"
+                src={`/images/5free.png`}
                 height={800}
                 width={1500}
                 quality={100}
@@ -70,12 +70,12 @@ export function Jojo({ seed }) {
                     visibility: `${(seed == 5 ? "visible" : "hidden")}`,
                     height: `${(seed == 5 ? "auto" : "0")}`,
                 }}
-                className="w-[50vw] min-w-[20rem] max-w-[50rem] mx-auto hover:cursor-pointer"
+                className="h-auto max-h-[15rem] w-auto mx-auto z-10"
             />
             <Image
                 priority
-                alt="Background"
-                src={`/images/6jojo.png`}
+                alt="Words"
+                src={`/images/6free.png`}
                 height={800}
                 width={1500}
                 quality={100}
@@ -83,12 +83,12 @@ export function Jojo({ seed }) {
                     visibility: `${(seed == 6 ? "visible" : "hidden")}`,
                     height: `${(seed == 6 ? "auto" : "0")}`,
                 }}
-                className="w-[50vw] min-w-[20rem] max-w-[50rem] mx-auto hover:cursor-pointer"
+                className="h-auto max-h-[15rem] w-auto mx-auto z-10"
             />
             <Image
                 priority
-                alt="Background"
-                src={`/images/7jojo.png`}
+                alt="Words"
+                src={`/images/7free.png`}
                 height={800}
                 width={1500}
                 quality={100}
@@ -96,12 +96,12 @@ export function Jojo({ seed }) {
                     visibility: `${(seed == 7 ? "visible" : "hidden")}`,
                     height: `${(seed == 7 ? "auto" : "0")}`,
                 }}
-                className="w-[50vw] min-w-[20rem] max-w-[50rem] mx-auto hover:cursor-pointer"
+                className="h-auto max-h-[15rem] w-auto mx-auto z-10"
             />
             <Image
                 priority
-                alt="Background"
-                src={`/images/8jojo.png`}
+                alt="Words"
+                src={`/images/8free.png`}
                 height={800}
                 width={1500}
                 quality={100}
@@ -109,12 +109,12 @@ export function Jojo({ seed }) {
                     visibility: `${(seed == 8 ? "visible" : "hidden")}`,
                     height: `${(seed == 8 ? "auto" : "0")}`,
                 }}
-                className="w-[50vw] min-w-[20rem] max-w-[50rem] mx-auto hover:cursor-pointer"
+                className="h-auto max-h-[15rem] w-auto mx-auto z-10"
             />
             <Image
                 priority
-                alt="Background"
-                src={`/images/9jojo.png`}
+                alt="Words"
+                src={`/images/9free.png`}
                 height={800}
                 width={1500}
                 quality={100}
@@ -122,7 +122,7 @@ export function Jojo({ seed }) {
                     visibility: `${(seed == 9 ? "visible" : "hidden")}`,
                     height: `${(seed == 9 ? "auto" : "0")}`,
                 }}
-                className="w-[50vw] min-w-[20rem] max-w-[50rem] mx-auto hover:cursor-pointer"
+                className="h-auto max-h-[15rem] w-auto mx-auto z-10"
             />
         </>
     )
