@@ -295,7 +295,7 @@ priority
 
           <>
             {/* Mobile */}
-            <div
+            <div 
               className="">
               <div className={styles.main}
                 style={{
@@ -313,7 +313,7 @@ priority
                       src={`/images/${seed}free.png`}
                       width={1000}
                       height={1000}
-                      className="h-auto max-h-[15rem] w-auto mx-auto z-10"
+                      className="translate-y-[8vh] h-auto max-h-[15rem] w-auto mx-auto z-10"
                     />
                     <div className="w-fit mx-auto flex z-0">
                       <Image
@@ -337,6 +337,21 @@ priority
                         <div className="z-[1000]">
                           <Connect />
                         </div>
+
+                        {/* <div className="flex">
+                          <div className="mt-auto ml-auto z-50">
+                            <MusicPlayer />
+                          </div>
+                        </div>
+                        <Image
+                          priority
+                          alt="We Are Jojo"
+                          src={`/images/${seed}weare.png`}
+                          width={1000}
+                          height={1000}
+                          className="h-[4rem] w-auto mx-auto mt-5"
+                        /> */}
+
                         <div className="flex">
                           <Image
                             priority
@@ -350,6 +365,7 @@ priority
                             <MusicPlayer />
                           </div>
                         </div>
+
                       </div>
                     </div>
                   </div>
