@@ -306,15 +306,22 @@ priority
                 }}
               >
                 <div className="text-white text-center w-full flex z-0">
-                  <div className="mx-auto mt- 0center w-full">
-                    <Image
-                      priority
-                      alt="JoJo Words"
-                      src={`/images/${seed}free.png`}
-                      width={1000}
-                      height={1000}
-                      className="translate-y-[8vh] h-auto max-h-[15rem] w-auto mx-auto z-10"
-                    />
+                  <div className="mx-auto mt-0 center w-full">
+                    <div className="w-full flex">
+                      <div className="ml-auto p-5">
+                          <MusicPlayer />
+                      </div>
+                    </div>
+                    <div className="h-28">
+                      <Image
+                        priority
+                        alt="JoJo Words"
+                        src={`/images/${seed}free.png`}
+                        width={1000}
+                        height={1000}
+                        className="h-auto max-h-[15rem] w-auto mx-auto z-10"
+                      />
+                    </div>
                     <div className="w-fit mx-auto flex z-0">
                       <Image
                         priority
@@ -351,11 +358,11 @@ priority
 
                         <div className="flex mt-10">
                           <div className="mx-auto my-auto">
-                            <MusicPlayer />
+                        <Connect />
                           </div>
-                          <div className="my-auto z-50">
+                          {/* <div className="my-auto z-50">
                             <Connect />
-                          </div>
+                          </div> */}
                         </div>
 
                       </div>
