@@ -27,6 +27,9 @@ import { Connect } from '../components/Button'
 
 import MusicPlayer from '../components/Music'
 
+import { Jojo } from '../components/Jojo';
+import { Words } from '../components/Words';
+
 
 function Page() {
   const [seed, setSeed] = useState(Math.floor(Math.random() * 9) + 1);
@@ -330,7 +333,7 @@ priority
                         className="h-[10vh] mt-0 -translate-x-[1rem] translate-y-[12vh] absolute w-auto"
                       />
                       <div className="z-[100]">
-                        <Image
+                        {/* <Image
                           priority
                           alt="JoJo Image"
                           src={`/images/${seed}jojo.png`}
@@ -338,7 +341,10 @@ priority
                           height={1000}
                           onClick={() => changeSeed()}
                           className="w-[50vw] min-w-[20rem] max-w-[30rem] mx-auto hover:cursor-pointer"
-                        />
+                        /> */}
+                        <div onClick={() => {changeSeed(); console.log("s")}}>
+                          <Jojo seed={seed}/>
+                        </div>
 
                         {/* <div className="flex">
                           <div className="mt-auto ml-auto z-50">
@@ -397,14 +403,15 @@ priority
               >
                 <div className="text-white text-center w-full flex z-0">
                   <div className="mx-auto center w-full">
-                    <Image
+                    {/* <Image
                       priority
                       alt="JoJo Words"
                       src={`/images/${seed}free.png`}
                       width={1000}
                       height={1000}
                       className="h-[30vw] min-h-[24rem] max-h-[30rem] w-auto -translate-y-[25vh] mx-auto z-10"
-                    />
+                    /> */}
+                    <Words seed={seed}/>
                     <div className="-translate-y-[50vh] w-fit mx-auto flex z-0">
                       <Image
                         priority
@@ -415,14 +422,17 @@ priority
                         className="h-[20vh] mt-20 translate-y-[16vh] -translate-x-[4rem] absolute w-auto"
                       />
                       <div className="z-[100000] hover:cursor-pointer">
-                        <Image
+                        {/* <Image
                           priority
                           alt="JoJo Image"
                           src={`/images/${seed}jojo.png`}
                           width={1000}
                           height={1000}
                           className="w-[50vw] min-w-[42rem] max-w-[50rem] mx-auto hover:cursor-pointer"
-                        />
+                        /> */}
+                        <div onClick={() => {changeSeed(); console.log("s")}}>
+                          <Jojo seed={seed}/>
+                        </div>
                       </div>
                     </div>
                   </div>

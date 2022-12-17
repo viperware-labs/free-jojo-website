@@ -7,7 +7,6 @@ import { useState } from 'react';
 import styles from '../../styles/Home.module.css';
 
 import wagmi from 'wagmi'
-import SignClient from "@walletconnect/sign-client";
 
 import Image from 'next/image';
 
