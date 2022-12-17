@@ -101,7 +101,7 @@ export default function Modal({ open, setOpen }) {
                   >
                     <div className="mt-4 h-10 w-full border-black border-[3px] bg-[#205cdd] text-base font-medium text-white shadow-sm px-5 py-0.5 text-primary bg-box mx-1 rounded-lg hover:bg-opacity-95 flex align-middle">
                       <div className="mx-auto my-auto">
-                        Tweet "Hey Jojo!"
+                        Tweet &quot;Hey Jojo!&quot;
                       </div>
                     </div>
                   </a>
