@@ -11,12 +11,40 @@ import { useSession } from "next-auth/react"
 
 import { useAccount } from 'wagmi'
 
+
+
 //@ts-ignore
 export default function Modal({ open, setOpen }) {
   // const [open, setOpen] = useState(true)
   const { data: session } = useSession()
   const { address, isConnected } = useAccount()
   const [clickedTweet, setClickedTweet] = useState(false)
+  const [entry, setEntry] = useState(false)
+
+
+  const handleClick = async (tweet: string | null | undefined) => {
+   
+    // make a fetch request to /enter
+    const body = { 
+      wallet : address,
+      twitterUsername: tweet
+    }
+    const response = await fetch(`/api/enter?wallet=${address}&twitter=${tweet}`, { 
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body),
+
+
+    })
+
+    const data = await response.json()
+    console.log(data)
+    setEntry(true)
+   
+  }
+
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -61,7 +89,7 @@ export default function Modal({ open, setOpen }) {
                   <a
                     href={`https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.freejojo.io&text=I just met @FreeJoJoNFT and you should too! Meet Jojo for a chance at JoJoList:`}
                     target="_blank"
-                    onClick={() => setClickedTweet(true)}
+                    onClick={() => setClickedTweet(true)} rel="noreferrer"
                   >
                     <div className="mt-4 h-10 w-full border-black border-[3px] bg-[#205cdd] text-base font-medium text-white shadow-sm px-5 py-0.5 text-primary bg-box mx-1 rounded-lg hover:bg-opacity-95 flex align-middle">
                       <div className="mx-auto my-auto">
@@ -75,10 +103,19 @@ export default function Modal({ open, setOpen }) {
                     <button
                       type="button"
                       className="mt-4 h-10 w-full border-black border-[3px] bg-red-600 text-base font-medium text-white shadow-sm px-5 py-0.5 text-primary bg-box mx-1 rounded-lg hover:bg-opacity-95"
-                      onClick={() => setOpen(false)}
+                        onClick={() => handleClick(session?.user?.name)}
                     >
                       Enter Raffle
                     </button>
+                    
+                  }
+                  { entry && 
+                    <div className="mt-4 h-10 w-full border-black border-[3px] bg-green-600 text-base font-medium text-white shadow-sm px-5 py-0.5 text-primary bg-box mx-1 rounded-lg hover:bg-opacity-95">
+                      <div className="mx-auto my-auto">
+                        <CheckIcon className="h-6 w-6 mx-auto my-auto" aria-hidden="true" />
+                      </div>
+                    </div>
+
                   }
 
                   <button
