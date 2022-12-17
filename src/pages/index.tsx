@@ -32,7 +32,7 @@ import { Words } from '../components/Words';
 import { JojoMobile } from '../components/JojoMobile';
 import { WordsMobile } from '../components/WordsMobile';
 import { Background } from '../components/Background';
-
+import { WeAreJojo } from '../components/WeAreJojo';
 
 function Page() {
   const [seed, setSeed] = useState(Math.floor(Math.random() * 9) + 1);
@@ -246,15 +246,16 @@ function Page() {
                       <MusicPlayer />
                     </div>
                   </div>
-                  <div className="absolute h-5/6 w-full flex">
-                    <Image
+                  <div className="pl-14 absolute h-5/6 w-full flex">
+                    {/* <Image
                       priority
                       alt="We Are Jojo"
                       src={`/images/${seed}weare.png`}
                       width={1000}
                       height={1000}
                       className="h-[4rem] w-auto ml-14 mt-auto"
-                    />
+                    /> */}
+                    <WeAreJojo seed={seed}/>
                   </div>
                 </div>
               </div>

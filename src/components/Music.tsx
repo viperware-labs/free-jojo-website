@@ -7,6 +7,7 @@ import Pause from '../../public/images/Pause.png'
 export default function MusicPlayer() {
     // ...
     const [isPlaying, setIsPlaying] = useState(false);
+
     useEffect(() => {
         const audio = document.getElementById("audio");
 
@@ -15,7 +16,6 @@ export default function MusicPlayer() {
 
         // @ts-ignore
         isPlaying ? audio.play() : audio.pause();
-
 
     }, [isPlaying]);
 
@@ -28,7 +28,9 @@ export default function MusicPlayer() {
                             alt="JoJo List"
                             height={90}
                             src={Pause}
-                            onClick={() => setIsPlaying(false)}
+                            onClick={() => {
+                                setIsPlaying(false)
+                            }}
                             className="p-1 hover:cursor-pointer hover:p-0 h-[50px] w-auto sm:h-[90px]"
                         />
                     ) : (
@@ -36,11 +38,15 @@ export default function MusicPlayer() {
                             alt="JoJo List"
                             height={90}
                             src={Play}
-                            onClick={() => setIsPlaying(true)}
+                            onClick={() => {
+                                setIsPlaying(true)
+                            }}
                             className="p-1 hover:cursor-pointer hover:p-0 h-[50px] w-auto sm:h-[90px]"
                         />
                     )}
-                    <audio id="audio" preload="auto" autoPlay loop >
+                    <audio id="audio" preload="auto" autoPlay loop onPlay={() => {
+                            setIsPlaying(true)
+                    }} >
                         <source src="/JojoMusic.mp3" type="audio/mp3" />
                     </audio>
                 </div>
