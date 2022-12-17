@@ -9,10 +9,14 @@ import Image from 'next/image'
 
 import { useSession } from "next-auth/react"
 
+import { useAccount } from 'wagmi'
+
 //@ts-ignore
 export default function Modal({ open, setOpen }) {
   // const [open, setOpen] = useState(true)
   const { data: session } = useSession()
+  const { address, isConnected } = useAccount()
+  const [clickedTweet, setClickedTweet] = useState(false)
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -53,11 +57,11 @@ export default function Modal({ open, setOpen }) {
                   <Connect />
 
                   <Login />
-                  <a
-                    href={`https://twitter.com/intent/tweet?url=https%3A%2F%2Fcdn.discordapp.com%2Fattachments%2F1033947998314582017%2F1053616442953699410%2Fimage.png&text=Hey%20there%20JoJo!%20@FreeJoJoNFT`}
-                    target="_blank"
 
-                  // onClick={null}
+                  <a
+                    href={`https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.freejojo.io&text=I just met @FreeJoJoNFT and you should too! Meet Jojo for a chance at JoJoList:`}
+                    target="_blank"
+                    onClick={() => setClickedTweet(true)}
                   >
                     <div className="mt-4 h-10 w-full border-black border-[3px] bg-[#205cdd] text-base font-medium text-white shadow-sm px-5 py-0.5 text-primary bg-box mx-1 rounded-lg hover:bg-opacity-95 flex align-middle">
                       <div className="mx-auto my-auto">
@@ -66,6 +70,17 @@ export default function Modal({ open, setOpen }) {
                     </div>
                   </a>
 
+                  {
+                    ((session?.user?.name != null) && isConnected && clickedTweet) && 
+                    <button
+                      type="button"
+                      className="mt-4 h-10 w-full border-black border-[3px] bg-red-600 text-base font-medium text-white shadow-sm px-5 py-0.5 text-primary bg-box mx-1 rounded-lg hover:bg-opacity-95"
+                      onClick={() => setOpen(false)}
+                    >
+                      Enter Raffle
+                    </button>
+                  }
+
                   <button
                     type="button"
                     className="mt-4 h-10 w-full border-black border-[3px] bg-indigo-600 text-base font-medium text-white shadow-sm px-5 py-0.5 text-primary bg-box mx-1 rounded-lg hover:bg-opacity-95"
@@ -73,6 +88,8 @@ export default function Modal({ open, setOpen }) {
                   >
                     Return to JoJo
                   </button>
+
+
                 </div>
               </Dialog.Panel>
             </Transition.Child>
