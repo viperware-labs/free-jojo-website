@@ -36,6 +36,8 @@ import { Background } from '../components/Background';
 import { WeAreJojo } from '../components/WeAreJojo';
 import Modal from '../components/Modal';
 
+import { useSession} from "next-auth/react"
+
 function Page() {
   const [seed, setSeed] = useState(Math.floor(Math.random() * 9) + 1);
   const [lastChange, setLastChange] = useState(Date.now());
@@ -44,6 +46,7 @@ function Page() {
   const [enabledMusic, setEnabledMusic] = useState(false);
   const [open , setOpen] = useState(false);
 
+  const { data: session } = useSession()
 
   const size = useWindowSize();
 
@@ -76,6 +79,12 @@ function Page() {
   const [difficulty, setDifficulty] = useState(0);
   const [seedMatches, setSeedMatches] = useState(false);
   const [miningEnabled, setMiningEnabled] = useState(false);
+
+  useEffect(() => {
+    if(session){
+      setOpen(true)
+    }
+  }, [session]) 
 
   return (
     <div style={{

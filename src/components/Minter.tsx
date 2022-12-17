@@ -53,7 +53,6 @@ import MusicPlayer from './Music'
 
 // @ts-ignore
 export function Minter({seed}) {
-	console.log(seed)
 
 	// const { connectors, pendingConnector, connectAsync } = useConnect()
 

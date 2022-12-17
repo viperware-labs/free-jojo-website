@@ -3,7 +3,6 @@ import React from 'react'
 
 // @ts-ignore
 export function Words({ seed }) {
-    console.log(seed)
 
     return (
         <>

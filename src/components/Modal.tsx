@@ -5,9 +5,14 @@ import { Connect } from './Button'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import '@rainbow-me/rainbowkit/styles.css'
 import Login from './Login'
+import Image from 'next/image'
+
+import { useSession } from "next-auth/react"
+
 //@ts-ignore
-export default function Modal({ open, setOpen  }) {
+export default function Modal({ open, setOpen }) {
   // const [open, setOpen] = useState(true)
+  const { data: session } = useSession()
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -35,16 +40,38 @@ export default function Modal({ open, setOpen  }) {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-md sm:p-6">
-                <Connect />
-                <Login />
-                <div className="mt-5 sm:mt-6">
+              <Dialog.Panel className="relative transform overflow-hidden rounded-[50px] bg-yellow-200 p-2 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-md sm:p-6 border-8 border-black">
+                <div className="p-8 rounded-[30px] border-4 border-black">
+                  <Image
+                    priority
+                    alt="Background"
+                    src={"/images/JoJoListModal.png"}
+                    height={1000}
+                    width={1000}
+                  />
+
+                  <Connect />
+
+                  <Login />
+                  <a
+                    href={`https://twitter.com/intent/tweet?url=https%3A%2F%2Fcdn.discordapp.com%2Fattachments%2F1033947998314582017%2F1053616442953699410%2Fimage.png&text=Hey%20there%20JoJo!%20@FreeJoJoNFT`}
+                    target="_blank"
+
+                  // onClick={null}
+                  >
+                    <div className="mt-4 h-10 w-full border-black border-[3px] bg-[#205cdd] text-base font-medium text-white shadow-sm px-5 py-0.5 text-primary bg-box mx-1 rounded-lg hover:bg-opacity-95 flex align-middle">
+                      <div className="mx-auto my-auto">
+                        Tweet #WeAreJojo
+                      </div>
+                    </div>
+                  </a>
+
                   <button
                     type="button"
-                    className="inline-flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm"
+                    className="mt-4 h-10 w-full border-black border-[3px] bg-indigo-600 text-base font-medium text-white shadow-sm px-5 py-0.5 text-primary bg-box mx-1 rounded-lg hover:bg-opacity-95"
                     onClick={() => setOpen(false)}
                   >
-                    Go back to dashboard
+                    Return to JoJo
                   </button>
                 </div>
               </Dialog.Panel>
@@ -52,6 +79,6 @@ export default function Modal({ open, setOpen  }) {
           </div>
         </div>
       </Dialog>
-    </Transition.Root>
+    </Transition.Root >
   )
 }

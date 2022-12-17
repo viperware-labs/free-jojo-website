@@ -38,14 +38,12 @@ export const Connect = () => {
                         {(() => {
                             if (!connected) {
                                 return (
-                                    <button className="px-5 py-0.5 text-primary bg-box mx-1 rounded hover:bg-opacity-95" onClick={openConnectModal} type="button">
+                                    <button className="h-10 w-full border-black border-[3px] bg-green-700 text-base font-medium text-white shadow-sm px-5 py-0.5 text-primary bg-box mx-1 rounded-lg hover:bg-opacity-95"
+                                    onClick={openConnectModal} type="button">
                                         <>
-                                            <Image
-                                            alt="JoJo List"
-                                            height={90}
-                                            src={JoJoList}
-                                            className="h-16 w-auto sm:h-20"
-                                            />
+                                            <div className="align-middle">
+                                                Connect Wallet
+                                            </div>
                                         </>
                                     </button>
                                 );
@@ -58,16 +56,14 @@ export const Connect = () => {
                                 );
                             }
                             return (
-                                <div style={{ display: 'flex', gap: 12 }}>
-                                    <button className="px-5 py-0.5 text-primary bg-box mx-1 rounded hover:bg-opacity-95" onClick={openAccountModal} type="button">
-                                        <Image
-                                        alt="JoJo List"
-                                        height={90}
-                                        src={JoJoList}
-                                        className="h-16 w-auto sm:h-20"
-                                        />
-                                    </button>
-                                </div>
+                                <button className="h-10 w-full border-black border-[3px] bg-green-700 text-base font-medium text-white shadow-sm px-5 py-0.5 text-primary bg-box mx-1 rounded-lg hover:bg-opacity-95"
+                                onClick={openAccountModal} type="button">
+                                    <>
+                                        <div className="align-middle">
+                                            Connected: {account.address && (account.address.slice(0, 6) + "...." + account.address.slice(account.address.length - 4, account.address.length))}
+                                        </div>
+                                    </>
+                                </button>
                             );
                         })()}
                     </div>
