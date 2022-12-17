@@ -334,9 +334,6 @@ priority
                           onClick={() => changeSeed()}
                           className="w-[50vw] min-w-[20rem] max-w-[30rem] mx-auto hover:cursor-pointer"
                         />
-                        <div className="z-[1000]">
-                          <Connect />
-                        </div>
 
                         {/* <div className="flex">
                           <div className="mt-auto ml-auto z-50">
@@ -352,18 +349,13 @@ priority
                           className="h-[4rem] w-auto mx-auto mt-5"
                         /> */}
 
-                        <div className="flex">
-                          <Image
-                            priority
-                            alt="We Are Jojo"
-                            src={`/images/${seed}weare.png`}
-                            width={1000}
-                            height={1000}
-                            className="h-[4rem] w-auto mr-auto"
-                          />
-                          <div className="ml-auto mt-auto my-auto z-50">
-                            <MusicPlayer />
+                        <div className="flex mt-10">
+                          <div className="z-[1000] w-auto my-auto">
+                            <Connect />
                           </div>
+                            <div className="mt-auto my-auto z-50">
+                              <MusicPlayer />
+                            </div>
                         </div>
 
                       </div>

@@ -38,13 +38,13 @@ export const Connect = () => {
                         {(() => {
                             if (!connected) {
                                 return (
-                                    <button className="h-42 px-5 py-0.5 text-primary bg-box mx-1 rounded hover:bg-opacity-95" onClick={openConnectModal} type="button">
+                                    <button className="px-5 py-0.5 text-primary bg-box mx-1 rounded hover:bg-opacity-95" onClick={openConnectModal} type="button">
                                         <>
                                             <Image
                                             alt="JoJo List"
-                                            height={90}
+                                            height={40}
                                             src={JoJoList}
-                                            // className="border"
+                                            className="h-16 w-auto sm:h-20"
                                             />
                                         </>
                                     </button>
@@ -59,12 +59,12 @@ export const Connect = () => {
                             }
                             return (
                                 <div style={{ display: 'flex', gap: 12 }}>
-                                    <button className="h-42 px-5 py-0.5 text-primary bg-box mx-1 rounded hover:bg-opacity-95" onClick={openAccountModal} type="button">
+                                    <button className="px-5 py-0.5 text-primary bg-box mx-1 rounded hover:bg-opacity-95" onClick={openAccountModal} type="button">
                                         <Image
                                         alt="JoJo List"
                                         height={90}
                                         src={JoJoList}
-                                        // className="border"
+                                        className="h-16 w-auto sm:h-20"
                                         />
                                     </button>
                                 </div>
