@@ -27,7 +27,7 @@ export default function MusicPlayer() {
                             height={90}
                             src={Play}
                             onClick={() => setIsPlaying(false)}
-                            className="p-1 hover:cursor-pointer hover:p-0 "
+                            className="p-1 hover:cursor-pointer hover:p-0 h-[50px] w-auto sm:h-[90px]"
                             />
                     ) : (
                         <Image
@@ -35,7 +35,7 @@ export default function MusicPlayer() {
                         height={90}
                         src={Play}
                         onClick={() => setIsPlaying(true)}
-                        className="p-0 hover:cursor-pointer hover:p-1"
+                        className="p-0 hover:cursor-pointer hover:p-1 h-[50px] w-auto sm:h-[90px]"
                         />
                     )}
                     <audio id="audio" preload="auto" autoPlay loop >

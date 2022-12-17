@@ -347,19 +347,19 @@ priority
                       <div className="my-auto h-full hover:cursor-pointer z-[100]"
                       />
                     </div>
-                    <div className="absolute h-1/6 mt-[67vh] w-full flex">
-                      <div className="mt-auto ml-auto mr-4 z-50">
+                    <div className="absolute h-1/6 mt-[60vh] w-full flex">
+                      <div className="mt-auto ml-auto mr-4 mb-20 z-50">
                         <MusicPlayer />
                       </div>
                     </div>
-                    <div className="absolute h-1/6 mt-[67vh] w-full flex">
+                    <div className="absolute h-1/6 mt-[60vh] w-full flex">
                       <Image
                         priority
                         alt="We Are Jojo"
                         src={`/images/${seed}weare.png`}
                         width={1000}
                         height={1000}
-                        className="h-[4rem] w-auto ml-4 mt-auto"
+                        className="h-[4rem] w-auto mx-auto mt-auto"
                       />
                     </div>
                   </div>
