@@ -317,9 +317,9 @@ priority
                       src={`/images/${seed}free.png`}
                       width={1000}
                       height={1000}
-                      className="-translate-y-[5vh] h-auto max-h-[30rem] w-auto pb-10 mx-auto z-10"
+                      className="h-auto max-h-[15rem] w-auto mx-auto z-10"
                     />
-                    <div className="-translate-y-[20vh] w-fit mx-auto flex z-0">
+                    <div className="w-fit mx-auto flex z-0">
                       <Image
                         priority
                         alt="Click Here"
