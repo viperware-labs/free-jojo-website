@@ -6,8 +6,6 @@ import dynamic from "next/dynamic"
 import styles from '../../styles/Home.module.css';
 import { Minter } from '../components'
 
-import JoJoList from '../../public/images/JoJoList.png'
-
 import { createClient, useEnsName, useNetwork } from 'wagmi'
 import keccupABI from '../abi.json';
 import { ethers } from "ethers";

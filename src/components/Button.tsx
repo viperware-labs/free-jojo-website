@@ -42,7 +42,7 @@ export const Connect = () => {
                                         <>
                                             <Image
                                             alt="JoJo List"
-                                            height={40}
+                                            height={90}
                                             src={JoJoList}
                                             className="h-16 w-auto sm:h-20"
                                             />
