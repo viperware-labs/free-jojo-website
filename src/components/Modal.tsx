@@ -11,7 +11,8 @@ import { useSession } from "next-auth/react"
 
 import { useAccount } from 'wagmi'
 
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 //@ts-ignore
 export default function Modal({ open, setOpen }) {
@@ -23,13 +24,15 @@ export default function Modal({ open, setOpen }) {
 
 
   const handleClick = async (tweet: string | null | undefined) => {
-   
+
+    if (entry) return;
+
     // make a fetch request to /enter
-    const body = { 
-      wallet : address,
+    const body = {
+      wallet: address,
       twitterUsername: tweet
     }
-    const response = await fetch(`/api/enter?wallet=${address}&twitter=${tweet}`, { 
+    const response = await fetch(`/api/enter?wallet=${address}&twitter=${tweet}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -42,8 +45,12 @@ export default function Modal({ open, setOpen }) {
 
     const data = await response.json()
     console.log(data)
+    toast.success("JoJoList Raffle Entered!", {
+      position: "top-right"
+    })
+
     setEntry(true)
-   
+
   }
 
 
@@ -100,24 +107,24 @@ export default function Modal({ open, setOpen }) {
                   </a>
 
                   {
-                    ((session?.user?.name != null) && isConnected && clickedTweet) && 
+                    ((session?.user?.name != null) && isConnected && clickedTweet) &&
                     <button
                       type="button"
                       className="mt-4 h-10 w-full border-black border-[3px] bg-red-600 text-base font-medium text-white shadow-sm px-5 py-0.5 text-primary bg-box mx-1 rounded-lg hover:bg-opacity-95"
-                        onClick={() => handleClick(session?.user?.name)}
+                      onClick={() => handleClick(session?.user?.name)}
                     >
                       Enter Raffle
                     </button>
-                    
                   }
-                  { entry && 
+
+                  {/* {entry &&
                     <div className="mt-4 h-10 w-full border-black border-[3px] bg-green-600 text-base font-medium text-white shadow-sm px-5 py-0.5 text-primary bg-box mx-1 rounded-lg hover:bg-opacity-95">
                       <div className="mx-auto my-auto">
                         <CheckIcon className="h-6 w-6 mx-auto my-auto" aria-hidden="true" />
                       </div>
                     </div>
 
-                  }
+                  } */}
 
                   <button
                     type="button"

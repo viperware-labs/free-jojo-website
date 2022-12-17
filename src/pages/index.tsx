@@ -36,7 +36,10 @@ import { Background } from '../components/Background';
 import { WeAreJojo } from '../components/WeAreJojo';
 import Modal from '../components/Modal';
 
-import { useSession} from "next-auth/react"
+import { useSession } from "next-auth/react"
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Page() {
   const [seed, setSeed] = useState(Math.floor(Math.random() * 9) + 1);
@@ -44,7 +47,7 @@ function Page() {
   const { connect, connectors, error, isLoading, pendingConnector } = useConnect();
 
   const [enabledMusic, setEnabledMusic] = useState(false);
-  const [open , setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const { data: session } = useSession()
 
@@ -62,14 +65,14 @@ function Page() {
       setLastChange(Date.now())
       console.log(seed);
     }
-    
+
     if (!enabledMusic) {
       const audio = document.getElementById("audio")
       setEnabledMusic(true)
       // @ts-ignore
       audio.play()
     }
-    
+
   }
 
   const { address, isConnected } = useAccount();
@@ -81,17 +84,18 @@ function Page() {
   const [miningEnabled, setMiningEnabled] = useState(false);
 
   useEffect(() => {
-    if(session){
+    if (session) {
       setOpen(true)
     }
-  }, [session]) 
+  }, [session])
 
   return (
     <div style={{
       height: `${size.height}px`
     }}
       className={`h-full overflow-hidden`}>
-      <Background seed={seed} height={size.height}/>
+      <ToastContainer />
+      <Background seed={seed} height={size.height} />
       <Head>
         <title>Free JoJo</title>
         <meta name="description" content="Free JoJo" key="desc" />
@@ -108,8 +112,10 @@ function Page() {
 
           <>
             {/* Mobile */}
-            <div 
+            <div
               className="">
+
+              <Modal open={open} setOpen={setOpen} />
               <div className={styles.main}
                 style={{
 
@@ -122,7 +128,7 @@ function Page() {
                   <div className="mx-auto mt-0 center w-full">
                     <div className="w-full flex">
                       <div className="ml-auto p-5">
-                          <MusicPlayer />
+                        <MusicPlayer />
                       </div>
                     </div>
                     <div className="h-28">
@@ -134,7 +140,7 @@ function Page() {
                         height={1000}
                         className="h-auto max-h-[15rem] w-auto mx-auto z-10"
                       /> */}
-                      <WordsMobile seed={seed}/>
+                      <WordsMobile seed={seed} />
                     </div>
                     <div className="w-fit mx-auto flex z-0">
                       <Image
@@ -155,8 +161,8 @@ function Page() {
                           onClick={() => changeSeed()}
                           className="w-[50vw] min-w-[20rem] max-w-[30rem] mx-auto hover:cursor-pointer"
                         /> */}
-                        <div onClick={() => {changeSeed()}}>
-                          <JojoMobile seed={seed}/>
+                        <div onClick={() => { changeSeed() }}>
+                          <JojoMobile seed={seed} />
                         </div>
 
                         {/* <div className="flex">
@@ -175,7 +181,16 @@ function Page() {
 
                         <div className="flex mt-10">
                           <div className="mx-auto my-auto">
-                        <Connect />
+                            <button className="px-5 py-0.5 text-primary bg-box mx-1 rounded hover:bg-opacity-95" onClick={() => setOpen(true)} type="button">
+                              <>
+                                <Image
+                                  alt="JoJo List"
+                                  height={90}
+                                  src={JoJoList}
+                                  className="h-16 w-auto sm:h-20"
+                                />
+                              </>
+                            </button>
                           </div>
                           {/* <div className="my-auto z-50">
                             <Connect />
@@ -199,7 +214,7 @@ function Page() {
               height: `${size.height}px`
             }}
               className="mobile overflow-clip">
-                <Modal open={open} setOpen={setOpen} />
+              <Modal open={open} setOpen={setOpen} />
               <div className="p-5 flex">
                 <div className="">
                 </div>
@@ -234,7 +249,7 @@ function Page() {
                       height={1000}
                       className="h-[30vw] min-h-[24rem] max-h-[30rem] w-auto -translate-y-[25vh] mx-auto z-10"
                     /> */}
-                    <Words seed={seed}/>
+                    <Words seed={seed} />
                     <div className="-translate-y-[50vh] w-fit mx-auto flex z-0">
                       <Image
                         priority
@@ -253,8 +268,8 @@ function Page() {
                           height={1000}
                           className="w-[50vw] min-w-[42rem] max-w-[50rem] mx-auto hover:cursor-pointer"
                         /> */}
-                        <div onClick={() => {changeSeed()}}>
-                          <Jojo seed={seed}/>
+                        <div onClick={() => { changeSeed() }}>
+                          <Jojo seed={seed} />
                         </div>
                       </div>
                     </div>
@@ -277,7 +292,7 @@ function Page() {
                       height={1000}
                       className="h-[4rem] w-auto ml-14 mt-auto"
                     /> */}
-                    <WeAreJojo seed={seed}/>
+                    <WeAreJojo seed={seed} />
                   </div>
                 </div>
               </div>
