@@ -317,7 +317,7 @@ priority
                         src={`/images/${seed}free.png`}
                         width={1000}
                         height={1000}
-                        className="-translate-y-[5vh] h-[30vw] min-h-[24rem] max-h-[30rem] w-auto mx-auto z-10"
+                        className="-translate-y-[5vh] h-auto max-h-[30rem] w-auto pb-10 mx-auto z-10"
                       />
                       <div className="-translate-y-[20vh] w-fit mx-auto flex z-0">
                         <Image
@@ -328,7 +328,7 @@ priority
                           height={1000}
                           className="h-[8vh] mt-0 -translate-x-[2rem] translate-y-[10vh] absolute w-auto"
                         />
-                        <div className="z-[100000] hover:cursor-pointer">
+                        <div className="z-[100] hover:cursor-pointer">
                           <Image
                             priority
                             alt="JoJo Image"
@@ -337,20 +337,22 @@ priority
                             height={1000}
                             className="w-[50vw] min-w-[20rem] max-w-[30rem] mx-auto hover:cursor-pointer"
                           />
-                          <Connect />
+                          <div className="z-[1000]">
+                            <Connect />
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div className="absolute h-[28%] w-full mt-[50%] z-[100]" onClick={() => changeSeed()}>
+                    <div className="absolute h-[28%] w-full mt-[30%] z-[100]" onClick={() => changeSeed()}>
                       <div className="my-auto h-full hover:cursor-pointer z-[100]"
                       />
                     </div>
-                    <div className="absolute h-5/6 w-full flex">
+                    <div className="absolute h-1/6 mt-[67vh] w-full flex">
                       <div className="mt-auto ml-auto mr-4 z-50">
                         <MusicPlayer />
                       </div>
                     </div>
-                    <div className="absolute h-5/6 w-full flex">
+                    <div className="absolute h-1/6 mt-[67vh] w-full flex">
                       <Image
                         priority
                         alt="We Are Jojo"
@@ -374,11 +376,10 @@ priority
               height: `${size.height}px`
             }}
               className="mobile overflow-clip">
-              <div className="">
                 <div className="p-5 flex">
                   <div className="">
                   </div>
-                  <div className="ml-auto z-10">
+                  <div className="ml-auto z-[100]">
                     <Connect />
                   </div>
                 </div>
@@ -442,7 +443,6 @@ priority
                     </div>
                   </div>
                 </div>
-              </div>
             </div>
           </>
 
