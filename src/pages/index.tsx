@@ -300,70 +300,69 @@ priority
               backgroundColor: `transparent`,
             }}
               className="">
-                <div className={styles.main}
-                  style={{
+              <div className={styles.main}
+                style={{
 
-                    fontFamily: 'Wave',
-                    fontWeight: '300',
-                    height: `${size.height - 40}px`,
+                  fontFamily: 'Wave',
+                  fontWeight: '300',
+                  height: `${size.height - 40}px`,
 
-                  }}
-                >
-                  <div className="text-white text-center w-full flex z-0">
-                    <div className="mx-auto center w-full">
+                }}
+              >
+                <div className="text-white text-center w-full flex z-0">
+                  <div className="mx-auto center w-full">
+                    <Image
+                      priority
+                      alt="JoJo Words"
+                      src={`/images/${seed}free.png`}
+                      width={1000}
+                      height={1000}
+                      className="-translate-y-[5vh] h-auto max-h-[30rem] w-auto pb-10 mx-auto z-10"
+                    />
+                    <div className="-translate-y-[20vh] w-fit mx-auto flex z-0">
                       <Image
                         priority
-                        alt="JoJo Words"
-                        src={`/images/${seed}free.png`}
+                        alt="Click Here"
+                        src={ClickHere}
                         width={1000}
                         height={1000}
-                        className="-translate-y-[5vh] h-auto max-h-[30rem] w-auto pb-10 mx-auto z-10"
+                        className="h-[8vh] mt-0 -translate-x-[2rem] translate-y-[10vh] absolute w-auto"
                       />
-                      <div className="-translate-y-[20vh] w-fit mx-auto flex z-0">
+                      <div className="z-[100]">
                         <Image
                           priority
-                          alt="Click Here"
-                          src={ClickHere}
+                          alt="JoJo Image"
+                          src={`/images/${seed}jojo.png`}
                           width={1000}
                           height={1000}
-                          className="h-[8vh] mt-0 -translate-x-[2rem] translate-y-[10vh] absolute w-auto"
+                          onClick={() => changeSeed()}
+                          className="w-[50vw] min-w-[20rem] max-w-[30rem] mx-auto hover:cursor-pointer"
                         />
-                        <div className="z-[100] hover:cursor-pointer">
-                          <Image
-                            priority
-                            alt="JoJo Image"
-                            src={`/images/${seed}jojo.png`}
-                            width={1000}
-                            height={1000}
-                            className="w-[50vw] min-w-[20rem] max-w-[30rem] mx-auto hover:cursor-pointer"
-                          />
-                          <div className="z-[1000]">
-                            <Connect />
+                        <div className="z-[1000]">
+                          <Connect />
+                        </div>
+                        <div className="flex">
+                          <div className="mt-auto ml-auto z-50">
+                            <MusicPlayer />
                           </div>
                         </div>
+                        <Image
+                          priority
+                          alt="We Are Jojo"
+                          src={`/images/${seed}weare.png`}
+                          width={1000}
+                          height={1000}
+                          className="h-[4rem] w-auto mx-auto mt-5"
+                        />
                       </div>
-                    </div>
-                    <div className="absolute h-[28%] w-full mt-[30%] z-[100]" onClick={() => changeSeed()}>
-                      <div className="my-auto h-full hover:cursor-pointer z-[100]"
-                      />
-                    </div>
-                    <div className="absolute h-1/6 mt-[60vh] w-full flex">
-                      <div className="mt-auto ml-auto mr-4 mb-20 z-50">
-                        <MusicPlayer />
-                      </div>
-                    </div>
-                    <div className="absolute h-1/6 mt-[60vh] w-full flex">
-                      <Image
-                        priority
-                        alt="We Are Jojo"
-                        src={`/images/${seed}weare.png`}
-                        width={1000}
-                        height={1000}
-                        className="h-[4rem] w-auto mx-auto mt-auto"
-                      />
                     </div>
                   </div>
+                  {/* <div className="absolute h-[28%] w-full mt-[30%] z-[100]" onClick={() => changeSeed()}>
+                    <div className="my-auto h-full hover:cursor-pointer z-[100]"
+                    />
+                  </div> */}
                 </div>
+              </div>
             </div>
           </>
 
@@ -376,73 +375,73 @@ priority
               height: `${size.height}px`
             }}
               className="mobile overflow-clip">
-                <div className="p-5 flex">
-                  <div className="">
-                  </div>
-                  <div className="ml-auto z-[100]">
-                    <Connect />
-                  </div>
+              <div className="p-5 flex">
+                <div className="">
                 </div>
-                <div className={styles.main}
-                  style={{
+                <div className="ml-auto z-[100]">
+                  <Connect />
+                </div>
+              </div>
+              <div className={styles.main}
+                style={{
 
-                    fontFamily: 'Wave',
-                    fontWeight: '300'
+                  fontFamily: 'Wave',
+                  fontWeight: '300'
 
-                  }}
-                >
-                  <div className="text-white text-center w-full flex z-0">
-                    <div className="mx-auto center w-full">
+                }}
+              >
+                <div className="text-white text-center w-full flex z-0">
+                  <div className="mx-auto center w-full">
+                    <Image
+                      priority
+                      alt="JoJo Words"
+                      src={`/images/${seed}free.png`}
+                      width={1000}
+                      height={1000}
+                      className="h-[30vw] min-h-[24rem] max-h-[30rem] w-auto -translate-y-[25vh] mx-auto z-10"
+                    />
+                    <div className="-translate-y-[50vh] w-fit mx-auto flex z-0">
                       <Image
                         priority
-                        alt="JoJo Words"
-                        src={`/images/${seed}free.png`}
+                        alt="Click Here"
+                        src={ClickHere}
                         width={1000}
                         height={1000}
-                        className="h-[30vw] min-h-[24rem] max-h-[30rem] w-auto -translate-y-[25vh] mx-auto z-10"
+                        className="h-[20vh] mt-20 translate-y-[16vh] -translate-x-[4rem] absolute w-auto"
                       />
-                      <div className="-translate-y-[50vh] w-fit mx-auto flex z-0">
+                      <div className="z-[100000] hover:cursor-pointer">
                         <Image
                           priority
-                          alt="Click Here"
-                          src={ClickHere}
+                          alt="JoJo Image"
+                          src={`/images/${seed}jojo.png`}
                           width={1000}
                           height={1000}
-                          className="h-[20vh] mt-20 translate-y-[16vh] -translate-x-[4rem] absolute w-auto"
+                          className="w-[50vw] min-w-[42rem] max-w-[50rem] mx-auto hover:cursor-pointer"
                         />
-                        <div className="z-[100000] hover:cursor-pointer">
-                          <Image
-                            priority
-                            alt="JoJo Image"
-                            src={`/images/${seed}jojo.png`}
-                            width={1000}
-                            height={1000}
-                            className="w-[50vw] min-w-[42rem] max-w-[50rem] mx-auto hover:cursor-pointer"
-                          />
-                        </div>
                       </div>
-                    </div>
-                    <div className="absolute h-5/6 w-full flex" onClick={() => changeSeed()}>
-                      <div className="w-[50vw] min-w-[35rem] max-w-[40rem] h-[50vw] min-h-[35rem] max-h-[40rem] mx-auto p-1 hover:cursor-pointer hover:p-0 z-[100]"
-                      />
-                    </div>
-                    <div className="absolute h-5/6 w-full flex">
-                      <div className="mt-auto ml-auto mr-14 z-50">
-                        <MusicPlayer />
-                      </div>
-                    </div>
-                    <div className="absolute h-5/6 w-full flex">
-                      <Image
-                        priority
-                        alt="We Are Jojo"
-                        src={`/images/${seed}weare.png`}
-                        width={1000}
-                        height={1000}
-                        className="h-[4rem] w-auto ml-14 mt-auto"
-                      />
                     </div>
                   </div>
+                  <div className="absolute h-5/6 w-full flex" onClick={() => changeSeed()}>
+                    <div className="w-[50vw] min-w-[35rem] max-w-[40rem] h-[50vw] min-h-[35rem] max-h-[40rem] mx-auto p-1 hover:cursor-pointer hover:p-0 z-[100]"
+                    />
+                  </div>
+                  <div className="absolute h-5/6 w-full flex">
+                    <div className="mt-auto ml-auto mr-14 z-50">
+                      <MusicPlayer />
+                    </div>
+                  </div>
+                  <div className="absolute h-5/6 w-full flex">
+                    <Image
+                      priority
+                      alt="We Are Jojo"
+                      src={`/images/${seed}weare.png`}
+                      width={1000}
+                      height={1000}
+                      className="h-[4rem] w-auto ml-14 mt-auto"
+                    />
+                  </div>
                 </div>
+              </div>
             </div>
           </>
 
