@@ -329,7 +329,7 @@ priority
                         src={ClickHere}
                         width={1000}
                         height={1000}
-                        className="h-[8vh] mt-0 -translate-x-[2rem] translate-y-[10vh] absolute w-auto"
+                        className="h-[10vh] mt-0 -translate-x-[1rem] translate-y-[12vh] absolute w-auto"
                       />
                       <div className="z-[100]">
                         <Image
