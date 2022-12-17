@@ -295,22 +295,18 @@ priority
 
           <>
             {/* Mobile */}
-            <div style={{
-              height: `${size.height - 40}px`,
-              backgroundColor: `transparent`,
-            }}
+            <div 
               className="">
               <div className={styles.main}
                 style={{
 
                   fontFamily: 'Wave',
                   fontWeight: '300',
-                  height: `${size.height - 40}px`,
 
                 }}
               >
                 <div className="text-white text-center w-full flex z-0">
-                  <div className="mx-auto center w-full">
+                  <div className="mx-auto mt- 0center w-full">
                     <Image
                       priority
                       alt="JoJo Words"
@@ -357,10 +353,6 @@ priority
                       </div>
                     </div>
                   </div>
-                  {/* <div className="absolute h-[28%] w-full mt-[30%] z-[100]" onClick={() => changeSeed()}>
-                    <div className="my-auto h-full hover:cursor-pointer z-[100]"
-                    />
-                  </div> */}
                 </div>
               </div>
             </div>
