@@ -49,7 +49,6 @@ function Page() {
 
   const changeSeed = () => {
 
-    console.log(Date.now() - lastChange)
     if (Date.now() - lastChange < 400) return
     if (seed < 9) {
       setSeed(seed + 1);
@@ -147,7 +146,7 @@ function Page() {
                           onClick={() => changeSeed()}
                           className="w-[50vw] min-w-[20rem] max-w-[30rem] mx-auto hover:cursor-pointer"
                         /> */}
-                        <div onClick={() => {changeSeed(); console.log("s")}}>
+                        <div onClick={() => {changeSeed()}}>
                           <JojoMobile seed={seed}/>
                         </div>
 
@@ -245,7 +244,7 @@ function Page() {
                           height={1000}
                           className="w-[50vw] min-w-[42rem] max-w-[50rem] mx-auto hover:cursor-pointer"
                         /> */}
-                        <div onClick={() => {changeSeed(); console.log("s")}}>
+                        <div onClick={() => {changeSeed()}}>
                           <Jojo seed={seed}/>
                         </div>
                       </div>
