@@ -97,7 +97,7 @@ export default function Modal({ open, setOpen }) {
                   <a
                     href={`https://twitter.com/intent/tweet?text=Hey JoJo! 🐵 @FreeJoJoNFT%0aWen JoJo List? www.freejojo.io`}
                     target="_blank"
-                    onClick={() => setClickedTweet(true)} rel="noreferrer"
+                    onClick={() => setClickedTweet(true)} rel="noreferrer noopener"
                   >
                     <div className="mt-4 h-10 w-full border-black border-[3px] bg-[#205cdd] text-base font-medium text-white shadow-sm px-5 py-0.5 text-primary bg-box mx-1 rounded-lg hover:bg-opacity-95 flex align-middle">
                       <div className="mx-auto my-auto">

@@ -98,13 +98,10 @@ function Page() {
       <Background seed={seed} height={size.height} />
       <Head>
         <title>Free JoJo</title>
-        <meta name="description" content="Free JoJo" key="desc" />
-        <meta property="og:title" content="Free JoJo" />
         <meta
-          property="og:description"
-          content="Free JoJo"
+          name="description"
+          content="Meet JoJo!"
         />
-        {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
 
       {
