@@ -4,22 +4,24 @@ import { RainbowKitProvider, getDefaultWallets, darkTheme } from '@rainbow-me/ra
 import { chain, configureChains, createClient, WagmiConfig } from 'wagmi';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
-import '@rainbow-me/rainbowkit/styles.css'
+import { SessionProvider } from "next-auth/react"
 import type { AppProps } from 'next/app'
 import NextHead from 'next/head'
 import * as React from 'react'
 
 import { chains, client } from '../wagmi'
 
-function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const [mounted, setMounted] = React.useState(false)
   React.useEffect(() => setMounted(true), [])
   return (
+    <SessionProvider session={session}>
     <WagmiConfig client={client}>
-      <RainbowKitProvider chains={chains}>
+      <RainbowKitProvider theme={darkTheme()} chains={chains}>
         {mounted && <Component {...pageProps} />}
       </RainbowKitProvider>
     </WagmiConfig>
+    </SessionProvider>
   )
 }
 

@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.6",
+    "@headlessui/react": "^1.7.7",
     "@heroicons/react": "^2.0.13",
     "@rainbow-me/rainbowkit": "^0.8.0",
     "@walletconnect/sign-client": "^2.1.4",
@@ -17,6 +17,7 @@
     "ethers": "^5.7.2",
     "lokijs": "^1.5.12",
     "next": "^13.0.0",
+    "next-auth": "^4.18.6",
     "postcss": "^8.4.19",
     "rainbowkit": "^0.0.1",
     "react": "^18.2.0",

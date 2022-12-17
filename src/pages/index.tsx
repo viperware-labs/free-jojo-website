@@ -2,6 +2,7 @@ import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useAccount, useConnect } from 'wagmi'
 import Head from 'next/head';
 import dynamic from "next/dynamic"
+import JoJoList from '../../public/images/JoJoList.png'
 
 import styles from '../../styles/Home.module.css';
 import { Minter } from '../components'
@@ -33,6 +34,7 @@ import { JojoMobile } from '../components/JojoMobile';
 import { WordsMobile } from '../components/WordsMobile';
 import { Background } from '../components/Background';
 import { WeAreJojo } from '../components/WeAreJojo';
+import Modal from '../components/Modal';
 
 function Page() {
   const [seed, setSeed] = useState(Math.floor(Math.random() * 9) + 1);
@@ -40,6 +42,8 @@ function Page() {
   const { connect, connectors, error, isLoading, pendingConnector } = useConnect();
 
   const [enabledMusic, setEnabledMusic] = useState(false);
+  const [open , setOpen] = useState(false);
+
 
   const size = useWindowSize();
 
@@ -187,11 +191,21 @@ function Page() {
               height: `${size.height}px`
             }}
               className="mobile overflow-clip">
+                <Modal open={open} setOpen={setOpen} />
               <div className="p-5 flex">
                 <div className="">
                 </div>
                 <div className="ml-auto z-[100]">
-                  <Connect />
+                  <button className="px-5 py-0.5 text-primary bg-box mx-1 rounded hover:bg-opacity-95" onClick={() => setOpen(true)} type="button">
+                    <>
+                      <Image
+                        alt="JoJo List"
+                        height={90}
+                        src={JoJoList}
+                        className="h-16 w-auto sm:h-20"
+                      />
+                    </>
+                  </button>
                 </div>
               </div>
               <div className={styles.main}
