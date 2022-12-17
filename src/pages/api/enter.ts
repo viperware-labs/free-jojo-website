@@ -9,6 +9,10 @@ export default async function handler(req, res) {
         case 'POST':
             try {
               
+                const authorisation = req.headers.authorization
+                if (!authorisation) return res.status(401).json({ success: false, message: 'No authorisation' })
+
+                if (authorisation !== process.env.NEXT_PUBLIC_API_KEY) return res.status(401).json({ success: false, message: 'Invalid authorisation' } )
 
                 const user = await User.findOne({
                     wallet: req.query.wallet

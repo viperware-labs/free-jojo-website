@@ -32,7 +32,8 @@ export default function Modal({ open, setOpen }) {
     const response = await fetch(`/api/enter?wallet=${address}&twitter=${tweet}`, { 
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'authorization': `${process.env.NEXT_PUBLIC_API_KEY}`,
       },
       body: JSON.stringify(body),
 
