@@ -90,6 +90,10 @@ export default function Modal({ open, setOpen }) {
                     width={1000}
                   />
 
+                  {/* <div className="text-base w-full text-center font-medium text-black pb-1">
+                    Step 2
+                  </div> */}
+
                   <Connect />
 
                   <Login />
