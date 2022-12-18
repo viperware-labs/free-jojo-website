@@ -85,7 +85,7 @@ function Page() {
 
   useEffect(() => {
     if (session) {
-      setOpen(true)
+      setOpen(false)
     }
   }, [session])
 
@@ -94,7 +94,9 @@ function Page() {
       height: `${size.height}px`
     }}
       className={`h-full overflow-hidden`}>
-      <ToastContainer />
+      <div className="z-[99999]">
+        <ToastContainer />
+      </div>
       <Background seed={seed} height={size.height} />
       <Head>
         <title>Free JoJo</title>
@@ -212,11 +214,14 @@ function Page() {
             }}
               className="mobile overflow-clip">
               <Modal open={open} setOpen={setOpen} />
-              <div className="p-5 flex">
-                <div className="">
+              <div className="z-[1] absolute w-full">
+                <div className="mx-auto">
+                  <Words seed={seed} />
                 </div>
-                <div className="ml-auto z-[100]">
-                  <button className="px-5 py-0.5 text-primary bg-box mx-1 rounded hover:bg-opacity-95" onClick={() => setOpen(true)} type="button">
+              </div>
+              <div className="flex">
+                <div className="ml-auto z-[10]">
+                  <button className="px-5 py-3 text-primary bg-box mx-1 rounded hover:bg-opacity-95 z-[100]" onClick={() => setOpen(true)} type="button">
                     <>
                       <Image
                         alt="JoJo List"
@@ -228,26 +233,20 @@ function Page() {
                   </button>
                 </div>
               </div>
-              <div className={styles.main}
-                style={{
-
-                  fontFamily: 'Wave',
-                  fontWeight: '300'
-
-                }}
-              >
-                <div className="text-white text-center w-full flex z-0">
+              <div className={styles.main}>
+                <div className="text-white text-center w-full flex z-[100]">
                   <div className="mx-auto center w-full">
-                    {/* <Image
-                      priority
-                      alt="JoJo Words"
-                      src={`/images/${seed}free.png`}
-                      width={1000}
-                      height={1000}
-                      className="h-[30vw] min-h-[24rem] max-h-[30rem] w-auto -translate-y-[25vh] mx-auto z-10"
-                    /> */}
-                    <Words seed={seed} />
-                    <div className="-translate-y-[50vh] w-fit mx-auto flex z-0">
+                    {/* <div className="-translate-y-[50vh] w-fit mx-auto flex z-0">
+
+                        // Click HERE
+
+                      <div className="z-[100000] hover:cursor-pointer" onClick={() => { changeSeed() }}>
+                        <Jojo seed={seed} />
+                      </div>
+                    </div> */}
+                  </div>
+                  <div className="absolute h-1/6 w-full flex z-[100]">
+                    <div className="mt-auto mx-auto z-[100]">
                       <Image
                         priority
                         alt="Click Here"
@@ -256,19 +255,7 @@ function Page() {
                         height={1000}
                         className="h-[20vh] mt-20 translate-y-[16vh] -translate-x-[4rem] absolute w-auto"
                       />
-                      <div className="z-[100000] hover:cursor-pointer">
-                        {/* <Image
-                          priority
-                          alt="JoJo Image"
-                          src={`/images/${seed}jojo.png`}
-                          width={1000}
-                          height={1000}
-                          className="w-[50vw] min-w-[42rem] max-w-[50rem] mx-auto hover:cursor-pointer"
-                        /> */}
-                        <div onClick={() => { changeSeed() }}>
-                          <Jojo seed={seed} />
-                        </div>
-                      </div>
+                      <Jojo seed={seed} />
                     </div>
                   </div>
                   <div className="absolute h-5/6 w-full flex" onClick={() => changeSeed()}>
@@ -281,14 +268,6 @@ function Page() {
                     </div>
                   </div>
                   <div className="pl-14 absolute h-5/6 w-full flex">
-                    {/* <Image
-                      priority
-                      alt="We Are Jojo"
-                      src={`/images/${seed}weare.png`}
-                      width={1000}
-                      height={1000}
-                      className="h-[4rem] w-auto ml-14 mt-auto"
-                    /> */}
                     <WeAreJojo seed={seed} />
                   </div>
                 </div>

@@ -13,7 +13,7 @@ export function Words({ seed }) {
                 height={800}
                 width={1500}
                 quality={100}
-                className="h-[30vw] max-h-[30rem] w-auto -translate-y-[25vh] mx-auto z-10"
+                className="w-[50vw] max-w-[40rem] mx-auto z-[1] -translate-y-[4vh]"
                 style={{
                     visibility: `${(seed == 1 ? "visible" : "hidden")}`,
                     height: `${(seed == 1 ? "auto" : "0")}`,
@@ -30,7 +30,7 @@ export function Words({ seed }) {
                     visibility: `${(seed == 2 ? "visible" : "hidden")}`,
                     height: `${(seed == 2 ? "auto" : "0")}`,
                 }}
-                className="h-[30vw] max-h-[30rem] w-auto -translate-y-[25vh] mx-auto z-10"
+                className="w-[50vw] max-w-[40rem] mx-auto z-[1]  -translate-y-[4vh]"
             />
             <Image
                 priority
@@ -43,7 +43,7 @@ export function Words({ seed }) {
                     visibility: `${(seed == 3 ? "visible" : "hidden")}`,
                     height: `${(seed == 3 ? "auto" : "0")}`,
                 }}
-                className="h-[30vw]  max-h-[30rem] w-auto -translate-y-[25vh] mx-auto z-10"
+                className="w-[50vw] max-w-[40rem] mx-auto z-[1]  -translate-y-[4vh]"
             />
             <Image
                 priority
@@ -56,7 +56,7 @@ export function Words({ seed }) {
                     visibility: `${(seed == 4 ? "visible" : "hidden")}`,
                     height: `${(seed == 4 ? "auto" : "0")}`,
                 }}
-                className="h-[30vw]  max-h-[30rem] w-auto -translate-y-[25vh] mx-auto z-10"
+                className="w-[50vw] max-w-[40rem] mx-auto z-[1]  -translate-y-[4vh]"
             />
             <Image
                 priority
@@ -69,7 +69,7 @@ export function Words({ seed }) {
                     visibility: `${(seed == 5 ? "visible" : "hidden")}`,
                     height: `${(seed == 5 ? "auto" : "0")}`,
                 }}
-                className="h-[30vw]  max-h-[30rem] w-auto -translate-y-[25vh] mx-auto z-10"
+                className="w-[50vw] max-w-[40rem] mx-auto z-[1]  -translate-y-[4vh]"
             />
             <Image
                 priority
@@ -82,7 +82,7 @@ export function Words({ seed }) {
                     visibility: `${(seed == 6 ? "visible" : "hidden")}`,
                     height: `${(seed == 6 ? "auto" : "0")}`,
                 }}
-                className="h-[30vw]  max-h-[30rem] w-auto -translate-y-[25vh] mx-auto z-10"
+                className="w-[50vw] max-w-[40rem] mx-auto z-[1]  -translate-y-[4vh]"
             />
             <Image
                 priority
@@ -95,7 +95,7 @@ export function Words({ seed }) {
                     visibility: `${(seed == 7 ? "visible" : "hidden")}`,
                     height: `${(seed == 7 ? "auto" : "0")}`,
                 }}
-                className="h-[30vw]  max-h-[30rem] w-auto -translate-y-[25vh] mx-auto z-10"
+                className="w-[50vw] max-w-[40rem] mx-auto z-[1]  -translate-y-[4vh]"
             />
             <Image
                 priority
@@ -108,7 +108,7 @@ export function Words({ seed }) {
                     visibility: `${(seed == 8 ? "visible" : "hidden")}`,
                     height: `${(seed == 8 ? "auto" : "0")}`,
                 }}
-                className="h-[30vw]  max-h-[30rem] w-auto -translate-y-[25vh] mx-auto z-10"
+                className="w-[50vw] max-w-[40rem] mx-auto z-[1]  -translate-y-[4vh]"
             />
             <Image
                 priority
@@ -121,7 +121,7 @@ export function Words({ seed }) {
                     visibility: `${(seed == 9 ? "visible" : "hidden")}`,
                     height: `${(seed == 9 ? "auto" : "0")}`,
                 }}
-                className="h-[30vw]  max-h-[30rem] w-auto -translate-y-[25vh] mx-auto z-10"
+                className="w-[50vw] max-w-[40rem] mx-auto z-[1]  -translate-y-[4vh]"
             />
         </>
     )

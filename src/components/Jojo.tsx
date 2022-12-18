@@ -17,7 +17,8 @@ export function Jojo({ seed }) {
                     visibility: `${(seed == 1 ? "visible" : "hidden")}`,
                     height: `${(seed == 1 ? "auto" : "0")}`,
                 }}
-                className="w-[50vw] min-w-[20rem] max-w-[50rem] mx-auto hover:cursor-pointer"
+                className="max-h-[80vh] w-auto mx-auto hover:cursor-pointer"
+                // className="p-1 hover:cursor-pointer hover:p-0 h-[50px] w-auto sm:h-[90px]"
             />
             <Image
                 priority
@@ -30,7 +31,7 @@ export function Jojo({ seed }) {
                     visibility: `${(seed == 2 ? "visible" : "hidden")}`,
                     height: `${(seed == 2 ? "auto" : "0")}`,
                 }}
-                className="w-[50vw] min-w-[20rem] max-w-[50rem] mx-auto hover:cursor-pointer"
+                className="max-h-[80vh] w-auto mx-auto hover:cursor-pointer"
             />
             <Image
                 priority
@@ -43,7 +44,7 @@ export function Jojo({ seed }) {
                     visibility: `${(seed == 3 ? "visible" : "hidden")}`,
                     height: `${(seed == 3 ? "auto" : "0")}`,
                 }}
-                className="w-[50vw] min-w-[20rem] max-w-[50rem] mx-auto hover:cursor-pointer"
+                className="max-h-[80vh] w-auto mx-auto hover:cursor-pointer"
             />
             <Image
                 priority
@@ -56,7 +57,7 @@ export function Jojo({ seed }) {
                     visibility: `${(seed == 4 ? "visible" : "hidden")}`,
                     height: `${(seed == 4 ? "auto" : "0")}`,
                 }}
-                className="w-[50vw] min-w-[20rem] max-w-[50rem] mx-auto hover:cursor-pointer"
+                className="max-h-[80vh] w-auto mx-auto hover:cursor-pointer"
             />
             <Image
                 priority
@@ -69,7 +70,7 @@ export function Jojo({ seed }) {
                     visibility: `${(seed == 5 ? "visible" : "hidden")}`,
                     height: `${(seed == 5 ? "auto" : "0")}`,
                 }}
-                className="w-[50vw] min-w-[20rem] max-w-[50rem] mx-auto hover:cursor-pointer"
+                className="max-h-[80vh] w-auto mx-auto hover:cursor-pointer"
             />
             <Image
                 priority
@@ -82,7 +83,7 @@ export function Jojo({ seed }) {
                     visibility: `${(seed == 6 ? "visible" : "hidden")}`,
                     height: `${(seed == 6 ? "auto" : "0")}`,
                 }}
-                className="w-[50vw] min-w-[20rem] max-w-[50rem] mx-auto hover:cursor-pointer"
+                className="max-h-[80vh] w-auto mx-auto hover:cursor-pointer"
             />
             <Image
                 priority
@@ -95,7 +96,7 @@ export function Jojo({ seed }) {
                     visibility: `${(seed == 7 ? "visible" : "hidden")}`,
                     height: `${(seed == 7 ? "auto" : "0")}`,
                 }}
-                className="w-[50vw] min-w-[20rem] max-w-[50rem] mx-auto hover:cursor-pointer"
+                className="max-h-[80vh] w-auto mx-auto hover:cursor-pointer"
             />
             <Image
                 priority
@@ -108,7 +109,7 @@ export function Jojo({ seed }) {
                     visibility: `${(seed == 8 ? "visible" : "hidden")}`,
                     height: `${(seed == 8 ? "auto" : "0")}`,
                 }}
-                className="w-[50vw] min-w-[20rem] max-w-[50rem] mx-auto hover:cursor-pointer"
+                className="max-h-[80vh] w-auto mx-auto hover:cursor-pointer"
             />
             <Image
                 priority
@@ -121,7 +122,7 @@ export function Jojo({ seed }) {
                     visibility: `${(seed == 9 ? "visible" : "hidden")}`,
                     height: `${(seed == 9 ? "auto" : "0")}`,
                 }}
-                className="w-[50vw] min-w-[20rem] max-w-[50rem] mx-auto hover:cursor-pointer"
+                className="max-h-[80vh] w-auto mx-auto hover:cursor-pointer"
             />
         </>
     )

@@ -16,7 +16,7 @@ export function WeAreJojo({ seed }) {
                 className="h-[4rem] w-auto mt-auto"
                 style={{
                     visibility: `${(seed == 1 ? "visible" : "hidden")}`,
-                    height: `${(seed == 1 ? "auto" : "0")}`,
+                    height: `${(seed == 1 ? "" : "0")}`,
                 }}
             />
             <Image
@@ -28,7 +28,7 @@ export function WeAreJojo({ seed }) {
                 quality={100}
                 style={{
                     visibility: `${(seed == 2 ? "visible" : "hidden")}`,
-                    height: `${(seed == 2 ? "auto" : "0")}`,
+                    height: `${(seed == 2 ? "" : "0")}`,
                 }}
                 className="h-[4rem] w-auto mt-auto"
             />
@@ -41,7 +41,7 @@ export function WeAreJojo({ seed }) {
                 quality={100}
                 style={{
                     visibility: `${(seed == 3 ? "visible" : "hidden")}`,
-                    height: `${(seed == 3 ? "auto" : "0")}`,
+                    height: `${(seed == 3 ? "" : "0")}`,
                 }}
                 className="h-[4rem] w-auto  mt-auto"
             />
@@ -54,7 +54,7 @@ export function WeAreJojo({ seed }) {
                 quality={100}
                 style={{
                     visibility: `${(seed == 4 ? "visible" : "hidden")}`,
-                    height: `${(seed == 4 ? "auto" : "0")}`,
+                    height: `${(seed == 4 ? "" : "0")}`,
                 }}
                 className="h-[4rem] w-auto  mt-auto"
             />
@@ -67,7 +67,7 @@ export function WeAreJojo({ seed }) {
                 quality={100}
                 style={{
                     visibility: `${(seed == 5 ? "visible" : "hidden")}`,
-                    height: `${(seed == 5 ? "auto" : "0")}`,
+                    height: `${(seed == 5 ? "" : "0")}`,
                 }}
                 className="h-[4rem] w-auto  mt-auto"
             />
@@ -80,7 +80,7 @@ export function WeAreJojo({ seed }) {
                 quality={100}
                 style={{
                     visibility: `${(seed == 6 ? "visible" : "hidden")}`,
-                    height: `${(seed == 6 ? "auto" : "0")}`,
+                    height: `${(seed == 6 ? "" : "0")}`,
                 }}
                 className="h-[4rem] w-auto  mt-auto"
             />
@@ -93,7 +93,7 @@ export function WeAreJojo({ seed }) {
                 quality={100}
                 style={{
                     visibility: `${(seed == 7 ? "visible" : "hidden")}`,
-                    height: `${(seed == 7 ? "auto" : "0")}`,
+                    height: `${(seed == 7 ? "" : "0")}`,
                 }}
                 className="h-[4rem] w-auto  mt-auto"
             />
@@ -106,7 +106,7 @@ export function WeAreJojo({ seed }) {
                 quality={100}
                 style={{
                     visibility: `${(seed == 8 ? "visible" : "hidden")}`,
-                    height: `${(seed == 8 ? "auto" : "0")}`,
+                    height: `${(seed == 8 ? "" : "0")}`,
                 }}
                 className="h-[4rem] w-auto  mt-auto"
             />
@@ -119,7 +119,7 @@ export function WeAreJojo({ seed }) {
                 quality={100}
                 style={{
                     visibility: `${(seed == 9 ? "visible" : "hidden")}`,
-                    height: `${(seed == 9 ? "auto" : "0")}`,
+                    height: `${(seed == 9 ? "" : "0")}`,
                 }}
                 className="h-[4rem] w-auto  mt-auto"
             />

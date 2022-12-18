@@ -24,6 +24,9 @@ export default function Modal({ open, setOpen }) {
 
 
   const handleClick = async (tweet: string | null | undefined) => {
+    toast.success("Test", {
+      position: "top-left",
+    })
 
     if (entry) return;
 
@@ -46,7 +49,7 @@ export default function Modal({ open, setOpen }) {
     const data = await response.json()
     console.log(data)
     toast.success("JoJoList Raffle Entered!", {
-      position: "top-right"
+      position: "top-left"
     })
 
     setEntry(true)
@@ -56,7 +59,7 @@ export default function Modal({ open, setOpen }) {
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={setOpen}>
+      <Dialog as="div" className="relative z-[1000]" onClose={setOpen}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
