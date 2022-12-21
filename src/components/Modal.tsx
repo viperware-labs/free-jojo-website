@@ -102,7 +102,7 @@ export default function Modal({ open, setOpen }) {
                   <Login />
 
                   <a
-                    href={`https://twitter.com/intent/tweet?text=Hey JoJo! 🐵 @FreeJoJoNFT%0aWen JoJo List? www.freejojo.io`}
+                    href={`https://twitter.com/intent/tweet?text=Hey JoJo! 🐵 @FreeJoJoNFT%0aWen JoJo List? www.freejojo.io %23WeAreJojo`}
                     target="_blank"
                     onClick={() => setClickedTweet(true)} rel="noreferrer noopener"
                   >
