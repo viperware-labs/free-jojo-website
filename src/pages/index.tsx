@@ -66,12 +66,12 @@ function Page() {
       console.log(seed);
     }
 
-    if (!enabledMusic) {
-      const audio = document.getElementById("audio")
-      setEnabledMusic(true)
-      // @ts-ignore
-      audio.play()
-    }
+    // if (!enabledMusic) {
+    //   const audio = document.getElementById("audio")
+    //   setEnabledMusic(true)
+    //   // @ts-ignore
+    //   audio.play()
+    // }
 
   }
 
@@ -264,7 +264,7 @@ function Page() {
                   </div>
                   <div className="absolute h-5/6 w-full flex">
                     <div className="mt-auto ml-auto mr-14 z-50">
-                      <MusicPlayer />
+                      {/* <MusicPlayer /> */}
                     </div>
                   </div>
                   <div className="pl-14 absolute h-5/6 w-full flex">
