@@ -11,6 +11,8 @@ module.exports = {
         anon: ['AnonPro'],
         scope: ['Scope'],
         norm: ['Norm'],
+        archivo: ['Archivo'],
+        archivobold: ['ArchivoBold'],
       }
     }, 
   },

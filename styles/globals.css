@@ -39,6 +39,22 @@
     font-weight: bold;
     font-style: normal;
   }
+
+  @font-face {
+    font-family: 'Archivo';
+    src: url('./fonts/Archivo.ttf') format('truetype');
+    font-display: swap;
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'ArchivoBold';
+    src: url('./fonts/ArchivoBold.ttf') format('truetype');
+    font-display: swap;
+    font-weight: normal;
+    font-style: normal;
+  }
 }
 
 ::-webkit-scrollbar {
