@@ -176,7 +176,7 @@ function Page() {
                   colsMobile.map((col, indexCol) => (
                     <div key={indexCol} className="flex my-6 flex-col">
                       {imagesMobile.map((image, index) => (
-                        <Image src={`/mint/${col}/${image}`} alt={`Image ${index + 1}`} width={imageWidthMobile} height={imageWidthMobile} className='-z-1 m-auto opacity-50' />
+                        <Image key={index} src={`/mint/${col}/${image}`} alt={`Image ${index + 1}`} width={imageWidthMobile} height={imageWidthMobile} className='-z-1 m-auto opacity-50' />
                       ))}
                     </div>
                   ))
