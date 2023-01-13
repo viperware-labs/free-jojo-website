@@ -127,7 +127,7 @@ function Page() {
                   <div className="mx-auto mt-0 center w-full">
                     <div className="w-full flex">
                       <div className="ml-auto p-5">
-                        <MusicPlayer />
+                        {/* <MusicPlayer /> */}
                       </div>
                     </div>
                     <div className="h-28">
