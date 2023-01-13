@@ -173,10 +173,10 @@ function Page() {
             <div className="absolute w-full flex h-full">
               <div className="justify-around w-full h-full flex">
                 {
-                  colsMobile.map((col) => (
-                    <div className="flex my-6 flex-col">
+                  colsMobile.map((col, indexCol) => (
+                    <div key={indexCol} className="flex my-6 flex-col">
                       {imagesMobile.map((image, index) => (
-                        <Image key={index} src={`/mint/${col}/${image}`} alt={`Image ${index + 1}`} width={imageWidthMobile} height={imageWidthMobile} className='-z-1 m-auto opacity-50' />
+                        <Image src={`/mint/${col}/${image}`} alt={`Image ${index + 1}`} width={imageWidthMobile} height={imageWidthMobile} className='-z-1 m-auto opacity-50' />
                       ))}
                     </div>
                   ))
@@ -191,8 +191,8 @@ function Page() {
             <div className="absolute w-full flex h-full">
               <div className="justify-around w-full h-full">
                 {
-                  rows.map((row) => (
-                    <div className="flex my-6">
+                  rows.map((row, indexRow) => (
+                    <div key={indexRow} className="flex my-6">
                       {images.map((image, index) => (
                         <Image key={index} src={`/mint/${row}/${image}`} alt={`Image ${index + 1}`} width={imageWidth} height={imageWidth} className='-z-1 m-auto opacity-50' />
                       ))}
