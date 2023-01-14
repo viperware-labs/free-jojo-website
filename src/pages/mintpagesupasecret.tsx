@@ -148,7 +148,7 @@ function Page() {
       <Image
         priority
         alt="Background"
-        src={`/mint/bg.png`}
+        src={size.width < 600 ? `/mint/bg_mobile.png` : `/mint/bg.png`}
         height={800}
         width={1500}
         quality={100}
@@ -171,7 +171,7 @@ function Page() {
         <video id="loader"
           autoPlay
           muted
-          className="h-screen w-auto mx-auto"
+          className="h-screen w-auto mx-auto border border-0"
         >
           <source
             src="/Loading.mp4" type="video/mp4" />
