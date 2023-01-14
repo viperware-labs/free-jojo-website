@@ -3,7 +3,7 @@ import { useAccount, useConnect } from 'wagmi'
 import Head from 'next/head';
 import dynamic from "next/dynamic"
 import JoJoList from '../../public/images/JoJoList.png'
-// import loading from '../../public/LoadingJoJo.gif'
+import loading from '../../public/Loading.gif'
 
 import styles from '../../styles/Home.module.css';
 import { Minter } from '../components'
@@ -160,22 +160,38 @@ function Page() {
       />
       <div
         style={loaded ? { display: 'none' } : { display: '' }}
-        className="absolute"
+        className="absolute flex w-full"
       >
-        {/* <Image
-          alt="bruh"
-          src={loading}
-          className="h-screen w-auto mx-auto"
-        /> */}
 
-        <video id="loader"
-          autoPlay
-          muted
-          className="h-screen w-auto mx-auto border border-0"
-        >
-          <source
-            src="/Loading.mp4" type="video/mp4" />
-        </video>
+        {size.width < 600 ? (
+          // <div
+          //   className="mx-auto overflow-visible">
+          //   <Image
+          //     alt="bruh"
+          //     src={loading}
+          //     // height={844}
+          //     // width={size.height * 1440}
+          //     className={`mx-auto w-[200vw] h-screen`}
+          //   />
+
+          // </div>
+          <div className="relative h-screen w-screen overflow-hidden">
+            <Image src={loading} alt="centered gif" className="object-center m-auto object-cover" style={{ maxWidth: '150vw', maxHeight: '50vh' }} layout="fill" />
+          </div>
+
+        ) : (
+          <div
+            className="h-screen w-auto mx-auto">
+            <video id="loader"
+              autoPlay
+              muted
+              className="h-screen w-auto"
+            >
+              <source
+                src="/Loading.mp4" type="video/mp4" />
+            </video>
+          </div>
+        )}
       </div>
 
       <div
