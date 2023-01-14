@@ -3,6 +3,7 @@ import { useAccount, useConnect } from 'wagmi'
 import Head from 'next/head';
 import dynamic from "next/dynamic"
 import JoJoList from '../../public/images/JoJoList.png'
+import loading from '../../public/LoadingJoJo.gif'
 
 import styles from '../../styles/Home.module.css';
 import { Minter } from '../components'
@@ -123,9 +124,17 @@ function Page() {
 
   let colsMobile = [1, 2, 3];
   let imageWidthMobile = (size.width / 3) - 20; // width of a single image
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
 
+  }, []);
+
+  useEffect(() => {
+    // Loading Screen
+    setTimeout(() => {
+      setLoaded(true);
+    }, 5000)
   }, []);
 
   useEffect(() => {
@@ -135,88 +144,112 @@ function Page() {
   }, [session])
 
   return (
-    <div style={{
-      height: `${size.height}px`
-    }}
-      className={`h-full overflow-hidden`}>
-      <div className="z-[99999]">
-        <ToastContainer />
-        <Modal open={open} setOpen={setOpen} />
+    <>
+    <Image
+      priority
+      alt="Background"
+      src={`/mint/bg.png`}
+      height={800}
+      width={1500}
+      quality={100}
+      style={{
+        opacity: `100%`,
+        height: `${size.height}px`
+      }}
+      className="absolute w-full h-full -z-10"
+    />
+      <div
+        style={loaded ? { display: 'none' } : { display: '' }}
+        className="w-screen h-screen"
+        >
+        <Image
+          alt="bruh"
+          src={loading}
+          className="h-screen w-auto mx-auto"
+        />
       </div>
-      <Image
-        priority
-        alt="Background"
-        src={`/mint/bg.png`}
-        height={800}
-        width={1500}
-        quality={100}
-        style={{
-          opacity: `100%`,
+
+      <div
+        style={loaded ? {
+          display: '',
+        } : { 
+          height: '0'
+        }}
+      >
+
+        <div style={{
           height: `${size.height}px`
         }}
-        className="absolute w-full h-full -z-10"
-      />
-      <Head>
-        <title>Free JoJo Mint</title>
-        <meta
-          name="description"
-          content="Meet JoJo!"
-        />
-      </Head>
-
-
-      {/* BACKGROUND */}
-      {
-        size.width < 600 ?
-
-          <>
-            <div className="absolute w-full flex h-full">
-              <div className="justify-around w-full h-full flex">
-                {
-                  colsMobile.map((col, indexCol) => (
-                    <div key={indexCol} className="flex my-6 flex-col">
-                      {imagesMobile.map((image, index) => (
-                        <Image key={index} src={`/mint/${col}/${image}`} alt={`Image ${index + 1}`} width={imageWidthMobile} height={imageWidthMobile} className='-z-1 m-auto opacity-50' />
-                      ))}
-                    </div>
-                  ))
-                }
-              </div>
-            </div>
-          </>
-
-          :
-
-          <>
-            <div className="absolute w-full flex h-full">
-              <div className="justify-around w-full h-full">
-                {
-                  rows.map((row, indexRow) => (
-                    <div key={indexRow} className="flex my-6">
-                      {images.map((image, index) => (
-                        <Image key={index} src={`/mint/${row}/${image}`} alt={`Image ${index + 1}`} width={imageWidth} height={imageWidth} className='-z-1 m-auto opacity-50' />
-                      ))}
-                    </div>
-                  ))
-                }
-              </div>
-            </div>
-          </>
-
-      }
-
-      <div className="w-full h-full text-zinc-200 flex">
-        <div className="m-auto z-20 flex flex-col">
-          <div className="text-5xl sm:text-6xl font-bold font-archivobold mx-auto">
-            MINT NOW!
+          className={`h-full overflow-hidden`}>
+          <div className="z-[99999]">
+            <ToastContainer />
+            <Modal open={open} setOpen={setOpen} />
           </div>
-          <div className="text-3xl sm:text-3xl font-bold font-archivobold mx-auto my-5">
-            0/7777
+          <Head>
+            <title>Free JoJo Mint</title>
+            <meta
+              name="description"
+              content="Meet JoJo!"
+            />
+          </Head>
+
+
+          {/* BACKGROUND */}
+          {
+            size.width < 600 ?
+
+              <>
+                <div className="absolute w-full flex h-full">
+                  <div className="justify-around w-full h-full flex">
+                    {
+                      colsMobile.map((col, indexCol) => (
+                        <div key={indexCol} className="flex my-6 flex-col">
+                          {imagesMobile.map((image, index) => (
+                            <Image key={index} src={`/mint/${col}/${image}`} alt={`Image ${index + 1}`} width={imageWidthMobile} height={imageWidthMobile} className='-z-1 m-auto opacity-50' />
+                          ))}
+                        </div>
+                      ))
+                    }
+                  </div>
+                </div>
+              </>
+
+              :
+
+              <>
+                <div className="absolute w-full flex h-full">
+                  <div className="justify-around w-full h-full">
+                    {
+                      rows.map((row, indexRow) => (
+                        <div key={indexRow} className="flex my-6">
+                          {images.map((image, index) => (
+                            <Image key={index} src={`/mint/${row}/${image}`} alt={`Image ${index + 1}`} width={imageWidth} height={imageWidth} className='-z-1 m-auto opacity-50' />
+                          ))}
+                        </div>
+                      ))
+                    }
+                  </div>
+                </div>
+              </>
+
+          }
+
+          <div className="w-full h-full text-zinc-200 flex">
+            <div className="m-auto z-20 flex flex-col">
+              <div className="text-5xl sm:text-6xl font-bold font-archivobold mx-auto">
+                MINT NOW!
+              </div>
+              <div className="text-3xl sm:text-3xl font-bold font-archivobold mx-auto my-5">
+                0/7777
+              </div>
+              <Connect />
+            </div>
           </div>
-          <Connect />
         </div>
+
       </div>
-    </div>
+
+    </>
   )
 }
 
