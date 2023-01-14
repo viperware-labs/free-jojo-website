@@ -160,7 +160,7 @@ function Page() {
       />
       <div
         style={loaded ? { display: 'none' } : { display: '' }}
-        className="w-screen h-screen"
+        className="absolute"
       >
         {/* <Image
           alt="bruh"
@@ -173,7 +173,8 @@ function Page() {
           muted
           className="h-screen w-auto mx-auto"
         >
-          <source src="/Loading.mp4" type="video/mp4" />
+          <source
+            src="/Loading.mp4" type="video/mp4" />
         </video>
       </div>
 
@@ -181,7 +182,9 @@ function Page() {
         style={loaded ? {
           display: '',
         } : {
-          height: '0'
+          position: 'absolute',
+          opacity: '0',
+          height: '0',
         }}
       >
 
