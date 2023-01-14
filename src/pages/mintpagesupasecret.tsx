@@ -3,7 +3,7 @@ import { useAccount, useConnect } from 'wagmi'
 import Head from 'next/head';
 import dynamic from "next/dynamic"
 import JoJoList from '../../public/images/JoJoList.png'
-import loading from '../../public/LoadingJoJo.gif'
+// import loading from '../../public/LoadingJoJo.gif'
 
 import styles from '../../styles/Home.module.css';
 import { Minter } from '../components'
@@ -145,34 +145,42 @@ function Page() {
 
   return (
     <>
-    <Image
-      priority
-      alt="Background"
-      src={`/mint/bg.png`}
-      height={800}
-      width={1500}
-      quality={100}
-      style={{
-        opacity: `100%`,
-        height: `${size.height}px`
-      }}
-      className="absolute w-full h-full -z-10"
-    />
+      <Image
+        priority
+        alt="Background"
+        src={`/mint/bg.png`}
+        height={800}
+        width={1500}
+        quality={100}
+        style={{
+          opacity: `100%`,
+          height: `${size.height}px`
+        }}
+        className="absolute w-full h-full -z-10"
+      />
       <div
         style={loaded ? { display: 'none' } : { display: '' }}
         className="w-screen h-screen"
-        >
-        <Image
+      >
+        {/* <Image
           alt="bruh"
           src={loading}
           className="h-screen w-auto mx-auto"
-        />
+        /> */}
+
+        <video id="loader"
+          autoPlay
+          muted
+          className="h-screen w-auto mx-auto"
+        >
+          <source src="/Loading.mp4" type="video/mp4" />
+        </video>
       </div>
 
       <div
         style={loaded ? {
           display: '',
-        } : { 
+        } : {
           height: '0'
         }}
       >
