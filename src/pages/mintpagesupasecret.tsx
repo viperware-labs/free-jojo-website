@@ -268,6 +268,12 @@ function Page() {
 
           }
 
+          <div className="flex">
+            <div className="mb-auto ml-auto z-50 mr-5 mt-5">
+              <MusicPlayer />
+            </div>
+          </div>
+
           <div className="w-full h-full text-zinc-200 flex flex-col">
             <div className="m-auto z-20 flex flex-col">
               <div className="text-5xl sm:text-6xl font-bold font-archivobold mx-auto">
@@ -278,13 +284,15 @@ function Page() {
               </div>
               <Connect />
             </div>
-
-            <div className="flex">
-              <div className="mt-auto ml-auto z-50 mr-5 mb-5">
-                <MusicPlayer />
-              </div>
-            </div>
           </div>
+
+          {/* <div className="flex">
+            <div className="mt-auto ml-auto z-50 mr-5 mb-5">
+              <MusicPlayer />
+            </div>
+          </div> */}
+
+
         </div>
 
       </div>
