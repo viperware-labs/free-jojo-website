@@ -275,17 +275,18 @@ function Page() {
           </div>
 
           <div className="w-full h-full text-zinc-200 flex flex-col">
-            <div className="mt-20 mx-auto z-20 flex flex-col items-center">
+            <div className="mx-auto z-20 flex flex-col items-center">
               <Image
                 priority
                 alt="Free JoJo"
                 height={300}
-                width={300}
+                width={size.width < 600 ? 300 : 400}
+                // width={300}
                 src={`/mint/jojologo.png`}
                 quality={100}
-                className="z-10 mb-20"
+                className="mt-20 z-10"
               />
-              <div className="text-5xl sm:text-6xl font-bold font-archivobold">
+              <div className="mt-10 text-5xl sm:text-6xl font-bold font-archivobold">
                 MINT NOW!
               </div>
               <div className="text-3xl sm:text-3xl font-bold font-archivobold my-5">
