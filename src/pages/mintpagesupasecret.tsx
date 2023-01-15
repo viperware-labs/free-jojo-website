@@ -128,6 +128,13 @@ function Page() {
 
   useEffect(() => {
 
+    // if (!enabledMusic) {
+    //   const audio = document.getElementById("audio")
+    //   setEnabledMusic(true)
+    //   // @ts-ignore
+    //   audio.play()
+    // }
+
   }, []);
 
   useEffect(() => {
@@ -261,7 +268,7 @@ function Page() {
 
           }
 
-          <div className="w-full h-full text-zinc-200 flex">
+          <div className="w-full h-full text-zinc-200 flex flex-col">
             <div className="m-auto z-20 flex flex-col">
               <div className="text-5xl sm:text-6xl font-bold font-archivobold mx-auto">
                 MINT NOW!
@@ -270,6 +277,12 @@ function Page() {
                 0/7777
               </div>
               <Connect />
+            </div>
+
+            <div className="flex">
+              <div className="mt-auto ml-auto z-50 mr-5 mb-5">
+                <MusicPlayer />
+              </div>
             </div>
           </div>
         </div>

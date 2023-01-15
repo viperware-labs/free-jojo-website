@@ -47,7 +47,7 @@ export default function MusicPlayer() {
                     <audio id="audio" preload="auto" autoPlay loop onPlay={() => {
                             setIsPlaying(true)
                     }} >
-                        <source src="/JojoMusic.mp3" type="audio/mp3" />
+                        <source src="https://cdn.discordapp.com/attachments/268502324492763136/1064122034285711460/JojoMusic.mp3" type="audio/mp3" />
                     </audio>
                 </div>
             </div>

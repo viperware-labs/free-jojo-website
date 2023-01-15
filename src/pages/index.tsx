@@ -66,12 +66,12 @@ function Page() {
       console.log(seed);
     }
 
-    // if (!enabledMusic) {
-    //   const audio = document.getElementById("audio")
-    //   setEnabledMusic(true)
-    //   // @ts-ignore
-    //   audio.play()
-    // }
+    if (!enabledMusic) {
+      const audio = document.getElementById("audio")
+      setEnabledMusic(true)
+      // @ts-ignore
+      audio.play()
+    }
 
   }
 
@@ -127,7 +127,7 @@ function Page() {
                   <div className="mx-auto mt-0 center w-full">
                     <div className="w-full flex">
                       <div className="ml-auto p-5">
-                        {/* <MusicPlayer /> */}
+                        <MusicPlayer />
                       </div>
                     </div>
                     <div className="h-28">
@@ -168,7 +168,7 @@ function Page() {
                           <div className="mt-auto ml-auto z-50">
                             <MusicPlayer />
                           </div>
-                        </div>
+                        </div> */}
                         <Image
                           priority
                           alt="We Are Jojo"
@@ -176,7 +176,7 @@ function Page() {
                           width={1000}
                           height={1000}
                           className="h-[4rem] w-auto mx-auto mt-5"
-                        /> */}
+                        />
 
                         <div className="flex mt-10">
                           <div className="mx-auto my-auto">
@@ -264,7 +264,7 @@ function Page() {
                   </div>
                   <div className="absolute h-5/6 w-full flex">
                     <div className="mt-auto ml-auto mr-14 z-50">
-                      {/* <MusicPlayer /> */}
+                      <MusicPlayer />
                     </div>
                   </div>
                   <div className="pl-14 absolute h-5/6 w-full flex">
