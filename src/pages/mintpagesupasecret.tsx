@@ -124,7 +124,9 @@ function Page() {
 
   let colsMobile = [1, 2, 3];
   let imageWidthMobile = (size.width / 3) - 20; // width of a single image
+
   const [loaded, setLoaded] = useState(false);
+  const [entered, setEntered] = useState(false);
 
   useEffect(() => {
 
@@ -139,9 +141,10 @@ function Page() {
 
   useEffect(() => {
     // Loading Screen
-    setTimeout(() => {
-      setLoaded(true);
-    }, 5000)
+
+    // setTimeout(() => {
+    //   setLoaded(true);
+    // }, 5000)
   }, []);
 
   useEffect(() => {
@@ -165,11 +168,45 @@ function Page() {
         }}
         className="absolute w-full h-full -z-10"
       />
+
       <div
-        style={loaded ? { display: 'none' } : { display: '' }}
+        style={entered ? { display: 'none' } : { display: '' }}
+        className="absolute flex w-full h-full"
+      >
+        <button
+          className='text-black border-2 border-black bg-zinc-300 hover:bg-zinc-400 text-center py-5 px-8 rounded-lg m-auto hover:pointer z-50 font-archivobold text-4xl flex '
+          onClick={() => {
+            setEntered(true);
+            setTimeout(() => {
+              setLoaded(true);
+            }, 5000);
+
+            if (!enabledMusic) {
+              const audio = document.getElementById("audio")
+              setEnabledMusic(true)
+              // @ts-ignore
+              audio.play()
+            }
+          }}>
+
+          <div className="">
+            ENTER
+          </div>
+
+          <div className="w-7" />
+
+          <div className="-translate-y-0.5">
+            &#8594;
+          </div>
+
+        </button>
+
+      </div>
+
+      <div
+        style={(!loaded && entered) ? { display: '' } : { display: 'none' }}
         className="absolute flex w-full"
       >
-
         {size.width < 600 ? (
           // <div
           //   className="mx-auto overflow-visible">
@@ -183,7 +220,7 @@ function Page() {
 
           // </div>
           <div className="relative h-screen w-screen overflow-hidden">
-            <Image src={loading} alt="centered gif" className="object-center m-auto object-cover" style={{ maxWidth: '150vw', maxHeight: '50vh' }} layout="fill" />
+            <Image src={loading} alt="centered gif" className="object-center m-auto object-cover" style={{ maxWidth: '150vw', maxHeight: '50vh' }} />
           </div>
 
         ) : (
