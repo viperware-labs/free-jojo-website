@@ -128,6 +128,10 @@ function Page() {
   const [loaded, setLoaded] = useState(false);
   const [entered, setEntered] = useState(false);
 
+  const handleMint = () => {
+
+  }
+
   useEffect(() => {
 
     // if (!enabledMusic) {
@@ -306,8 +310,8 @@ function Page() {
           }
 
           <div className="flex">
-            <div className="mb-auto ml-auto z-50 mr-5 mt-5">
-              <MusicPlayer />
+            <div className="w-full mb-auto ml-auto z-50 sm:mr-5 sm:mt-5">
+              <Connect />
             </div>
           </div>
 
@@ -326,18 +330,35 @@ function Page() {
               <div className="mt-10 text-5xl sm:text-6xl font-bold font-archivobold">
                 MINT NOW!
               </div>
+              <div className="mx-auto font-archivo font-black tracking-widest mb-2">
+                {address ? address && (address.slice(0, 6) + "...." + address.slice(address.length - 4, address.length)) : ''}
+              </div>
               <div className="text-3xl sm:text-3xl font-bold font-archivobold my-5">
                 0/7777
               </div>
-              <Connect />
+
+              {isConnected ?
+                <>
+                  <div className="flex flex-col">
+                    <button className="font-bold font-archivobold mt-6 mx-auto sm:mr-5 text-zinc-900 bg-[#d24e6d] hover:bg-[#bd3d5b] text-md px-6 py-4 rounded-2xl border-2 sm:text-lg sm:px-12 sm:py-6 sm:rounded-[28px] sm:border-4 border-black"
+                      onClick={handleMint} type="button">
+                      CLAIM JOJOS
+                    </button>
+                  </div>
+                </>
+                :
+                <>
+                </>
+              }
+
             </div>
           </div>
 
-          {/* <div className="flex">
+          <div className="flex">
             <div className="mt-auto ml-auto z-50 mr-5 mb-5">
               <MusicPlayer />
             </div>
-          </div> */}
+          </div>
 
 
         </div>

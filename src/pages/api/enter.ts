@@ -26,7 +26,6 @@ export default async function handler(req, res) {
                     const newUser = await User.create({
                         wallet: req.query.wallet,
                         twitterUsername: req.query.twitter
-
                     })
                     res.status(201).json({ success: true, data: newUser })
                 } 

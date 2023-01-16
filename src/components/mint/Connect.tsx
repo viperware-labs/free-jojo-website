@@ -39,8 +39,8 @@ export const Connect = () => {
                             if (!connected) {
                                 return (
                                     <>
-                                        <div className="flex flex-col">
-                                            <button className="font-bold font-archivobold mt-6 mx-auto text-zinc-900 bg-zinc-200 hover:bg-zinc-300 text-md px-8 py-4 rounded-2xl border-2 sm:text-lg sm:px-12 sm:py-6 sm:rounded-[28px] sm:border-4 border-black"
+                                        <div className="flex">
+                                            <button className="font-bold font-archivobold mt-6 mx-auto sm:mr-5 text-zinc-900 bg-zinc-200 hover:bg-zinc-300 text-md px-6 py-4 rounded-2xl border-2 sm:text-lg sm:px-12 sm:py-6 sm:rounded-[28px] sm:border-4 border-black"
                                                 onClick={openConnectModal} type="button">
                                                 CONNECT WALLET
                                             </button>
@@ -58,13 +58,10 @@ export const Connect = () => {
                             return (
                                 <>
                                     <div className="flex flex-col">
-                                        <button className="font-bold font-archivobold mt-6 mx-auto text-zinc-900 bg-green-500 hover:bg-green-600 text-md px-8 py-4 rounded-2xl border-2 sm:text-lg sm:px-12 sm:py-6 sm:rounded-[28px] sm:border-4 border-black"
+                                        <button className="font-bold font-archivobold mt-6 mx-auto sm:mr-5 text-zinc-900 bg-[#30be80] hover:bg-[#26ac72] text-md px-6 py-4 rounded-2xl border-2 sm:text-lg sm:px-12 sm:py-6 sm:rounded-[28px] sm:border-4 border-black"
                                             onClick={openAccountModal} type="button">
                                             CONNECTED
                                         </button>
-                                        <div className="mx-auto font-archivo font-black tracking-widest mt-2">
-                                            {account.address && (account.address.slice(0, 6) + "...." + account.address.slice(account.address.length - 4, account.address.length))}
-                                        </div>
                                     </div>
                                 </>
                             );
