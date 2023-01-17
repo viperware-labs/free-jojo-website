@@ -1,8 +1,12 @@
-import axios from 'axios';
 import dbConnect from '../../../lib/dbConnect'
 import NFT from '../../../models/nftSchema'
+import axios from 'axios';
 
 // PNG
+// 1- bafybeigotb4xwnspat6mtvdw34enzi6calfbvwdp22fnle4mcdsehyeela
+// 2- bafybeiekqvrbi2qxcac4mqnnps2q42f4wxzqvoqpkjislrr3tgakkfvgz4
+
+const revealHash = 'bafybeiekqvrbi2qxcac4mqnnps2q42f4wxzqvoqpkjislrr3tgakkfvgz4';
 
 // @ts-ignore
 export default async function handler(req, res) {
@@ -21,12 +25,9 @@ export default async function handler(req, res) {
                 });
 
                 if (nftToken) {
-                    // return res.status(200).json({ success: false })
-
-                    const hash = 'bafybeigotb4xwnspat6mtvdw34enzi6calfbvwdp22fnle4mcdsehyeela';
                     const response = await axios({
                         method: 'get',
-                        url: `https://${hash}.ipfs.nftstorage.link/${id}.png`,
+                        url: `https://${revealHash}.ipfs.nftstorage.link/${id}.png`,
                         responseType: 'arraybuffer'
                     });
                     res.writeHead(200, { 'Content-Type': 'image/png' });
@@ -37,18 +38,10 @@ export default async function handler(req, res) {
                         id: id,
                         revealed: req.query.revealed,
                     })
-                    
-                    // res.status(201).json({ success: true, data: newNFT })
-                    // return res.status(201).json({ 
-                    //     name: `${namePrefix}${id}`,
-                    //     description: `${desc}`,
-                    //     image: `ipfs://bafybeicc7d5alxt3ggsyzl4dm6ir4rsk576s2ffefbtmwcuhfnhqvdghhm/25.png`
-                    //  })
 
-                    const hash = 'bafybeicc7d5alxt3ggsyzl4dm6ir4rsk576s2ffefbtmwcuhfnhqvdghhm';
                     const response = await axios({
                         method: 'get',
-                        url: `https://${hash}.ipfs.nftstorage.link/${id}.png`,
+                        url: `https://${revealHash}.ipfs.nftstorage.link/${id}.png`,
                         responseType: 'arraybuffer'
                     });
                     res.writeHead(200, { 'Content-Type': 'image/png' });
