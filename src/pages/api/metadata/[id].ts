@@ -20,30 +20,37 @@ export default async function handler(req, res) {
         case 'GET':
             try {
 
+                console.log("findone", id);
                 const nftToken = await NFT.findOne({
                     id: id,
                 });
+                console.log("findone finished", id);
 
                 if (nftToken) {
+                    console.log("found", id);
                     const response = await axios({
                         method: 'get',
                         url: `https://${revealHash}.ipfs.nftstorage.link/${id}.json`,
                         responseType: 'arraybuffer'
                     });
+                    console.log("dataretrieved", id);
                     res.writeHead(200, { 'Content-Type': 'application/json' });
                     res.end(Buffer.from(response.data))
                     console.log("stop", id);
                 } else {
+                    console.log("notfound", id);
                     const newNFT = await NFT.create({
                         id: id,
                         revealed: req.query.revealed,
                     })
+                    console.log("created", id);
                     
                     const response = await axios({
                         method: 'get',
                         url: `https://${revealHash}.ipfs.nftstorage.link/${id}.json`,
                         responseType: 'arraybuffer'
                     });
+                    console.log("dataretrieved", id);
                     res.writeHead(200, { 'Content-Type': 'application/json' });
                     res.end(Buffer.from(response.data))
                     console.log("stop", id);
