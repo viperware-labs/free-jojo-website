@@ -1,6 +1,7 @@
 import dbConnect from '../../../lib/dbConnect'
 import NFT from '../../../models/nftSchema'
 import axios from 'axios';
+import mongoose from 'mongoose';
 
 // PNG
 // 1- bafybeigotb4xwnspat6mtvdw34enzi6calfbvwdp22fnle4mcdsehyeela
@@ -48,12 +49,11 @@ export default async function handler(req, res) {
                     res.end(Buffer.from(response.data))
                     console.log("stop", id);
                 }
-
-
-
             } catch (error) {
                 res.status(400).json({ success: false })
             }
             break
     }
+    // Close the connection after the response is sent
+    mongoose.connection.close();
 }
