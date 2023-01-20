@@ -317,19 +317,7 @@ function Page() {
 
           // </div>
           <div className="relative h-screen w-screen overflow-hidden flex">
-            {/* <Image src={loading} alt="centered gif" className="object-center my-auto object-cover" style={{ maxWidth: '100vw', maxHeight: '50vh' }} /> */}
-
-            <div
-              className="object-center my-auto object-cover">
-              <video id="loader"
-                autoPlay
-                muted
-                className="w-screen"
-              >
-                <source
-                  src="/Loading.mp4" type="video/mp4" />
-              </video>
-            </div>
+            <Image src={loading} alt="centered gif" className="object-center my-auto object-cover" style={{ maxWidth: '100vw', maxHeight: '50vh' }} />
           </div>
 
         ) : (
