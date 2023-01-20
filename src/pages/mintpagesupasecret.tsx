@@ -255,7 +255,8 @@ function Page() {
       <Image
         priority
         alt="Background"
-        src={size.width < 600 ? `/mint/bg_mobile.png` : `/mint/bg.png`}
+        src={size.width < 600 ? (entered ? `/mint/bg_mobile.png` : `/mint/bg2_mobile.png`)
+          : (entered ? `/mint/bg.png` : `/mint/bg2.png`)}
         height={800}
         width={1500}
         quality={100}
@@ -268,35 +269,64 @@ function Page() {
 
       <div
         style={entered ? { display: 'none' } : { display: '' }}
-        className="absolute flex w-full h-full"
+        className="absolute flex w-full h-full flex-col max-h-screen mb-0"
       >
-        <button
-          className='text-black border-2 border-black bg-[#30be80] hover:bg-[#26ac72] text-center py-5 px-8 rounded-lg m-auto hover:pointer z-50 font-archivobold text-4xl flex '
-          onClick={() => {
-            setEntered(true);
-            setTimeout(() => {
-              setLoaded(true);
-            }, 5000);
+          {
+            size.width < 600 ?
 
-            if (!enabledMusic) {
-              const audio = document.getElementById("audio")
-              setEnabledMusic(true)
-              // @ts-ignore
-              audio.play()
-            }
-          }}>
+              <Image
+                priority
+                alt="Opensea"
+                height={1000}
+                width={1000}
+                src={`/mint/logo_yellow.png`}
+                quality={100}
+                className='w-5/6 h-auto mx-auto my-10'
+              />
 
-          <div className="">
-            ENTER
-          </div>
-          
-          {/* <div className="w-7" />
+              :
+
+              <Image
+                priority
+                alt="Opensea"
+                height={1000}
+                width={1000}
+                src={`/mint/logo_yellow.png`}
+                quality={100}
+                className='h-3/6 w-auto mx-auto mb-10'
+              />
+
+          }
+
+          <button
+            className='text-black border-2 border-black bg-[#30be80] hover:bg-[#26ac72] text-center py-5 px-8 rounded-lg m-auto mt-0 hover:pointer z-50 font-archivobold text-4xl flex '
+            onClick={() => {
+              setEntered(true);
+              setTimeout(() => {
+                setLoaded(true);
+              }, 5000);
+
+              if (!enabledMusic) {
+                const audio = document.getElementById("audio")
+                setEnabledMusic(true)
+                // @ts-ignore
+                audio.play()
+              }
+            }}>
+
+            <div className="">
+              ENTER
+            </div>
+
+            {/* <div className="w-7" />
 
           <div className="-translate-y-0.5">
             &#8594;
           </div> */}
 
-        </button>
+          </button>
+
+
 
       </div>
 
