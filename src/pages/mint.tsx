@@ -535,14 +535,14 @@ function Page() {
                 className="mt-8 sm:mt-20 z-10"
               />
               <div className="mt-5 sm:mt-10 text-5xl sm:text-6xl font-bold font-archivobold">
-                MINT NOW!
+                SOLD OUT!
               </div>
               <div className="mx-auto font-archivo font-black tracking-widest mb-2">
                 {address ? address && (address.slice(0, 6) + "...." + address.slice(address.length - 4, address.length)) : ''}
               </div>
-              <div className="text-3xl sm:text-3xl font-bold font-archivobold my-5">
+              {/* <div className="text-3xl sm:text-3xl font-bold font-archivobold my-5">
                 {Math.round(minted)} / 7777
-              </div>
+              </div> */}
 
               {isConnected ?
                 <>
@@ -561,7 +561,7 @@ function Page() {
                           </div>
                         </>
                     }
-                    
+
                     {
                       amount <= 0 ?
                         <>
