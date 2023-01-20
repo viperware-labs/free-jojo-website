@@ -512,6 +512,22 @@ function Page() {
                 />
               </a>
 
+              <div className='w-6' />
+
+              <a href='https://discord.gg/TnKjP5CD7Z'
+                target='_blank' rel='noopenner noreferrer'
+                className='my-auto hover:cursor-pointer'>
+                <Image
+                  priority
+                  alt="tw"
+                  height={70}
+                  width={70}
+                  src={`/mint/DiscordLogo.png`}
+                  quality={100}
+                  className='h-3/6 hover:opacity-80'
+                />
+              </a>
+
             </div>
 
             <div className="w-full z-50 flex">
