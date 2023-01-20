@@ -87,7 +87,6 @@ function Page() {
     }
   })
 
-
   if (size.width != undefined) {
 
     let rowsTotal = Math.min(Math.floor(size.width / (size.height / 5)), 9);
@@ -119,6 +118,7 @@ function Page() {
   const [mintError, setMintError] = useState("");
 
   const [depositList, setDepositList] = useState<string[]>([]);
+  const [mintStatus, setMintStatus] = useState(false);
 
   // const leaves = addresses.map(x => keccak256(x))
 
@@ -165,6 +165,22 @@ function Page() {
     }
   }, [address]);
 
+  const getStatus = async () => {
+    try {
+      const web3 = new Web3(Web3.givenProvider);
+      //@ts-ignore
+      const contract = new web3.eth.Contract(jojoABI, '0x9278d95b79297e728ecf6f59dc0a6074c2e6bf5a');
+      const result = await contract.methods.mintClaimed(address).call();
+      console.log("HAS MINTED?", result);
+      setMintStatus(result);
+      return result;
+    } catch (error) {
+      console.error(error);
+      setMintStatus(true);
+      return true;
+    }
+  }
+
   const claimJoJosConfig = usePrepareContractWrite({
     address: '0x9278d95B79297e728ecF6F59dc0a6074c2e6Bf5a',
     abi: jojoABI,
@@ -209,12 +225,13 @@ function Page() {
   const [loaded, setLoaded] = useState(false);
   const [entered, setEntered] = useState(false);
 
-  const handleMint = () => {
+  const handleMint = async () => {
+    let hasMinted = await getStatus();
     console.log(address, amount, merkleProof)
     setMintError("")
 
     try {
-      if (amount > 0) {
+      if (amount > 0 && !hasMinted) {
         // @ts-ignore
         claimJoJos?.write();
       }
@@ -226,6 +243,7 @@ function Page() {
 
   useEffect(() => {
     if (isConnected) handleProof(address, amount);
+    if (isConnected) getStatus();
   }, [address]);
 
   useEffect(() => {
@@ -540,8 +558,13 @@ function Page() {
 
                         :
 
-                        <button className={`font-bold font-archivobold mt-2 mx-auto text-zinc-900 bg-[#d24e6d] hover:bg-[#bd3d5b] text-md px-6 py-4 rounded-2xl border-2 sm:text-lg sm:px-12 sm:py-6 sm:rounded-[28px] sm:border-4 border-black`}
-                          onClick={handleMint} type="button">
+                        <button className={`font-bold font-archivobold mt-2 mx-auto text-zinc-900 text-md px-6 py-4 rounded-2xl border-2
+                        sm:text-lg sm:px-12 sm:py-6 sm:rounded-[28px] sm:border-4 border-black
+                        ${!mintStatus ? `bg-[#d24e6d] hover:bg-[#bd3d5b] hover:cursor-pointer` : `bg-[#4f4a4b] hover:cursor-default`}`}
+                          onClick={() => {
+                            if (!mintStatus) handleMint()
+                          }}
+                          type="button">
                           CLAIM JOJOS
                         </button>
                     }
