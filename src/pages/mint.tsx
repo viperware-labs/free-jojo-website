@@ -559,11 +559,13 @@ function Page() {
 
                         <button className={`font-bold font-archivobold mt-2 mx-auto text-zinc-900 text-md px-6 py-4 rounded-2xl border-2
                         sm:text-lg sm:px-12 sm:py-6 sm:rounded-[28px] sm:border-4 border-black
-                        ${!mintStatus ? `bg-zinc-400 hover:cursor-default` : `bg-zinc-400  hover:cursor-default`}
+                        ${!mintStatus ? `bg-[#d24e6d] hover:bg-[#bd3d5b] hover:cursor-pointer` : `bg-[#4f4a4b] hover:cursor-default`}
                         `}
                           // ${!mintStatus ? `bg-[#d24e6d] hover:bg-[#bd3d5b] hover:cursor-pointer` : `bg-[#4f4a4b] hover:cursor-default`}`}
+                          // ${!mintStatus ? `bg-zinc-400 hover:cursor-default` : `bg-zinc-400  hover:cursor-default`}
                           onClick={() => {
-                            // if (!mintStatus) handleMint()
+                            // ENABLED/DISABLED
+                            if (!mintStatus) handleMint()
                           }}
                           type="button">
                           CLAIM JOJOS
