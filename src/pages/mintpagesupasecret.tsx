@@ -438,7 +438,7 @@ function Page() {
                 className='my-auto hover:cursor-pointer'>
                 <Image
                   priority
-                  alt="Twitter"
+                  alt="tw"
                   height={65}
                   width={65}
                   src={`/mint/TwitterLogo.png`}
