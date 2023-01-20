@@ -43,7 +43,8 @@ import { useSession } from "next-auth/react"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import Guaranteed from "../guaranteed.json"
+import Guaranteed from "../guaranteed.json";
+import Allowlist from "../allowlist.json";
 import MerkleTree from 'merkletreejs';
 
 import Web3 from 'web3';
@@ -110,6 +111,7 @@ function Page() {
   // CONTRACT
 
   const [amount, setAmount] = useState(0);
+  const [allowlist, setAllowlist] = useState(0);
   const [canMint, setCanMint] = useState(false);
   const [merkleProof, setMerkleProof] = useState<any[]>([]);
 
@@ -162,6 +164,16 @@ function Page() {
     } else {
       setAmount(0);
       setCanMint(false);
+    }
+    //@ts-ignore
+    if (Allowlist[address as string]) {
+      //@ts-ignore
+      let value = Allowlist[address as string];
+      setAllowlist(value)
+      // setCanMint(true);
+    } else {
+      setAllowlist(0);
+      // setCanMint(false);
     }
   }, [address]);
 
@@ -539,7 +551,7 @@ function Page() {
                       amount > 0 ?
                         <>
                           <div className='mx-auto'>
-                            You are eligible to free {amount + " " + (amount > 1 ? "JoJos" : "JoJo")}
+                            You are eligible to free {amount + " " + (amount > 1 ? "JoJos" : "JoJo")} during Phase 1
                           </div>
                         </>
                         :
@@ -547,6 +559,18 @@ function Page() {
                           <div className='mx-auto text-center px-5'>
                             You are not eligible to free any JoJos during this phase!
                           </div>
+                        </>
+                    }
+
+                    {
+                      allowlist > 0 ?
+                        <>
+                          <div className='mx-auto'>
+                            You are eligible to free {amount + " " + (amount > 1 ? "JoJos" : "JoJo")} during Phase 2
+                          </div>
+                        </>
+                        :
+                        <>
                         </>
                     }
 
