@@ -255,8 +255,8 @@ function Page() {
       <Image
         priority
         alt="Background"
-        src={size.width < 600 ? (entered ? `/mint/bg_mobile.png` : `/mint/bg2_mobile.png`)
-          : (entered ? `/mint/bg.png` : `/mint/bg2.png`)}
+        src={size.width < 600 ? (true ? `/mint/bg_mobile.png` : `/mint/bg2_mobile.png`)
+          : (true ? `/mint/bg.png` : `/mint/bg2.png`)}
         height={800}
         width={1500}
         quality={100}
@@ -293,7 +293,7 @@ function Page() {
                 width={1000}
                 src={`/mint/logo_yellow.png`}
                 quality={100}
-                className='h-3/6 w-auto mx-auto mb-10'
+                className='h-4/6 w-auto mx-auto mb-10'
               />
 
           }
