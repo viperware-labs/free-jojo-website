@@ -561,19 +561,7 @@ function Page() {
                           </div>
                         </>
                     }
-
-                    {
-                      allowlist > 0 ?
-                        <>
-                          <div className='mx-auto'>
-                            You are eligible to free {amount + " " + (amount > 1 ? "JoJos" : "JoJo")} during Phase 2
-                          </div>
-                        </>
-                        :
-                        <>
-                        </>
-                    }
-
+                    
                     {
                       amount <= 0 ?
                         <>
