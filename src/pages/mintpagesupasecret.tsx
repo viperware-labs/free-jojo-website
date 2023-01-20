@@ -47,13 +47,13 @@ import Guaranteed from "../guaranteed.json"
 import MerkleTree from 'merkletreejs';
 
 import Web3 from 'web3';
-import { isNumberObject } from 'util/types';
 
 /* Merkle Root */
 
 // const addresses = ["0xd6e67ce446dC04dcF3F3556B8150F370D4c52A62", "0x9d3F56186CE4bA86214AE9127e07491f2449D698"]
 
 function Page() {
+  const web3 = new Web3(Web3.givenProvider);
   const { connect, connectors, error, isLoading, pendingConnector } = useConnect();
 
   const [enabledMusic, setEnabledMusic] = useState(false);
@@ -167,7 +167,6 @@ function Page() {
 
   const getStatus = async () => {
     try {
-      const web3 = new Web3(Web3.givenProvider);
       //@ts-ignore
       const contract = new web3.eth.Contract(jojoABI, '0x9278d95b79297e728ecf6f59dc0a6074c2e6bf5a');
       const result = await contract.methods.mintClaimed(address).call();
