@@ -516,13 +516,13 @@ function Page() {
                 priority
                 alt="Free JoJo"
                 height={300}
-                width={size.width < 600 ? 300 : 350}
+                width={size.width < 600 ? (size.width * 0.5) : 350}
                 // width={300}
                 src={`/mint/jojologo.png`}
                 quality={100}
-                className="mt-20 z-10"
+                className="mt-8 sm:mt-20 z-10"
               />
-              <div className="mt-10 text-5xl sm:text-6xl font-bold font-archivobold">
+              <div className="mt-5 sm:mt-10 text-5xl sm:text-6xl font-bold font-archivobold">
                 MINT NOW!
               </div>
               <div className="mx-auto font-archivo font-black tracking-widest mb-2">
@@ -561,10 +561,10 @@ function Page() {
                         sm:text-lg sm:px-12 sm:py-6 sm:rounded-[28px] sm:border-4 border-black
                         ${!mintStatus ? `bg-zinc-400 hover:cursor-default` : `bg-zinc-400  hover:cursor-default`}
                         `}
-                        // ${!mintStatus ? `bg-[#d24e6d] hover:bg-[#bd3d5b] hover:cursor-pointer` : `bg-[#4f4a4b] hover:cursor-default`}`}
-                        onClick={() => {
-                          // if (!mintStatus) handleMint()
-                        }}
+                          // ${!mintStatus ? `bg-[#d24e6d] hover:bg-[#bd3d5b] hover:cursor-pointer` : `bg-[#4f4a4b] hover:cursor-default`}`}
+                          onClick={() => {
+                            // if (!mintStatus) handleMint()
+                          }}
                           type="button">
                           CLAIM JOJOS
                         </button>
