@@ -529,7 +529,7 @@ function Page() {
                 {address ? address && (address.slice(0, 6) + "...." + address.slice(address.length - 4, address.length)) : ''}
               </div>
               <div className="text-3xl sm:text-3xl font-bold font-archivobold my-5">
-                {minted} / 7777
+                {Math.round(minted)} / 7777
               </div>
 
               {isConnected ?
