@@ -71,17 +71,20 @@ function Page() {
 
   const [minted, setMinted] = useState(0);
 
-  const totalSupply = useContractRead({
+  const readSupply = useContractRead({
     address: '0x9278d95b79297e728ecf6f59dc0a6074c2e6bf5a',
     abi: jojoABI,
     functionName: 'totalSupply',
     chainId: 1,
     onSuccess(data) {
       // @ts-ignore
-      console.log('Success', formatEther(data as number) * (10 ** 18))
+      console.log('Supply', formatEther(data as number) * (10 ** 18))
       // @ts-ignore
       setMinted(formatEther(data as number) * (10 ** 18));
     },
+    onError(e) {
+      console.log("Supply Error", e);
+    }
   })
 
 
@@ -163,7 +166,7 @@ function Page() {
   }, [address]);
 
   const claimJoJosConfig = usePrepareContractWrite({
-    address: '0x54198a4C520109A216bDaB529BF63FDfA28EFeF0',
+    address: '0x9278d95B79297e728ecF6F59dc0a6074c2e6Bf5a',
     abi: jojoABI,
     functionName: 'claimJoJos',
     overrides: {
@@ -175,9 +178,6 @@ function Page() {
 
   const claimJoJos = useContractWrite({
     ...claimJoJosConfig.config,
-    onSuccess(data) {
-      console.log(data);
-    },
   })
 
   // IMAGES GRID ( MOBILE )
@@ -317,7 +317,19 @@ function Page() {
 
           // </div>
           <div className="relative h-screen w-screen overflow-hidden flex">
-            <Image src={loading} alt="centered gif" className="object-center my-auto object-cover" style={{ maxWidth: '100vw', maxHeight: '50vh' }} />
+            {/* <Image src={loading} alt="centered gif" className="object-center my-auto object-cover" style={{ maxWidth: '100vw', maxHeight: '50vh' }} /> */}
+
+            <div
+              className="object-center my-auto object-cover">
+              <video id="loader"
+                autoPlay
+                muted
+                className="w-screen"
+              >
+                <source
+                  src="/Loading.mp4" type="video/mp4" />
+              </video>
+            </div>
           </div>
 
         ) : (
