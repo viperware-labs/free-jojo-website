@@ -441,7 +441,7 @@ function Page() {
                   alt="Twitter"
                   height={65}
                   width={65}
-                  src={`/mint/twitter.png`}
+                  src={`/mint/Twitter.png`}
                   quality={100}
                   className='h-3/6 hover:opacity-80'
                 />
