@@ -47,13 +47,13 @@ import Guaranteed from "../guaranteed.json"
 import MerkleTree from 'merkletreejs';
 
 import Web3 from 'web3';
+const web3 = new Web3(Web3.givenProvider || 'http://localhost:8545');
 
 /* Merkle Root */
 
 // const addresses = ["0xd6e67ce446dC04dcF3F3556B8150F370D4c52A62", "0x9d3F56186CE4bA86214AE9127e07491f2449D698"]
 
 function Page() {
-  const web3 = new Web3(Web3.givenProvider);
   const { connect, connectors, error, isLoading, pendingConnector } = useConnect();
 
   const [enabledMusic, setEnabledMusic] = useState(false);
@@ -285,6 +285,24 @@ function Page() {
         }}
         className="absolute w-full h-full -z-10"
       />
+
+      {/* <div
+        style={size.width > 800 && entered && loaded ? { display: '' } : { display: 'none' }}
+        className="absolute h-screen w-screen z-[1000]">
+        <Image
+          priority
+          alt="Background"
+          src={`/mint/jojo.png`}
+          height={1000}
+          width={1000}
+          quality={100}
+          style={{
+            opacity: `100%`
+          }}
+          className="h-[30vh] w-auto mt-[70vh]"
+        />
+
+      </div> */}
 
       <div
         style={entered ? { display: 'none' } : { display: '' }}
@@ -561,10 +579,10 @@ function Page() {
                         sm:text-lg sm:px-12 sm:py-6 sm:rounded-[28px] sm:border-4 border-black
                         ${!mintStatus ? `bg-zinc-400 hover:cursor-default` : `bg-zinc-400  hover:cursor-default`}
                         `}
-                        // ${!mintStatus ? `bg-[#d24e6d] hover:bg-[#bd3d5b] hover:cursor-pointer` : `bg-[#4f4a4b] hover:cursor-default`}`}
-                        onClick={() => {
-                          // if (!mintStatus) handleMint()
-                        }}
+                          // ${!mintStatus ? `bg-[#d24e6d] hover:bg-[#bd3d5b] hover:cursor-pointer` : `bg-[#4f4a4b] hover:cursor-default`}`}
+                          onClick={() => {
+                            // if (!mintStatus) handleMint()
+                          }}
                           type="button">
                           CLAIM JOJOS
                         </button>
@@ -595,7 +613,6 @@ function Page() {
               </div>
             </div>
           </div>
-
 
         </div>
 
