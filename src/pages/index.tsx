@@ -8,7 +8,6 @@ import styles from '../../styles/Home.module.css';
 import { Minter } from '../components'
 
 import { createClient, useEnsName, useNetwork } from 'wagmi'
-import keccupABI from '../abi.json';
 import { ethers } from "ethers";
 import { keccak256, parseEther } from 'ethers/lib/utils';
 import { useContractReads } from 'wagmi';

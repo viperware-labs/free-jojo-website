@@ -1,5 +1,5 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { useAccount, useConnect } from 'wagmi'
+import { useAccount, useConnect, useContractRead, useContractWrite, usePrepareContractWrite } from 'wagmi'
 import Head from 'next/head';
 import dynamic from "next/dynamic"
 import JoJoList from '../../public/images/JoJoList.png'
@@ -7,11 +7,10 @@ import loading from '../../public/Loading.gif'
 
 import styles from '../../styles/Home.module.css';
 import { Minter } from '../components'
-
+import { mainnet, goerli, sepolia } from 'wagmi/chains'
 import { createClient, useEnsName, useNetwork } from 'wagmi'
-import keccupABI from '../abi.json';
+import jojoABI from '../jojoABI.json';
 import { ethers } from "ethers";
-import { keccak256, parseEther } from 'ethers/lib/utils';
 import { useContractReads } from 'wagmi';
 import { useEffect, useState } from 'react';
 
@@ -37,15 +36,24 @@ import { WordsMobile } from '../components/WordsMobile';
 import { Background } from '../components/Background';
 import { WeAreJojo } from '../components/WeAreJojo';
 import Modal from '../components/Modal';
+import { formatEther, keccak256, parseEther } from 'ethers/lib/utils';
 
 import { useSession } from "next-auth/react"
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import Guaranteed from "../guaranteed.json"
+import MerkleTree from 'merkletreejs';
+
+import Web3 from 'web3';
+import { isNumberObject } from 'util/types';
+
+/* Merkle Root */
+
+// const addresses = ["0xd6e67ce446dC04dcF3F3556B8150F370D4c52A62", "0x9d3F56186CE4bA86214AE9127e07491f2449D698"]
+
 function Page() {
-  const [seed, setSeed] = useState(Math.floor(Math.random() * 9) + 1);
-  const [lastChange, setLastChange] = useState(Date.now());
   const { connect, connectors, error, isLoading, pendingConnector } = useConnect();
 
   const [enabledMusic, setEnabledMusic] = useState(false);
@@ -56,26 +64,32 @@ function Page() {
   const size = useWindowSize();
 
   const { address, isConnected } = useAccount();
-  const { chain, chains } = useNetwork();
-  const { data: ensName } = useEnsName({ address });
-
-  const [difficulty, setDifficulty] = useState(0);
-  const [seedMatches, setSeedMatches] = useState(false);
-  const [miningEnabled, setMiningEnabled] = useState(false);
 
   // IMAGES GRID
   const [images, setImages] = useState<string[]>([]);
   const [imagesPerRow, setImagesPerRow] = useState<number>(0);
-  console.log("dims", size.width, size.height)
+
+  const [minted, setMinted] = useState(0);
+
+  const totalSupply = useContractRead({
+    address: '0x9278d95b79297e728ecf6f59dc0a6074c2e6bf5a',
+    abi: jojoABI,
+    functionName: 'totalSupply',
+    chainId: 1,
+    onSuccess(data) {
+      // @ts-ignore
+      console.log('Success', formatEther(data as number) * (10 ** 18))
+      // @ts-ignore
+      setMinted(formatEther(data as number) * (10 ** 18));
+    },
+  })
+
 
   if (size.width != undefined) {
 
     let rowsTotal = Math.min(Math.floor(size.width / (size.height / 5)), 9);
     if (imagesPerRow == 0) setImagesPerRow(rowsTotal)
-    console.log(rowsTotal)
-    console.log(imagesPerRow)
     if (rowsTotal != imagesPerRow) {
-      console.log(imagesPerRow)
       setImagesPerRow(rowsTotal);
 
       let imagesTemp: string[] = []
@@ -84,8 +98,6 @@ function Page() {
       }
 
       setImages(imagesTemp);
-
-      console.log(images)
     }
 
   }
@@ -93,21 +105,90 @@ function Page() {
   let rows = [1, 2, 3, 4, 5];
   let imageWidth = (size.height / 5) - 30; // width of a single image
 
+  // CONTRACT
 
+  const [amount, setAmount] = useState(0);
+  const [canMint, setCanMint] = useState(false);
+  const [merkleProof, setMerkleProof] = useState<any[]>([]);
+
+  // Merkle Root
+
+  const [mintError, setMintError] = useState("");
+
+  const [depositList, setDepositList] = useState<string[]>([]);
+
+  // const leaves = addresses.map(x => keccak256(x))
+
+  const handleProof = async (address: string | undefined, amount: number) => {
+    const addresses = Object.keys(Guaranteed);
+
+    const leaves = addresses.map(_addr => {
+      //@ts-ignore
+      let leaf = ethers.utils.solidityKeccak256(['address', 'uint256'], [_addr, Guaranteed[_addr]]);
+      // console.log(_addr, leaf);
+      return leaf;
+    });
+
+    const tree = new MerkleTree(leaves, keccak256, { sortPairs: true })
+    const buf2hex = (x: Buffer) => '0x' + x.toString('hex')
+
+    let leaf = "";
+    let proof = [""];
+
+    console.log("root", buf2hex(tree.getRoot()))
+
+    if (address !== undefined && Guaranteed.hasOwnProperty(address)) {
+      //@ts-ignore
+      let leaf = ethers.utils.solidityKeccak256(['address', 'uint256'], [address, Guaranteed[address]]);
+      // leaf = keccak256(hash) // address from wallet using walletconnect/metamask
+      proof = tree.getProof(leaf).map(x => buf2hex(x.data))
+      console.log("proof", proof)
+      setMerkleProof(proof);
+      // proof = proof.map(x => ethers.utils.formatBytes32String(x));
+      // setMerkleProof(proof.map(x => x.slice(2)));
+    }
+  }
+
+  useEffect(() => {
+    //@ts-ignore
+    if (Guaranteed[address as string]) {
+      //@ts-ignore
+      let value = Guaranteed[address as string];
+      setAmount(value)
+      setCanMint(true);
+    } else {
+      setAmount(0);
+      setCanMint(false);
+    }
+  }, [address]);
+
+  const claimJoJosConfig = usePrepareContractWrite({
+    address: '0x54198a4C520109A216bDaB529BF63FDfA28EFeF0',
+    abi: jojoABI,
+    functionName: 'claimJoJos',
+    overrides: {
+      value: ethers.utils.parseEther('0'),
+    },
+    args: [amount, merkleProof],
+    chainId: 1,
+  })
+
+  const claimJoJos = useContractWrite({
+    ...claimJoJosConfig.config,
+    onSuccess(data) {
+      console.log(data);
+    },
+  })
 
   // IMAGES GRID ( MOBILE )
   const [imagesMobile, setImagesMobile] = useState<string[]>([]);
   const [imagesPerColumnMobile, setImagesPerColumnMobile] = useState<number>(0);
-  console.log("dims", size.width, size.height)
 
   if (size.width != undefined) {
 
     let colsTotal = Math.min(Math.floor(size.height / (size.width / 3)), 9);
     if (imagesPerColumnMobile == 0) setImagesPerColumnMobile(colsTotal)
-    console.log(colsTotal)
-    console.log(imagesPerColumnMobile)
     if (colsTotal != imagesPerColumnMobile) {
-      console.log(imagesPerColumnMobile)
       setImagesPerColumnMobile(colsTotal);
 
       let imagesTemp: string[] = []
@@ -116,11 +197,11 @@ function Page() {
       }
 
       setImagesMobile(imagesTemp);
-
-      console.log(imagesMobile)
     }
 
   }
+
+
 
   let colsMobile = [1, 2, 3];
   let imageWidthMobile = (size.width / 3) - 20; // width of a single image
@@ -129,11 +210,23 @@ function Page() {
   const [entered, setEntered] = useState(false);
 
   const handleMint = () => {
+    console.log(address, amount, merkleProof)
 
+    try {
+      if (amount > 0) {
+        // @ts-ignore
+        claimJoJos?.write();
+      }
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   useEffect(() => {
+    if (isConnected) handleProof(address, amount);
+  }, [address]);
 
+  useEffect(() => {
     // if (!enabledMusic) {
     //   const audio = document.getElementById("audio")
     //   setEnabledMusic(true)
@@ -141,7 +234,7 @@ function Page() {
     //   audio.play()
     // }
 
-  }, []);
+  }, [address]);
 
   useEffect(() => {
     // Loading Screen
@@ -223,8 +316,8 @@ function Page() {
           //   />
 
           // </div>
-          <div className="relative h-screen w-screen overflow-hidden">
-            <Image src={loading} alt="centered gif" className="object-center m-auto object-cover" style={{ maxWidth: '150vw', maxHeight: '50vh' }} />
+          <div className="relative h-screen w-screen overflow-hidden flex">
+            <Image src={loading} alt="centered gif" className="object-center my-auto object-cover" style={{ maxWidth: '100vw', maxHeight: '50vh' }} />
           </div>
 
         ) : (
@@ -309,10 +402,63 @@ function Page() {
 
           }
 
-          <div className="flex">
-            <div className="w-full mb-auto ml-auto z-50 sm:mr-5 sm:mt-5">
-              <Connect />
+          <div className="ml-[3vw] flex">
+
+            <div className="flex z-50 h-20 my-auto">
+              <a href='https://opensea.io/collection/freejojo-official'
+                target='_blank' rel='noopenner noreferrer'
+                className='my-auto hover:cursor-pointer'>
+                <Image
+                  priority
+                  alt="Opensea"
+                  height={65}
+                  width={65}
+                  src={`/mint/Opensea.png`}
+                  quality={100}
+                  className='h-3/6 hover:opacity-80'
+                />
+              </a>
+
+              <div className='w-6' />
+
+              <a href='https://twitter.com/FreeJoJoNFT'
+                target='_blank' rel='noopenner noreferrer'
+                className='my-auto hover:cursor-pointer'>
+                <Image
+                  priority
+                  alt="Twitter"
+                  height={65}
+                  width={65}
+                  src={`/mint/twitter.png`}
+                  quality={100}
+                  className='h-3/6 hover:opacity-80'
+                />
+              </a>
+
+              <div className='w-6' />
+
+              <a href='https://etherscan.io/address/0x9278d95b79297e728ecf6f59dc0a6074c2e6bf5a#writeContract'
+                target='_blank' rel='noopenner noreferrer'
+                className='my-auto hover:cursor-pointer'>
+                <Image
+                  priority
+                  alt="Etherscan"
+                  height={65}
+                  width={65}
+                  src={`/mint/Etherscan.png`}
+                  quality={100}
+                  className='h-3/6 hover:opacity-80'
+                />
+              </a>
+
             </div>
+
+            <div className="w-full z-50 flex">
+              <div className='my-auto ml-auto mr-3 sm:mr-5 sm:mt-5'>
+                <Connect />
+              </div>
+            </div>
+
           </div>
 
           <div className="w-full h-full text-zinc-200 flex flex-col">
@@ -334,16 +480,39 @@ function Page() {
                 {address ? address && (address.slice(0, 6) + "...." + address.slice(address.length - 4, address.length)) : ''}
               </div>
               <div className="text-3xl sm:text-3xl font-bold font-archivobold my-5">
-                0/7777
+                {minted} / 7777
               </div>
 
               {isConnected ?
                 <>
-                  <div className="flex flex-col">
-                    <button className="font-bold font-archivobold mt-6 mx-auto sm:mr-5 text-zinc-900 bg-[#d24e6d] hover:bg-[#bd3d5b] text-md px-6 py-4 rounded-2xl border-2 sm:text-lg sm:px-12 sm:py-6 sm:rounded-[28px] sm:border-4 border-black"
-                      onClick={handleMint} type="button">
-                      CLAIM JOJOS
-                    </button>
+                  <div className="flex flex-col font-bold font-archivobold ">
+                    {
+                      amount > 0 ?
+                        <>
+                          <div className='mx-auto'>
+                            You are eligible to free {amount + " " + (amount > 1 ? "JoJos" : "JoJo")}
+                          </div>
+                        </>
+                        :
+                        <>
+                          <div className='mx-auto'>
+                            You are not eligible to free any JoJos during this phase!
+                          </div>
+                        </>
+                    }
+
+                    {
+                      amount <= 0 ?
+                        <>
+                        </>
+
+                        :
+
+                        <button className={`font-bold font-archivobold mt-2 mx-auto text-zinc-900 bg-[#d24e6d] hover:bg-[#bd3d5b] text-md px-6 py-4 rounded-2xl border-2 sm:text-lg sm:px-12 sm:py-6 sm:rounded-[28px] sm:border-4 border-black`}
+                          onClick={handleMint} type="button">
+                          CLAIM JOJOS
+                        </button>
+                    }
                   </div>
                 </>
                 :
@@ -352,11 +521,11 @@ function Page() {
               }
 
             </div>
-          </div>
 
-          <div className="flex">
-            <div className="mt-auto ml-auto z-50 mr-5 mb-5">
-              <MusicPlayer />
+            <div className="flex">
+              <div className="ml-auto z-50 mr-5 mb-5">
+                <MusicPlayer />
+              </div>
             </div>
           </div>
 

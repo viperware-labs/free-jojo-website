@@ -50,10 +50,13 @@ export const Connect = () => {
                             }
                             if (chain.unsupported) {
                                 return (
-                                    <button className="h-42" onClick={openChainModal} type="button">
-                                        Wrong network
-                                    </button>
-                                );
+                                    <div className="flex">
+                                        <button className="font-bold font-archivobold mt-6 mx-auto sm:mr-5 text-zinc-900 bg-red-500 hover:bg-zinc-400 text-md px-6 py-4 rounded-2xl border-2 sm:text-lg sm:px-12 sm:py-6 sm:rounded-[28px] sm:border-4 border-black"
+                                            onClick={openChainModal} type="button">
+                                            WRONG CHAIN
+                                        </button>
+                                    </div>
+                                )
                             }
                             return (
                                 <>

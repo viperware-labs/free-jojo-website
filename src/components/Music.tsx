@@ -22,26 +22,26 @@ export default function MusicPlayer() {
     return (
         <div className="">
             <div className="">
-                <div className="relative duration-100 ">
+                <div className="duration-100 ">
                     {isPlaying ? (
                         <Image
-                            alt="JoJo List"
+                            alt="Pause"
                             height={90}
                             src={Pause}
                             onClick={() => {
                                 setIsPlaying(false)
                             }}
-                            className="p-1 hover:cursor-pointer hover:p-0 h-[50px] w-auto sm:h-[90px]"
+                            className="p-1 hover:cursor-pointer hover:p-0 h-[60px] w-auto sm:h-[90px]"
                         />
                     ) : (
                         <Image
-                            alt="JoJo List"
+                            alt="Play"
                             height={90}
                             src={Play}
                             onClick={() => {
                                 setIsPlaying(true)
                             }}
-                            className="p-1 hover:cursor-pointer hover:p-0 h-[50px] w-auto sm:h-[90px]"
+                            className="p-1 hover:cursor-pointer hover:p-0 h-[60px] w-auto sm:h-[90px]"
                         />
                     )}
                     <audio id="audio" preload="auto" autoPlay loop onPlay={() => {
