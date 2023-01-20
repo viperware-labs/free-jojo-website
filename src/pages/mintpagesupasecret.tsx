@@ -271,7 +271,7 @@ function Page() {
         className="absolute flex w-full h-full"
       >
         <button
-          className='text-black border-2 border-black bg-zinc-300 hover:bg-zinc-400 text-center py-5 px-8 rounded-lg m-auto hover:pointer z-50 font-archivobold text-4xl flex '
+          className='text-black border-2 border-black bg-[#30be80] hover:bg-[#26ac72] text-center py-5 px-8 rounded-lg m-auto hover:pointer z-50 font-archivobold text-4xl flex '
           onClick={() => {
             setEntered(true);
             setTimeout(() => {
@@ -289,12 +289,12 @@ function Page() {
           <div className="">
             ENTER
           </div>
-
-          <div className="w-7" />
+          
+          {/* <div className="w-7" />
 
           <div className="-translate-y-0.5">
             &#8594;
-          </div>
+          </div> */}
 
         </button>
 
