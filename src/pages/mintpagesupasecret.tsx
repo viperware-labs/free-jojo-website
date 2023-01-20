@@ -525,7 +525,7 @@ function Page() {
                         </>
                         :
                         <>
-                          <div className='mx-auto'>
+                          <div className='mx-auto text-center px-5'>
                             You are not eligible to free any JoJos during this phase!
                           </div>
                         </>
