@@ -211,6 +211,7 @@ function Page() {
 
   const handleMint = () => {
     console.log(address, amount, merkleProof)
+    setMintError("")
 
     try {
       if (amount > 0) {
@@ -218,6 +219,7 @@ function Page() {
         claimJoJos?.write();
       }
     } catch (e) {
+      setMintError("Unable to mint. Please try again later.")
       console.error(e)
     }
   }
@@ -271,60 +273,60 @@ function Page() {
         style={entered ? { display: 'none' } : { display: '' }}
         className="absolute flex w-full h-full flex-col max-h-screen mb-0"
       >
-          {
-            size.width < 600 ?
+        {
+          size.width < 600 ?
 
-              <Image
-                priority
-                alt="Opensea"
-                height={1000}
-                width={1000}
-                src={`/mint/logo_yellow.png`}
-                quality={100}
-                className='w-5/6 h-auto mx-auto my-10'
-              />
+            <Image
+              priority
+              alt="Opensea"
+              height={1000}
+              width={1000}
+              src={`/mint/logo_yellow.png`}
+              quality={100}
+              className='w-5/6 h-auto mx-auto my-10'
+            />
 
-              :
+            :
 
-              <Image
-                priority
-                alt="Opensea"
-                height={1000}
-                width={1000}
-                src={`/mint/logo_yellow.png`}
-                quality={100}
-                className='h-4/6 w-auto mx-auto mb-10'
-              />
+            <Image
+              priority
+              alt="Opensea"
+              height={1000}
+              width={1000}
+              src={`/mint/logo_yellow.png`}
+              quality={100}
+              className='h-4/6 w-auto mx-auto mb-10'
+            />
 
-          }
+        }
 
-          <button
-            className='text-black border-2 border-black bg-[#30be80] hover:bg-[#26ac72] text-center py-5 px-8 rounded-lg m-auto mt-0 hover:pointer z-50 font-archivobold text-4xl flex '
-            onClick={() => {
-              setEntered(true);
-              setTimeout(() => {
-                setLoaded(true);
-              }, 5000);
+        <button
+          className='text-black border-2 border-black bg-[#30be80] hover:bg-[#26ac72] text-center py-5 px-8 rounded-lg m-auto mt-0 hover:pointer z-50 font-archivobold text-4xl flex '
+          onClick={() => {
+            setEntered(true);
+            setTimeout(() => {
+              setLoaded(true);
+            }, 5000);
 
-              if (!enabledMusic) {
-                const audio = document.getElementById("audio")
-                setEnabledMusic(true)
-                // @ts-ignore
-                audio.play()
-              }
-            }}>
+            if (!enabledMusic) {
+              const audio = document.getElementById("audio")
+              setEnabledMusic(true)
+              // @ts-ignore
+              audio.play()
+            }
+          }}>
 
-            <div className="">
-              ENTER
-            </div>
+          <div className="">
+            ENTER
+          </div>
 
-            {/* <div className="w-7" />
+          {/* <div className="w-7" />
 
           <div className="-translate-y-0.5">
             &#8594;
           </div> */}
 
-          </button>
+        </button>
 
 
 
@@ -497,7 +499,7 @@ function Page() {
                 priority
                 alt="Free JoJo"
                 height={300}
-                width={size.width < 600 ? 300 : 400}
+                width={size.width < 600 ? 300 : 350}
                 // width={300}
                 src={`/mint/jojologo.png`}
                 quality={100}
@@ -550,6 +552,17 @@ function Page() {
                 </>
               }
 
+              {
+                mintError != "" ?
+                  <>
+                    <div className='font-archivobold mx-auto text-sm text-red-300 mt-5'>
+                      {mintError}
+                    </div>
+                  </>
+                  :
+                  <>
+                  </>
+              }
             </div>
 
             <div className="flex">
