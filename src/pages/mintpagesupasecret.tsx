@@ -534,13 +534,13 @@ function Page() {
                 priority
                 alt="Free JoJo"
                 height={300}
-                width={size.width < 600 ? 300 : 350}
+                width={size.width < 600 ? (size.width * 0.5) : 350}
                 // width={300}
                 src={`/mint/jojologo.png`}
                 quality={100}
-                className="mt-20 z-10"
+                className="mt-8 sm:mt-20 z-10"
               />
-              <div className="mt-10 text-5xl sm:text-6xl font-bold font-archivobold">
+              <div className="mt-5 sm:mt-10 text-5xl sm:text-6xl font-bold font-archivobold">
                 MINT NOW!
               </div>
               <div className="mx-auto font-archivo font-black tracking-widest mb-2">
