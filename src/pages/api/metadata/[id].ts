@@ -15,7 +15,7 @@ export default async function handler(req, res) {
         case 'GET':
             try {
                 // read the reveal.json file
-                const revealData = fs.readFileSync(path.resolve(__dirname, "../../../../api/reveal.json"));
+                const revealData = fs.readFileSync(path.join(process.cwd(), 'api', 'reveal.json'))
                 // check if the id key exists in the json file
                 const jsonData = JSON.parse(revealData.toString());
                 if (jsonData.hasOwnProperty(id)) {
@@ -37,7 +37,7 @@ export default async function handler(req, res) {
                 // update the value of id key to "true"
                 jsonData[id] = "true";
                 // write the updated data to the reveal.json file
-                fs.writeFileSync(path.resolve(__dirname, "../../../../api/reveal.json"), JSON.stringify(jsonData));
+                fs.writeFileSync(path.join(process.cwd(), 'api', 'reveal.json'), JSON.stringify(jsonData));
                 console.log("Saved")
 
             } catch (error) {
@@ -48,14 +48,14 @@ export default async function handler(req, res) {
         case 'POST':
             try {
                 // read the reveal.json file
-                const revealData = fs.readFileSync(path.resolve(__dirname, "../../../../api/reveal.json"));
+                const revealData = fs.readFileSync(path.join(process.cwd(), 'api', 'reveal.json'));
                 // check if the id key exists in the json file
                 const jsonData = JSON.parse(revealData.toString());
                 if (jsonData.hasOwnProperty(id)) {
                     // update the value of id key to "true"
                     jsonData[id] = "true";
                     // write the updated data to the reveal.json file
-                    fs.writeFileSync(path.resolve(__dirname, "../../../../api/reveal.json"), JSON.stringify(jsonData));
+                    fs.writeFileSync(path.join(process.cwd(), 'api', 'reveal.json'), JSON.stringify(jsonData));
                     res.status(201).json({ success: true, message: "Token revealed successfully" })
                 } else {
                     res.status(400).json({ success: false, message: "Invalid token id" })
