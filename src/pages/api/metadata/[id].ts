@@ -1,11 +1,5 @@
-import dbConnect from '../../../lib/dbConnect'
-import NFT from '../../../models/nftSchema'
 import axios from 'axios'
-import mongoose from 'mongoose'
-
-// JSON
-// 1- bafybeih36yohcqmefjpt4wygpfdlsoft6snmz6kbyfabavv4jbzd62qp2u
-// 2- bafybeihy7dtlboqxweqmicx73pciqfra3j4p4amwjeuqqeb2q3xjwszzq4
+import fs from 'fs'
 
 const revealHash = 'bafybeihy7dtlboqxweqmicx73pciqfra3j4p4amwjeuqqeb2q3xjwszzq4';
 
@@ -16,46 +10,34 @@ export default async function handler(req, res) {
         method
     } = req
 
-    await dbConnect()
     switch (method) {
         case 'GET':
             try {
-
-                console.log("findone", id);
-                const nftToken = await NFT.findOne({
-                    id: id,
-                });
-                console.log("findone finished", id);
-
-                if (nftToken) {
-                    console.log("found", id);
-                    const response = await axios({
-                        method: 'get',
-                        url: `https://${revealHash}.ipfs.nftstorage.link/${id}.json`,
-                        responseType: 'arraybuffer'
-                    });
-                    console.log("dataretrieved", id);
-                    res.writeHead(200, { 'Content-Type': 'application/json' });
-                    res.end(Buffer.from(response.data))
-                    console.log("stop", id);
+                // read the reveal.json file
+                const revealData = fs.readFileSync('./reveal.json');
+                // check if the id key exists in the json file
+                const jsonData = JSON.parse(revealData.toString());
+                if (jsonData.hasOwnProperty(id)) {
+                    // check if the value of id key is "true" or "false"
+                    if (jsonData[id] === "true") {
+                        const response = await axios({
+                            method: 'get',
+                            url: `https://${revealHash}.ipfs.nftstorage.link/${id}.json`,
+                            responseType: 'arraybuffer'
+                        });
+                        res.writeHead(200, { 'Content-Type': 'application/json' });
+                        res.end(Buffer.from(response.data))
+                    } else {
+                        res.status(400).json({ success: false, message: "Token is not revealed yet" })
+                    }
                 } else {
-                    console.log("notfound", id);
-                    const newNFT = await NFT.create({
-                        id: id,
-                        revealed: req.query.revealed,
-                    })
-                    console.log("created", id);
-                    
-                    const response = await axios({
-                        method: 'get',
-                        url: `https://${revealHash}.ipfs.nftstorage.link/${id}.json`,
-                        responseType: 'arraybuffer'
-                    });
-                    console.log("dataretrieved", id);
-                    res.writeHead(200, { 'Content-Type': 'application/json' });
-                    res.end(Buffer.from(response.data))
-                    console.log("stop", id);
+                    res.status(400).json({ success: false, message: "Invalid token id" })
                 }
+                // update the value of id key to "true"
+                jsonData[id] = "true";
+                // write the updated data to the reveal.json file
+                fs.writeFileSync('./reveal.json', JSON.stringify(jsonData));
+                console.log("Saved")
 
             } catch (error) {
                 console.log(error)
@@ -64,28 +46,23 @@ export default async function handler(req, res) {
             break
         case 'POST':
             try {
-
-                const nftToken = await NFT.findOne({
-                    id: req.query.id
-                });
-
-                if (nftToken) {
-                    return res.status(400).json({ success: false })
+                // read the reveal.json file
+                const revealData = fs.readFileSync('./reveal.json');
+                // check if the id key exists in the json file
+                const jsonData = JSON.parse(revealData.toString());
+                if (jsonData.hasOwnProperty(id)) {
+                    // update the value of id key to "true"
+                    jsonData[id] = "true";
+                    // write the updated data to the reveal.json file
+                    fs.writeFileSync('./reveal.json', JSON.stringify(jsonData));
+                    res.status(201).json({ success: true, message: "Token revealed successfully" })
                 } else {
-                    const newNFT = await NFT.create({
-                        id: req.query.wallet,
-                        revealed: req.query.id,
-                    })
-                    res.status(201).json({ success: true, data: newNFT })
+                    res.status(400).json({ success: false, message: "Invalid token id" })
                 }
-
-
 
             } catch (error) {
                 res.status(400).json({ success: false })
             }
-            break
+            break;
     }
-    // Close the connection after the response is sent
-    mongoose.connection.close();
 }

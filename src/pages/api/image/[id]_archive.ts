@@ -16,13 +16,13 @@ export default async function handler(req, res) {
         method
     } = req
 
+    await dbConnect()
     switch (method) {
         case 'GET':
             try {
                 const nftToken = await NFT.findOne({
                     id: id,
                 });
-                
 
                 if (nftToken) {
                     const response = await axios({
@@ -51,6 +51,9 @@ export default async function handler(req, res) {
             } catch (error) {
                 console.log(error)
                 res.status(400).json({ success: false })
+            } finally {
+                // Close the connection after the response is sent
+                mongoose.connection.close();
             }
             break
     }
