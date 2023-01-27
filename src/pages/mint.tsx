@@ -330,7 +330,7 @@ function Page() {
         }
 
         <button
-          className='text-black border-2 border-black bg-[#30be80] hover:bg-[#26ac72] text-center py-5 px-8 rounded-lg m-auto mt-0 hover:pointer z-50 font-archivobold text-4xl flex '
+          className='text-black border-2 border-black bg-[#30be80] hover:bg-[#26ac72] text-center py-5 px-8 rounded-lg m-auto mt-0 hover:pointer z-50 font-archivobold text-4xl flex'
           onClick={() => {
             setEntered(true);
             setTimeout(() => {

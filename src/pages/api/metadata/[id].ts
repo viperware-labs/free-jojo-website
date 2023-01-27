@@ -1,8 +1,13 @@
+import dbConnect from '../../../lib/dbConnect'
+import NFT from '../../../models/nftSchema'
 import axios from 'axios'
-import fs from 'fs'
-import * as path from 'path'
+import mongoose from 'mongoose'
+import RevealedMetadata from './metadata_revealed.json'
+import UnrevealedMetadata from './metadata_unrevealed.json'
 
-const revealHash = 'bafybeihy7dtlboqxweqmicx73pciqfra3j4p4amwjeuqqeb2q3xjwszzq4';
+// JSON
+// 1- bafybeih36yohcqmefjpt4wygpfdlsoft6snmz6kbyfabavv4jbzd62qp2u
+// 2- bafybeihy7dtlboqxweqmicx73pciqfra3j4p4amwjeuqqeb2q3xjwszzq4
 
 // @ts-ignore
 export default async function handler(req, res) {
@@ -10,60 +15,57 @@ export default async function handler(req, res) {
         query: { id },
         method
     } = req
-
+    await dbConnect()
     switch (method) {
         case 'GET':
             try {
-                // read the reveal.json file
-                const revealData = fs.readFileSync(path.join(process.cwd(), 'api', 'reveal.json'))
-                // check if the id key exists in the json file
-                const jsonData = JSON.parse(revealData.toString());
-                if (jsonData.hasOwnProperty(id)) {
-                    // check if the value of id key is "true" or "false"
-                    if (jsonData[id] === "true") {
-                        const response = await axios({
-                            method: 'get',
-                            url: `https://${revealHash}.ipfs.nftstorage.link/${id}.json`,
-                            responseType: 'arraybuffer'
-                        });
-                        res.writeHead(200, { 'Content-Type': 'application/json' });
-                        res.end(Buffer.from(response.data))
-                    } else {
-                        res.status(400).json({ success: false, message: "Token is not revealed yet" })
-                    }
+                if (!Number.isInteger(parseInt(id))) {
+                    res.status(400).json({ success: false, error: "Invalid index" })
+                } else if (id < 1 || id > 10000) {
+                    res.status(400).json({ success: false, error: "Out of bounds" })
                 } else {
-                    res.status(400).json({ success: false, message: "Invalid token id" })
+                    console.log("findone", id);
+                    const nftToken = await NFT.findOne({
+                        id: id,
+                    });
+                    console.log("findone finished", id);
+
+                    if (nftToken) {
+                        if (nftToken.revealed == true) {
+                            console.log("found", id);
+                            //@ts-ignore
+                            const response = RevealedMetadata[id - 1];
+                            res.json(response)
+                            console.log("revealed", id);
+                        } else {
+                            console.log("found", id);
+                            //@ts-ignore
+                            const response = UnrevealedMetadata[id - 1];
+                            res.json(response)
+                            console.log("unrevealed", id);
+                        }
+                    } else {
+                        console.log("notfound", id);
+
+                        const newNFT = await NFT.create({
+                            id: id,
+                            revealed: false,
+                        })
+                        console.log("created", id);
+
+                        //@ts-ignore
+                        const response = UnrevealedMetadata[id - 1];
+                        // console.log(response)
+                        res.json(response)
+                        console.log("unrevealed", id);
+                    }
                 }
-                // update the value of id key to "true"
-                jsonData[id] = "true";
-                // write the updated data to the reveal.json file
-                fs.writeFileSync(path.join(process.cwd(), 'api', 'reveal.json'), JSON.stringify(jsonData));
-                console.log("Saved")
 
             } catch (error) {
                 console.log(error)
                 res.status(400).json({ success: false })
             }
             break
-        case 'POST':
-            try {
-                // read the reveal.json file
-                const revealData = fs.readFileSync(path.join(process.cwd(), 'api', 'reveal.json'));
-                // check if the id key exists in the json file
-                const jsonData = JSON.parse(revealData.toString());
-                if (jsonData.hasOwnProperty(id)) {
-                    // update the value of id key to "true"
-                    jsonData[id] = "true";
-                    // write the updated data to the reveal.json file
-                    fs.writeFileSync(path.join(process.cwd(), 'api', 'reveal.json'), JSON.stringify(jsonData));
-                    res.status(201).json({ success: true, message: "Token revealed successfully" })
-                } else {
-                    res.status(400).json({ success: false, message: "Invalid token id" })
-                }
-
-            } catch (error) {
-                res.status(400).json({ success: false })
-            }
-            break;
     }
+    console.log(id)
 }
