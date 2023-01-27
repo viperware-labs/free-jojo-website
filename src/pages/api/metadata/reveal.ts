@@ -20,7 +20,6 @@ const contractJOJO = new ethers.Contract(JOJO, abiJOJO, provider);
 export default async function handler(req, res) {
     const { method } = req
     console.time("response-timer")
-    await dbConnect()
     switch (method) {
         case 'POST':
             try {
@@ -56,9 +55,11 @@ export default async function handler(req, res) {
                     } catch (e) {
 
                         console.log("Error fetching tokens!", e)
-
+                        return res.status(400).json({ success: false, error: "Error fetching tokens!" });
+               
                     }
 
+                    await dbConnect()
                     const reveals = statement?.split(",").map((num) => parseInt(num))
 
                     await reveals?.forEach(async (index) => {
@@ -94,7 +95,6 @@ export default async function handler(req, res) {
                     return res.status(201).json({ success: true, data: reveals });
                 } catch (e) {
                     console.log(e)
-                    console.log("Fail")
                     return res.status(400).json({ success: false, error: "Signature failed, please verify you are using the correct wallet" });
                 }
             } catch (error) {

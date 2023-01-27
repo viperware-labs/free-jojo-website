@@ -16,7 +16,6 @@ export default async function handler(req, res) {
         method
     } = req
     const MAX_ID = 20
-    await dbConnect()
     switch (method) {
         case 'GET':
             try {
@@ -25,6 +24,7 @@ export default async function handler(req, res) {
                 } else if (id < 1 || id > MAX_ID) {
                     res.status(400).json({ success: false, error: "Out of bounds" })
                 } else {
+                    await dbConnect()
                     console.log("findone", id);
                     const nftToken = await NFT.findOne({
                         id: id,
