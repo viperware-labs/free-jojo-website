@@ -2,7 +2,13 @@ import dbConnect from '../../../lib/dbConnect'
 import NFT from '../../../models/nftSchema'
 import axios from 'axios'
 import mongoose from 'mongoose'
-import RevealedMetadata from './metadata_revealed.json'
+
+// REVEALED
+// import RevealedMetadata from './metadata_revealed.json'
+
+
+// UNREVEALED
+import RevealedMetadata from './metadata_unrevealed.json'
 import UnrevealedMetadata from './metadata_unrevealed.json'
 
 // @ts-ignore
