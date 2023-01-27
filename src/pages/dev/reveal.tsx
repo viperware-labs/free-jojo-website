@@ -51,8 +51,8 @@ function Page() {
 
   const { address, isConnected } = useAccount();
 
-  // const API_URL = 'http://localhost:3000'
-  const API_URL = 'https://freejojo.io'
+  const API_URL = 'http://localhost:3000'
+  // const API_URL = 'https://freejojo.io'
 
 
   // IMAGES GRID
@@ -129,7 +129,7 @@ function Page() {
   let imageWidthMobile = (size.width / 3) - 20; // width of a single image
 
   const revealJoJos = async (tokens: number[]) => {
-    try {
+    if (selectedTokens.length > 0) try {
       // @ts-ignore
       const domain = window.location.host;
       // @ts-ignore
@@ -150,16 +150,25 @@ function Page() {
       console.log("Sending... ")
       console.log(`${API_URL}/api/metadata/reveal`)
 
-      const response = await axios.post(`${API_URL}/api/metadata/reveal`, {
+      axios.post(`${API_URL}/api/metadata/reveal`, {
         data: {
           "address": address,
           "message": message,
           "signature": signature,
         }
       })
-
-      const data = await response.data;
-      console.log("fin")
+        .then(response => {
+          toast.success(`Reveal complete!`)
+        })
+        .catch(e => {
+          console.log(e)
+          if (e.response.data.error) {
+            toast.error(`${e.response.data.error}`)
+            console.log(e.response.data.error)
+          } else {
+            toast.error(`An error occured`)
+          }
+        });
     } catch (e) {
 
     }
@@ -181,6 +190,11 @@ function Page() {
 
   return (
     <>
+      <div className='font-bold font-archivobold'>
+        <ToastContainer
+          position="top-left"
+          autoClose={5000} />
+      </div>
       <div style={{
         minHeight: '100vh',
         height: '100%',
@@ -238,8 +252,9 @@ function Page() {
                   </div>
 
                   <div className='flex-col md:flex-row md:px-[14%] py-5 w-full flex'>
-                    <button className='font-bold font-archivobold mt-2 mx-auto text-zinc-900 text-md px-6 py-4 rounded-xl border-2
-              md:text-2xl md:px-10 md:py-5 lg:text-3xl lg:px-12 lg:py-6 sm:rounded-[20px] sm:border-4 border-zinc-900 bg-[#d24e6d] hover:bg-[#bd3d5b] hover:cursor-pointer'
+                    <button className={`font-bold font-archivobold mt-2 mx-auto text-zinc-900 text-md px-6 py-4 rounded-xl border-2
+              md:text-2xl md:px-10 md:py-5 lg:text-3xl lg:px-12 lg:py-6 sm:rounded-[20px] sm:border-4 border-zinc-900 bg-[#d24e6d]
+                ${selectedTokens.length > 0 ? 'hover:bg-[#bd3d5b] hover:cursor-pointer ' : 'hover:cursor-default opacity-50'}`}
                       onClick={() => {
                         // console.log(fridgesOwned)
                         revealJoJos(selectedTokens)

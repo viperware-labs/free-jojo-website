@@ -19,11 +19,12 @@ const contractJOJO = new ethers.Contract(JOJO, abiJOJO, provider);
 // @ts-ignore
 export default async function handler(req, res) {
     const { method } = req
+    const revealEnabled = true
     console.time("response-timer")
     switch (method) {
         case 'POST':
             try {
-                if (false) {
+                if (revealEnabled) {
                     try {
                         console.log("Reveal action start");
 
@@ -98,6 +99,9 @@ export default async function handler(req, res) {
                         console.log(e)
                         return res.status(400).json({ success: false, error: "Signature failed, please verify you are using the correct wallet" });
                     }
+                } else {
+                    console.log("Reveal is not active")
+                    res.status(403).json({ success: false, error: "Reveal is not active" })
                 }
             } catch (error) {
                 res.status(400).json({ success: false })
