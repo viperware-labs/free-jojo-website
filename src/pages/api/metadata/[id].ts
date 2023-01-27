@@ -4,11 +4,11 @@ import axios from 'axios'
 import mongoose from 'mongoose'
 
 // REVEALED
-// import RevealedMetadata from './metadata_revealed.json'
+import RevealedMetadata from './metadata_revealed.json'
 
 // UNREVEALED
-import RevealedMetadata from './metadata_unrevealed.json'
 import UnrevealedMetadata from './metadata_unrevealed.json'
+// import RevealedMetadata from './metadata_unrevealed.json'
 
 // @ts-ignore
 export default async function handler(req, res) {
