@@ -15,7 +15,7 @@ export default async function handler(req, res) {
         query: { id },
         method
     } = req
-    const MAX_ID = 10
+    const MAX_ID = 20
     await dbConnect()
     switch (method) {
         case 'GET':
