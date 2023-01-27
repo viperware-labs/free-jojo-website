@@ -15,7 +15,7 @@ export default async function handler(req, res) {
         query: { id },
         method
     } = req
-    const MAX_ID = 20
+    const MAX_ID = 100
     switch (method) {
         case 'GET':
             try {
