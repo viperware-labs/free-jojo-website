@@ -53,6 +53,7 @@ function Page() {
 
   // const API_URL = 'http://localhost:3000'
   const API_URL = 'http://freejojo.io'
+  
 
   // IMAGES GRID
   const [images, setImages] = useState<string[]>([]);
