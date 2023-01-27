@@ -15,13 +15,14 @@ export default async function handler(req, res) {
         query: { id },
         method
     } = req
+    const MAX_ID = 10
     await dbConnect()
     switch (method) {
         case 'GET':
             try {
                 if (!Number.isInteger(parseInt(id))) {
                     res.status(400).json({ success: false, error: "Invalid index" })
-                } else if (id < 1 || id > 10000) {
+                } else if (id < 1 || id > MAX_ID) {
                     res.status(400).json({ success: false, error: "Out of bounds" })
                 } else {
                     console.log("findone", id);
