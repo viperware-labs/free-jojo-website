@@ -6,7 +6,6 @@ import mongoose from 'mongoose'
 // REVEALED
 // import RevealedMetadata from './metadata_revealed.json'
 
-
 // UNREVEALED
 import RevealedMetadata from './metadata_unrevealed.json'
 import UnrevealedMetadata from './metadata_unrevealed.json'
@@ -17,7 +16,7 @@ export default async function handler(req, res) {
         query: { id },
         method
     } = req
-    const MAX_ID = 50
+    const MAX_ID = 10000
     switch (method) {
         case 'GET':
             try {
