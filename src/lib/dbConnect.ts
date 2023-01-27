@@ -1,6 +1,7 @@
 
 // /lib/dbConnect.js
 import mongoose from 'mongoose'
+mongoose.set('strictQuery', false);
 
 /** 
 Source : 
