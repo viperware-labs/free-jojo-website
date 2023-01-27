@@ -208,7 +208,7 @@ function Page() {
             {/* <div className='flex w-full h-full flex-col max-h-screen mb-0'> */}
             {
               myTokens.length < 1 ?
-                <div className='w-full border'>
+                <div className='w-full'>
                   You don&apos;t own any JoJos!
                 </div> :
                 <div className='mx-[5vw] sm:mx-[14vw] xl:mx-[20vw] mb-[6vh] w-auto h-auto'>
