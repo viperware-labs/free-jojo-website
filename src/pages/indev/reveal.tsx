@@ -209,7 +209,7 @@ function Page() {
             {
               myTokens.length < 1 ?
                 <div className='w-full border'>
-                  You don't own any JoJos!
+                  You don&apos;t own any JoJos!
                 </div> :
                 <div className='mx-[5vw] sm:mx-[14vw] xl:mx-[20vw] mb-[6vh] w-auto h-auto'>
                   <div className={myTokens.length > 3 ? `mx-auto flex items-center space-around flex-wrap` : `mx-auto items-center space-around md:justify-center flex flex-wrap`}>
