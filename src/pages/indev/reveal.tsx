@@ -59,24 +59,27 @@ function Page() {
   const [images, setImages] = useState<string[]>([]);
   const [imagesPerRow, setImagesPerRow] = useState<number>(0);
 
-  const [myTokens, setMyTokens] = useState<number[]>([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-  const [selectedTokens, setSelectedTokens] = useState<number[]>([])
+  const [myTokens, setMyTokens] = useState([])
+  const [selectedTokens, setSelectedTokens] = useState<any[]>([])
 
   const [minted, setMinted] = useState(0);
 
   const readSupply = useContractRead({
-    address: '0x9278d95b79297e728ecf6f59dc0a6074c2e6bf5a',
+    address: '0x9278d95B79297e728ecF6F59dc0a6074c2e6Bf5a',
     abi: jojoABI,
-    functionName: 'totalSupply',
+    functionName: 'tokensOfOwner',
+    args: [address],
     chainId: 1,
     onSuccess(data) {
+      console.log(data)
       // @ts-ignore
-      console.log('Supply', formatEther(data as number) * (10 ** 18))
-      // @ts-ignore
-      setMinted(formatEther(data as number) * (10 ** 18));
+      let ownedTokens = data.map((bigNum) => formatEther(bigNum as number) * (10 ** 18))
+      console.log(ownedTokens)
+      setMyTokens(ownedTokens)
     },
     onError(e) {
-      console.log("Supply Error", e);
+      console.log(address)
+      console.log("READ ERROR", e);
     }
   })
 
@@ -163,19 +166,16 @@ function Page() {
   }
 
   const toggleSelect = (_id: number) => {
-    let currentSelects = selectedTokens
+    let currentSelects = [...selectedTokens];
+    const index = currentSelects.indexOf(_id);
 
-    if (currentSelects.includes(_id)) {
-      const index = currentSelects.indexOf(_id);
-      if (index !== -1) {
-        currentSelects.splice(index, 1);
-        setSelectedTokens(currentSelects)
-      }
+    if (index !== -1) {
+      currentSelects.splice(index, 1);
     } else {
-      currentSelects.push(_id)
-      setSelectedTokens(currentSelects)
+      currentSelects.push(_id);
     }
 
+    setSelectedTokens(currentSelects)
     console.log(currentSelects)
   }
 
@@ -193,55 +193,75 @@ function Page() {
         backgroundAttachment: 'fixed',
       }}>
         <div className='flex'>
-          <div className='text-white text-center font-made w-auto'>
-            {/* <div className='flex w-full h-full flex-col max-h-screen mb-0'> */}
-            <div className='mx-[5vw] sm:mx-[14vw] xl:mx-[20vw] my-[6vh] w-auto h-auto'>
-
-              <div className='text-4xl md:text-5xl py-5 w-full mx-auto text-[#30be80]' style={{
-                  // textShadow: "#999 0px 0px 2px",
-                  textShadow: "0 0 2px #999, 0 0 2px #999"
-                }}>
-                    Reveal Your JoJos!<br/>
-                    {selectedTokens}
-              </div>
-
-              <div className='mx-auto flex flex-wrap content-around items-center'>
-                {myTokens.map((i) =>
-                  <>
-                    <div key={i}
-                      onClick={() => {
-                        // console.log(fridgesOwned)
-                        // revealJoJos([i])
-                        toggleSelect(i)
-                      }}
-                      className='p-5 hover:p-3 hover:cursor-pointer text-white text-2xl text-center font-archivobold w-3/6 md:w-2/6 xl:w-[25%]'>
-                      <Image
-                        priority
-                        alt=""
-                        src={`/reveal/jojo.gif`}
-                        height={1200}
-                        width={1200}
-                        quality={100}
-                        className={selectedTokens.includes(i) ? 'relative z-10 mb-2 rounded-[14%] border-[4px] border-red-500' : 'relative z-10 mb-2 rounded-[14%] border-[4px] border-zinc-900'}
-                      // min-h-[280px] max-h-[280px] min-w-[280px] max-w-[280px]
-                      />
-                      JoJo #{i}
-                    </div>
-                  </>)}
-              </div>
-
-              <div className='py-5 w-full flex'>
-                <button className='font-bold font-archivobold mt-2 mx-auto text-zinc-900 text-md px-6 py-4 rounded-xl border-2
-              sm:text-3xl sm:px-12 sm:py-6 sm:rounded-[20px] sm:border-4 border-zinc-900 bg-[#d24e6d] hover:bg-[#bd3d5b] hover:cursor-pointer'
-                  onClick={() => {
-                    // console.log(fridgesOwned)
-                    revealJoJos(myTokens)
-                  }}>
-                  Reveal All
-
-                </button>
+          <div className='text-white text-center font-made w-full'>
+            <div className='flex w-full pt-[2vh] pr-[1vw]'>
+              <div className='ml-auto'>
+                <ConnectButton />
               </div>
             </div>
+            <div className='mt-[6vh] text-4xl md:text-5xl py-5 w-full mx-auto text-[#30be80]' style={{
+              // textShadow: "#999 0px 0px 2px",
+              textShadow: "0 0 2px #999, 0 0 2px #999"
+            }}>
+              Reveal Your JoJos!<br />
+            </div>
+            {/* <div className='flex w-full h-full flex-col max-h-screen mb-0'> */}
+            {
+              myTokens.length < 1 ?
+                <div className='w-full border'>
+                  You don't own any JoJos!
+                </div> :
+                <div className='mx-[5vw] sm:mx-[14vw] xl:mx-[20vw] mb-[6vh] w-auto h-auto'>
+                  <div className={myTokens.length > 3 ? `mx-auto flex items-center space-around flex-wrap` : `mx-auto items-center space-around md:justify-center flex flex-wrap`}>
+                    {myTokens.map((i) =>
+                      <>
+                        <div key={i}
+                          onClick={() => {
+                            // console.log(fridgesOwned)
+                            // revealJoJos([i])
+                            toggleSelect(i)
+                          }}
+                          className='p-5 hover:p-3 hover:cursor-pointer text-white text-2xl text-center font-archivobold w-3/6 md:w-2/6 xl:w-[25%]'>
+                          <Image
+                            priority
+                            alt=""
+                            src={`/reveal/jojo.gif`}
+                            height={1200}
+                            width={1200}
+                            quality={100}
+                            className={selectedTokens.includes(i) ? 'relative z-10 mb-2 rounded-[14%] border-[4px] border-red-500' : 'relative z-10 mb-2 rounded-[14%] border-[4px] border-zinc-900'}
+                          // min-h-[280px] max-h-[280px] min-w-[280px] max-w-[280px]
+                          />
+                          JoJo #{i}
+                        </div>
+                      </>)}
+                  </div>
+
+                  <div className='flex-col md:flex-row md:px-[14%] py-5 w-full flex'>
+                    <button className='font-bold font-archivobold mt-2 mx-auto text-zinc-900 text-md px-6 py-4 rounded-xl border-2
+              md:text-2xl md:px-10 md:py-5 lg:text-3xl lg:px-12 lg:py-6 sm:rounded-[20px] sm:border-4 border-zinc-900 bg-[#d24e6d] hover:bg-[#bd3d5b] hover:cursor-pointer'
+                      onClick={() => {
+                        // console.log(fridgesOwned)
+                        revealJoJos(selectedTokens)
+                      }}>
+                      REVEAL
+
+                    </button>
+                    <button className='font-bold font-archivobold mt-2 mx-auto text-zinc-900 text-md px-6 py-4 rounded-xl border-2
+              md:text-2xl md:px-10 md:py-5 lg:text-3xl lg:px-12 lg:py-6 sm:rounded-[20px] sm:border-4 border-zinc-900 bg-[#d24e6d] hover:bg-[#bd3d5b] hover:cursor-pointer'
+                      onClick={() => {
+                        if (selectedTokens.length <= 0) {
+                          setSelectedTokens([...myTokens])
+                        } else {
+                          setSelectedTokens([])
+                        }
+                      }}>
+                      {selectedTokens.length <= 0 ? `SELECT ALL` : `UNSELECT ALL`}
+
+                    </button>
+                  </div>
+                </div>
+            }
           </div>
         </div>
       </div>
