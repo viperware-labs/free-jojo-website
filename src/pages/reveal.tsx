@@ -2,10 +2,10 @@ import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useAccount, useConnect, useContractRead, useContractWrite, usePrepareContractWrite } from 'wagmi'
 import Head from 'next/head';
 import dynamic from "next/dynamic"
-import loading from '../../public/Loading.gif'
+import loading from '../public/Loading.gif'
 
 import { createClient, useEnsName, useNetwork } from 'wagmi'
-import jojoABI from '../../jojoABI.json';
+import jojoABI from '../jojoABI.json';
 import { ethers } from "ethers";
 import { useContractReads } from 'wagmi';
 import { useEffect, useState } from 'react';
@@ -15,11 +15,11 @@ import Image from 'next/image';
 import React from 'react'
 import ReactAudioPlayer from 'react-audio-player'
 
-import { Connect } from '../../components/mint/Connect'
+import { Connect } from '../components/mint/Connect'
 
-import MusicPlayer from '../../components/Music'
+import MusicPlayer from '../components/Music'
 
-import Modal from '../../components/Modal';
+import Modal from '../components/Modal';
 import { formatEther, keccak256, parseEther } from 'ethers/lib/utils';
 
 import { useSession } from "next-auth/react"
@@ -27,12 +27,12 @@ import { useSession } from "next-auth/react"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import Guaranteed from "../../guaranteed.json";
-import Allowlist from "../../allowlist.json";
+import Guaranteed from "../guaranteed.json";
+import Allowlist from "../allowlist.json";
 import MerkleTree from 'merkletreejs';
 
 import Web3 from 'web3';
-import { createSiweMessage } from "../../util/siwe"
+import { createSiweMessage } from "../util/siwe"
 import axios from 'axios'
 import { Signer } from 'ethers';
 
@@ -51,7 +51,7 @@ function Page() {
 
   const { address, isConnected } = useAccount();
 
-  // /DEV/REVEAL
+  // PROD REVEAL
   const API_URL = 'https://freejojo.io'
 
   // IMAGES GRID
