@@ -62,6 +62,7 @@ function Page() {
   const [selectedTokens, setSelectedTokens] = useState<any[]>([])
 
   const [minted, setMinted] = useState(0);
+  const [revealInstructions, setRevealInstructions] = useState(false);
 
   const readSupply = useContractRead({
     address: '0x9278d95B79297e728ecF6F59dc0a6074c2e6Bf5a',
@@ -212,7 +213,7 @@ function Page() {
                 <ConnectButton />
               </div>
             </div>
-            <div className='mt-[6vh] text-4xl md:text-5xl py-5 w-full mx-auto text-[#30be80]' style={{
+            <div className='mt-[4vh] text-4xl md:text-5xl py-5 w-full mx-auto text-[#30be80]' style={{
               // textShadow: "#999 0px 0px 2px",
               textShadow: "0 0 2px #999, 0 0 2px #999"
             }}>
@@ -224,55 +225,84 @@ function Page() {
                 <div className='w-full'>
                   You don&apos;t own any JoJos!
                 </div> :
-                <div className='mx-[5vw] sm:mx-[14vw] xl:mx-[20vw] mb-[6vh] w-auto h-auto'>
-                  <div className={myTokens.length > 3 ? `mx-auto flex items-center space-around flex-wrap` : `mx-auto items-center space-around md:justify-center flex flex-wrap`}>
-                    {myTokens.map((i) =>
-                      <>
-                        <div key={Math.round(i)}
-                          onClick={() => {
-                            toggleSelect(Math.round(i))
-                          }}
-                          className='p-5 hover:p-3 hover:cursor-pointer text-white text-2xl text-center font-archivobold w-3/6 md:w-2/6 xl:w-[25%]'>
-                          <Image
-                            priority
-                            alt=""
-                            src={`/reveal/jojo.gif`}
-                            height={1200}
-                            width={1200}
-                            quality={100}
-                            className={selectedTokens.includes(Math.round(i)) ? 'relative z-10 mb-2 rounded-[14%] border-[4px] border-red-500' : 'relative z-10 mb-2 rounded-[14%] border-[4px] border-zinc-900'}
-                          // min-h-[280px] max-h-[280px] min-w-[280px] max-w-[280px]
-                          />
-                          JoJo #{Math.round(i)}
-                        </div>
-                      </>)}
-                  </div>
+                <>
+                  <div className='w-full my-3'>
+                    {
+                      revealInstructions ?
+                        <>
+                          <div className='w-full font-archivobold text-lg sm:text-xl hover:opacity-75 hover:cursor-pointer'
+                            onClick={() => {
+                              setRevealInstructions(!revealInstructions)
+                            }}>
+                            Reveal Instructions<br />
+                          </div>
+                          <div className='w-full font-archivo text-sm sm:text-base px-[12vw]'>
+                            1. Connect wallet and select which JoJos you want to reveal<br />
+                            2. Sign signature (Will say "Success!" once done correctly)<br />
+                            3. Head to Opensea and click the Refresh Metadata button to see your revealed JoJo!<br />
+                          </div>
+                        </> :
+                        <>
+                          <div className='w-full font-archivobold text-lg sm:text-xl hover:opacity-75 hover:cursor-pointer'
+                            onClick={() => {
+                              setRevealInstructions(!revealInstructions)
+                            }}>
+                            Reveal Instructions<br />
+                          </div>
+                        </>
 
-                  <div className='flex-col md:flex-row md:px-[14%] py-5 w-full flex'>
-                    <button className={`font-bold font-archivobold mt-2 mx-auto text-zinc-900 text-md px-6 py-4 rounded-xl border-2
+                    }
+                  </div>
+                  <div className='mx-[5vw] sm:mx-[14vw] xl:mx-[20vw] mb-[6vh] w-auto h-auto'>
+                    <div className={myTokens.length > 3 ? `mx-auto flex items-center space-around flex-wrap` : `mx-auto items-center space-around md:justify-center flex flex-wrap`}>
+                      {myTokens.map((i) =>
+                        <>
+                          <div key={Math.round(i)}
+                            onClick={() => {
+                              toggleSelect(Math.round(i))
+                            }}
+                            className='p-5 hover:p-3 hover:cursor-pointer text-white text-2xl text-center font-archivobold w-3/6 md:w-2/6 xl:w-[25%]'>
+                            <Image
+                              priority
+                              alt=""
+                              src={`/reveal/jojo.gif`}
+                              height={1200}
+                              width={1200}
+                              quality={100}
+                              className={selectedTokens.includes(Math.round(i)) ? 'relative z-10 mb-2 rounded-[14%] border-[4px] border-red-500' : 'relative z-10 mb-2 rounded-[14%] border-[4px] border-zinc-900'}
+                            // min-h-[280px] max-h-[280px] min-w-[280px] max-w-[280px]
+                            />
+                            JoJo #{Math.round(i)}
+                          </div>
+                        </>)}
+                    </div>
+
+                    <div className='flex-col md:flex-row md:px-[14%] py-5 w-full flex'>
+                      <button className={`font-bold font-archivobold mt-2 mx-auto text-zinc-900 text-md px-6 py-4 rounded-xl border-2
               md:text-2xl md:px-10 md:py-5 lg:text-3xl lg:px-12 lg:py-6 sm:rounded-[20px] sm:border-4 border-zinc-900 bg-[#d24e6d]
                 ${selectedTokens.length > 0 ? 'hover:bg-[#bd3d5b] hover:cursor-pointer ' : 'hover:cursor-default opacity-50'}`}
-                      onClick={() => {
-                        // console.log(fridgesOwned)
-                        revealJoJos(selectedTokens)
-                      }}>
-                      REVEAL
+                        onClick={() => {
+                          // console.log(fridgesOwned)
+                          revealJoJos(selectedTokens)
+                        }}>
+                        REVEAL
 
-                    </button>
-                    <button className='font-bold font-archivobold mt-2 mx-auto text-zinc-900 text-md px-6 py-4 rounded-xl border-2
+                      </button>
+                      <button className='font-bold font-archivobold mt-2 mx-auto text-zinc-900 text-md px-6 py-4 rounded-xl border-2
               md:text-2xl md:px-10 md:py-5 lg:text-3xl lg:px-12 lg:py-6 sm:rounded-[20px] sm:border-4 border-zinc-900 bg-[#d24e6d] hover:bg-[#bd3d5b] hover:cursor-pointer'
-                      onClick={() => {
-                        if (selectedTokens.length <= 0) {
-                          setSelectedTokens([...myTokens])
-                        } else {
-                          setSelectedTokens([])
-                        }
-                      }}>
-                      {selectedTokens.length <= 0 ? `SELECT ALL` : `UNSELECT ALL`}
+                        onClick={() => {
+                          if (selectedTokens.length <= 0) {
+                            setSelectedTokens([...myTokens])
+                          } else {
+                            setSelectedTokens([])
+                          }
+                        }}>
+                        {selectedTokens.length <= 0 ? `SELECT ALL` : `UNSELECT ALL`}
 
-                    </button>
+                      </button>
+                    </div>
                   </div>
-                </div>
+                </>
             }
           </div>
         </div>
