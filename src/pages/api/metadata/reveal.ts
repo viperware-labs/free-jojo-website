@@ -21,7 +21,8 @@ const contractJOJO = new ethers.Contract(JOJO, abiJOJO, provider);
 export default async function handler(req, res) {
     const { method } = req
     const revealEnabled = true
-    console.time("response-timer")
+
+    await dbConnect()
     switch (method) {
         case 'POST':
             try {
@@ -51,7 +52,7 @@ export default async function handler(req, res) {
 
                             await contractJOJO.functions.tokensOfOwner(userAddress).then((result) => {
                                 // @ts-ignore
-                                ownedTokens = result[0].map((bigNum) => formatEther(bigNum as number) * (10 ** 18))
+                                ownedTokens = result[0].map((bigNum) => Math.round(formatEther(bigNum as number) * (10 ** 18)))
                                 console.log(ownedTokens)
                             });
 
@@ -64,8 +65,6 @@ export default async function handler(req, res) {
                             });
 
                         }
-
-                        await dbConnect()
                         const reveals = statement?.split(",").map((num) => parseInt(num))
 
                         await reveals?.forEach(async (index) => {

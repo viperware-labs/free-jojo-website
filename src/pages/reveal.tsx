@@ -243,7 +243,8 @@ function Page() {
                             className={selectedTokens.includes(Math.round(i)) ? 'relative z-10 mb-2 rounded-[14%] border-[4px] border-red-500' : 'relative z-10 mb-2 rounded-[14%] border-[4px] border-zinc-900'}
                           // min-h-[280px] max-h-[280px] min-w-[280px] max-w-[280px]
                           />
-                          JoJo #{Math.round(i)}
+                          JoJo #{i}
+                          {/* JoJo #{Math.round(i)} */}
                         </div>
                       </>)}
                   </div>
