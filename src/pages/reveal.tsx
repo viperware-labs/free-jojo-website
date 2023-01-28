@@ -228,11 +228,9 @@ function Page() {
                   <div className={myTokens.length > 3 ? `mx-auto flex items-center space-around flex-wrap` : `mx-auto items-center space-around md:justify-center flex flex-wrap`}>
                     {myTokens.map((i) =>
                       <>
-                        <div key={i}
+                        <div key={Math.round(i)}
                           onClick={() => {
-                            // console.log(fridgesOwned)
-                            // revealJoJos([i])
-                            toggleSelect(i)
+                            toggleSelect(Math.round(i))
                           }}
                           className='p-5 hover:p-3 hover:cursor-pointer text-white text-2xl text-center font-archivobold w-3/6 md:w-2/6 xl:w-[25%]'>
                           <Image
@@ -242,10 +240,10 @@ function Page() {
                             height={1200}
                             width={1200}
                             quality={100}
-                            className={selectedTokens.includes(i) ? 'relative z-10 mb-2 rounded-[14%] border-[4px] border-red-500' : 'relative z-10 mb-2 rounded-[14%] border-[4px] border-zinc-900'}
+                            className={selectedTokens.includes(Math.round(i)) ? 'relative z-10 mb-2 rounded-[14%] border-[4px] border-red-500' : 'relative z-10 mb-2 rounded-[14%] border-[4px] border-zinc-900'}
                           // min-h-[280px] max-h-[280px] min-w-[280px] max-w-[280px]
                           />
-                          JoJo #{i}
+                          JoJo #{Math.round(i)}
                         </div>
                       </>)}
                   </div>
