@@ -10,7 +10,8 @@ import axios from 'axios'
 import abiJOJO from '../../../jojoABI.json'
 import { formatEther } from 'ethers/lib/utils.js'
 
-const provider = new ethers.providers.EtherscanProvider('mainnet', 'ICCA4QY6AN344KZC952E4AEAHEV59NJC8P');
+// const provider = new ethers.providers.EtherscanProvider('mainnet', 'ICCA4QY6AN344KZC952E4AEAHEV59NJC8P');
+const provider = new ethers.providers.AlchemyProvider('mainnet', '5qiwIO24shCiSGck5Ydhh-XpPJJhnGta');
 // const provider = new ethers.providers.EtherscanProvider();
 
 const JOJO = '0x9278d95B79297e728ecF6F59dc0a6074c2e6Bf5a';
@@ -56,8 +57,11 @@ export default async function handler(req, res) {
 
                         } catch (e) {
 
-                            console.log("Error fetching tokens!", e)
-                            return res.status(400).json({ success: false, error: "Error fetching tokens!" });
+                            console.log("Too many requests! Please wait a few minutes before trying again.", e)
+                            return res.status(400).json({
+                                success: false,
+                                error: "Too many requests! Please wait a few minutes before trying again."
+                            });
 
                         }
 
