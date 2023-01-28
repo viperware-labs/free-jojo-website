@@ -52,7 +52,8 @@ function Page() {
   const { address, isConnected } = useAccount();
 
   // /DEV/REVEAL
-  const API_URL = 'https://freejojo.io'
+  // const API_URL = 'https://freejojo.io'
+  const API_URL = 'http://localhost:3000'
 
   // IMAGES GRID
   const [images, setImages] = useState<string[]>([]);
