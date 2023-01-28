@@ -238,7 +238,7 @@ function Page() {
                           </div>
                           <div className='w-full font-archivo text-sm sm:text-base px-[12vw]'>
                             1. Connect wallet and select which JoJos you want to reveal<br />
-                            2. Sign signature (Will say "Success!" once done correctly)<br />
+                            2. Sign signature (Will say &quot;Success!&quot; once done correctly)<br />
                             3. Head to Opensea and click the Refresh Metadata button to see your revealed JoJo!<br />
                           </div>
                         </> :
