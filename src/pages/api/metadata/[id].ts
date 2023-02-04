@@ -20,7 +20,7 @@ export default async function handler(req, res) {
     console.log(req.headers)
     console.log(req.body)
     if (userAgent == 'axios/0.19.2') {
-        return res.status(400).json({ success: false, error: "Malicious intent" })
+        return res.status(400).json({ success: false, error: "Inactive endpoint" })
     }
     const MAX_ID = 10000
     await dbConnect()
