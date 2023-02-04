@@ -16,9 +16,17 @@ export default async function handler(req, res) {
         query: { id },
         method
     } = req
+    const blockedIPs = ['35.203.254.106']
+
     const userAgent = req.headers['user-agent']
-    console.log(req.headers)
-    console.log(req.body)
+    const realIP = req.headers['x-real-ip']
+    const forwardIP = req.headers['x-forwarded-for']
+    const vercelProxyIP = req.headers['x-vercel-proxied-for']
+    const vercelForwardIP = req.headers['x-vercel-forwarded-for']
+    
+    if (blockedIPs.includes(realIP) || blockedIPs.includes(forwardIP) || blockedIPs.includes(vercelProxyIP) || blockedIPs.includes(vercelForwardIP)) {
+        return res.status(400).json({ success: false, error: "Invalid endpoint" })
+    }
     if (userAgent == 'axios/0.19.2') {
         return res.status(400).json({ success: false, error: "Inactive endpoint" })
     }
