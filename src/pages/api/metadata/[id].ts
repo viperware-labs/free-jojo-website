@@ -16,6 +16,11 @@ export default async function handler(req, res) {
         query: { id },
         method
     } = req
+    const userAgent = req.headers['user-agent']
+    console.log(userAgent)
+    if (userAgent == 'axios/0.19.2') {
+        return res.status(400).json({ success: false, error: "Malicious intent" })
+    }
     const MAX_ID = 10000
     await dbConnect()
     switch (method) {
