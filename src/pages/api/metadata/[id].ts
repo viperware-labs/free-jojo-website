@@ -2,7 +2,6 @@ import dbConnect from '../../../lib/dbConnect'
 import NFT from '../../../models/nftSchema'
 import axios from 'axios'
 import mongoose from 'mongoose'
-import express from 'express'
 import rateLimit from 'express-rate-limit'
 
 const rateLimiter = rateLimit({
