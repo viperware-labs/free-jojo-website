@@ -1,6 +1,6 @@
 {
     "functions": {
-      "api/*.js": {
+      "src/pages/api/metadata/*.ts": {
         "memory": 3008,
         "maxDuration": 5
       }
