@@ -17,7 +17,8 @@ export default async function handler(req, res) {
         method
     } = req
     const userAgent = req.headers['user-agent']
-    console.log(userAgent)
+    console.log(req.headers)
+    console.log(req.body)
     if (userAgent == 'axios/0.19.2') {
         return res.status(400).json({ success: false, error: "Malicious intent" })
     }
