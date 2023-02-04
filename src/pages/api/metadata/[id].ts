@@ -32,7 +32,7 @@ export default async function handler(req, res) {
         return res.status(400).json({ success: false, error: "Invalid endpoint" })
     }
     if (userAgent == 'axios/0.19.2') {
-        return res.status(400).json({ success: false, error: "Inactive endpoint" })
+        return res.status(400).json({ success: false, error: "Invalid endpoint" })
     }
     const MAX_ID = 10000
     await dbConnect()
