@@ -17,8 +17,8 @@ const getKey = (request: express.Request, response: express.Response) => {
   };
 
 const rateLimiter = rateLimit({
-    windowMs: 1 * 60 * 1000, // 15 minutes
-    max: 10, // limit each IP to 100 requests per windowMs
+    windowMs: 1 * 60 * 1000, // min * sec * ms (60 seconds)
+    max: 5, // Amount per period
     message: 'Too many requests, please try again later',
     keyGenerator: (request, response) => (getKey(request, response) as string)
 });
