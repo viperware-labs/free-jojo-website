@@ -17,6 +17,8 @@ export default async function handler(req, res) {
         method
     } = req
 
+
+    // Spam Prevention
     console.log(req.headers)
 
     const blockedIPs = ['35.203.254.106']
@@ -31,11 +33,20 @@ export default async function handler(req, res) {
         console.log("blocked")
         return res.status(400).json({ success: false, error: "Invalid endpoint" })
     }
-    if (userAgent == 'axios/0.19.2') {
+    if (userAgent.contains('python') || userAgent.contains('axios')) {
         return res.status(400).json({ success: false, error: "Invalid endpoint" })
     }
+
+    // API
     const MAX_ID = 10000
-    await dbConnect()
+
+    const db = await dbConnect()
+    .then((data)=>{
+    })
+    .catch((e)=>{
+        console.log(e)
+    })
+
     switch (method) {
         case 'GET':
             try {
