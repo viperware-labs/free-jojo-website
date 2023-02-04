@@ -12,6 +12,7 @@ const getKey = (request: express.Request, response: express.Response) => {
       key = 'unknown';
     }
   
+    console.log(key)
     return key;
   };
 
@@ -68,6 +69,8 @@ export default async function handler(req: express.Request, res: express.Respons
         // .catch((e)=>{
         //     console.log(e)
         // })
+
+        await dbConnect()
 
         switch (method) {
             case 'GET':
