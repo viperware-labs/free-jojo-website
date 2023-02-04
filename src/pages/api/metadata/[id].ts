@@ -19,18 +19,19 @@ import UnrevealedMetadata from '../metadata/metadata_unrevealed.json'
 // @ts-ignore
 export default async function handler(req: express.Request, res: express.Response) {
     rateLimiter(req, res, async () => {
-
         const {
-            query: { stringID },
+            query: { id },
             method
         } = req
 
-        const id = parseInt(stringID as string)
+        console.log(id)
+
+        const id_parsed = parseInt(id as string)
 
         // Spam Prevention
-        console.log(req.headers)
+        // console.log(req.headers)
 
-        const blockedIPs = ['35.203.254.106']
+        // const blockedIPs = ['35.203.254.106']
 
         // const userAgent = req.headers['user-agent']
         // const realIP = req.headers['x-real-ip']
@@ -60,45 +61,45 @@ export default async function handler(req: express.Request, res: express.Respons
         switch (method) {
             case 'GET':
                 try {
-                    if (!Number.isInteger(id)) {
+                    if (!Number.isInteger(id_parsed)) {
                         res.status(400).json({ success: false, error: "Invalid index" })
-                    } else if (id < 1 || id > MAX_ID) {
+                    } else if (id_parsed < 1 || id_parsed > MAX_ID) {
                         res.status(400).json({ success: false, error: "Out of bounds" })
                     } else {
-                        console.log("findone", id);
+                        console.log("findone", id_parsed);
                         const nftToken = await NFT.findOne({
-                            id: id,
+                            id: id_parsed,
                         });
-                        console.log("findone finished", id);
+                        console.log("findone finished", id_parsed);
 
                         if (nftToken) {
                             if (nftToken.revealed == true) {
-                                console.log("found", id);
+                                console.log("found", id_parsed);
                                 //@ts-ignore
-                                const response = RevealedMetadata[id - 1];
+                                const response = RevealedMetadata[id_parsed - 1];
                                 res.json(response)
-                                console.log("revealed", id);
+                                console.log("revealed", id_parsed);
                             } else {
-                                console.log("found", id);
+                                console.log("found", id_parsed);
                                 //@ts-ignore
-                                const response = UnrevealedMetadata[id - 1];
+                                const response = UnrevealedMetadata[id_parsed - 1];
                                 res.json(response)
-                                console.log("unrevealed", id);
+                                console.log("unrevealed", id_parsed);
                             }
                         } else {
-                            console.log("notfound", id);
+                            console.log("notfound", id_parsed);
 
                             const newNFT = await NFT.create({
-                                id: id,
+                                id: id_parsed,
                                 revealed: false,
                             })
-                            console.log("created", id);
+                            console.log("created", id_parsed);
 
                             //@ts-ignore
-                            const response = UnrevealedMetadata[id - 1];
+                            const response = UnrevealedMetadata[id_parsed - 1];
                             // console.log(response)
                             res.json(response)
-                            console.log("unrevealed", id);
+                            console.log("unrevealed", id_parsed);
                         }
                     }
 
@@ -108,6 +109,6 @@ export default async function handler(req: express.Request, res: express.Respons
                 }
                 break
         }
-        console.log(id)
+        console.log(id_parsed)
     });
 }
