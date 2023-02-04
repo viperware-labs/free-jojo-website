@@ -19,6 +19,7 @@
     "axios": "^1.2.2",
     "csv-writer": "^1.6.0",
     "ethers": "^5.5.1",
+    "express-rate-limit": "^6.7.0",
     "lokijs": "^1.5.12",
     "merkletreejs": "^0.3.9",
     "mongoose": "^6.8.0",
