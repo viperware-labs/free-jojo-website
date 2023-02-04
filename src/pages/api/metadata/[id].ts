@@ -16,6 +16,9 @@ export default async function handler(req, res) {
         query: { id },
         method
     } = req
+
+    console.log(req.headers)
+
     const blockedIPs = ['35.203.254.106']
 
     const userAgent = req.headers['user-agent']
@@ -23,8 +26,9 @@ export default async function handler(req, res) {
     const forwardIP = req.headers['x-forwarded-for']
     const vercelProxyIP = req.headers['x-vercel-proxied-for']
     const vercelForwardIP = req.headers['x-vercel-forwarded-for']
-    
+
     if (blockedIPs.includes(realIP) || blockedIPs.includes(forwardIP) || blockedIPs.includes(vercelProxyIP) || blockedIPs.includes(vercelForwardIP)) {
+        console.log("blocked")
         return res.status(400).json({ success: false, error: "Invalid endpoint" })
     }
     if (userAgent == 'axios/0.19.2') {
