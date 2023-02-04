@@ -2,6 +2,7 @@ import dbConnect from '../../../lib/dbConnect'
 import NFT from '../../../models/nftSchema'
 import axios from 'axios'
 import mongoose from 'mongoose'
+import express from 'express'
 import rateLimit from 'express-rate-limit'
 
 const rateLimiter = rateLimit({
@@ -16,29 +17,31 @@ import RevealedMetadata from '../metadata/metadata_revealed.json'
 import UnrevealedMetadata from '../metadata/metadata_unrevealed.json'
 
 // @ts-ignore
-export default async function handler(req, res) {
+export default async function handler(req: express.Request, res: express.Response) {
     rateLimiter(req, res, async () => {
 
         const {
-            query: { id },
+            query: { stringID },
             method
         } = req
+
+        const id = parseInt(stringID as string)
 
         // Spam Prevention
         console.log(req.headers)
 
         const blockedIPs = ['35.203.254.106']
 
-        const userAgent = req.headers['user-agent']
-        const realIP = req.headers['x-real-ip']
-        const forwardIP = req.headers['x-forwarded-for']
-        const vercelProxyIP = req.headers['x-vercel-proxied-for']
-        const vercelForwardIP = req.headers['x-vercel-forwarded-for']
+        // const userAgent = req.headers['user-agent']
+        // const realIP = req.headers['x-real-ip']
+        // const forwardIP = req.headers['x-forwarded-for']
+        // const vercelProxyIP = req.headers['x-vercel-proxied-for']
+        // const vercelForwardIP = req.headers['x-vercel-forwarded-for']
 
-        if (blockedIPs.includes(realIP) || blockedIPs.includes(forwardIP) || blockedIPs.includes(vercelProxyIP) || blockedIPs.includes(vercelForwardIP)) {
-            console.log("blocked")
-            return res.status(400).json({ success: false, error: "Invalid endpoint" })
-        }
+        // if (blockedIPs.includes(realIP) || blockedIPs.includes(forwardIP) || blockedIPs.includes(vercelProxyIP) || blockedIPs.includes(vercelForwardIP)) {
+        //     console.log("blocked")
+        //     return res.status(400).json({ success: false, error: "Invalid endpoint" })
+        // }
 
         // if (userAgent.contains('python') || userAgent.contains('axios')) {
         //     return res.status(400).json({ success: false, error: "Invalid endpoint" })
@@ -57,7 +60,7 @@ export default async function handler(req, res) {
         switch (method) {
             case 'GET':
                 try {
-                    if (!Number.isInteger(parseInt(id))) {
+                    if (!Number.isInteger(id)) {
                         res.status(400).json({ success: false, error: "Invalid index" })
                     } else if (id < 1 || id > MAX_ID) {
                         res.status(400).json({ success: false, error: "Out of bounds" })
