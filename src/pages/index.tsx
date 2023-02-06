@@ -3,6 +3,8 @@ import { useAccount, useConnect } from 'wagmi'
 import Head from 'next/head';
 import dynamic from "next/dynamic"
 import JoJoList from '../../public/images/JoJoList.png'
+import JoJoJail from '../../public/images/Jail.png'
+import JoJoReveal from '../../public/images/Reveal.png'
 
 import styles from '../../styles/Home.module.css';
 import { Minter } from '../components'
@@ -39,6 +41,7 @@ import { useSession } from "next-auth/react"
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Link from 'next/link';
 
 function Page() {
   const [seed, setSeed] = useState(Math.floor(Math.random() * 9) + 1);
@@ -179,16 +182,32 @@ function Page() {
 
                         <div className="flex mt-10">
                           <div className="mx-auto my-auto">
-                            <button className="px-5 py-0.5 text-primary bg-box mx-1 rounded hover:bg-opacity-95" onClick={() => setOpen(true)} type="button">
+                            {/* <button className="px-5 py-0.5 text-primary bg-box mx-1 rounded hover:bg-opacity-95" onClick={() => setOpen(true)} type="button">
                               <>
                                 <Image
                                   alt="JoJo List"
                                   height={90}
-                                  src={JoJoList}
+                                  src={JoJoJail}
                                   className="h-16 w-auto sm:h-20"
                                 />
                               </>
-                            </button>
+                            </button> */}
+                            <Link href='https://jail.freejojo.io/' className="px-2 py-0.5 text-primary bg-box mx-1 rounded hover:bg-opacity-95" type="button">
+                              <Image
+                                alt="JoJo Jail"
+                                height={90}
+                                src={JoJoJail}
+                                className="h-16 w-auto sm:h-20"
+                              />
+                            </Link>
+                            <Link href='https://freejojo.io/reveal' className="px-2 py-0.5 text-primary bg-box mx-1 rounded hover:bg-opacity-95" type="button">
+                              <Image
+                                alt="JoJo Reveal"
+                                height={90}
+                                src={JoJoReveal}
+                                className="h-16 w-auto sm:h-20"
+                              />
+                            </Link>
                           </div>
                           {/* <div className="my-auto z-50">
                             <Connect />
@@ -220,7 +239,7 @@ function Page() {
               </div>
               <div className="flex">
                 <div className="ml-auto z-[10]">
-                  <button className="px-5 py-3 text-primary bg-box mx-1 rounded hover:bg-opacity-95 z-[100]" onClick={() => setOpen(true)} type="button">
+                  {/* <button className="px-5 py-3 text-primary bg-box mx-1 rounded hover:bg-opacity-95 z-[100]" onClick={() => setOpen(true)} type="button">
                     <>
                       <Image
                         alt="JoJo List"
@@ -229,8 +248,24 @@ function Page() {
                         className="h-16 w-auto sm:h-20"
                       />
                     </>
-                  </button>
+                  </button> */}
+                  <Link href='https://freejojo.io/reveal' className="py-3 text-primary bg-box mx-1 rounded hover:bg-opacity-95 z-[100]" type="button">
+                    <Image
+                      alt="JoJo Reveal"
+                      height={90}
+                      src={JoJoReveal}
+                      className="h-16 w-auto sm:h-20"
+                    />
+                  </Link>
                 </div>
+                  <Link href='https://jail.freejojo.io/' className="pr-3 py-3 text-primary bg-box mx-1 rounded hover:bg-opacity-95 z-[100]" type="button">
+                    <Image
+                      alt="JoJo Jail"
+                      height={90}
+                      src={JoJoJail}
+                      className="h-16 w-auto sm:h-20"
+                    />
+                  </Link>
               </div>
               <div className={styles.main}>
                 <div className="text-white text-center w-full flex z-[100]">
