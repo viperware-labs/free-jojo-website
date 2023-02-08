@@ -73,7 +73,7 @@ function Page() {
     onSuccess(data) {
       console.log(data)
       // @ts-ignore
-      let ownedTokens = data.map((bigNum) => formatEther(bigNum as number) * (10 ** 18))
+      let ownedTokens = data.map((bigNum) => Math.round(formatEther(bigNum as number) * (10 ** 18)))
       console.log(ownedTokens)
       setMyTokens(ownedTokens)
     },
